@@ -1,0 +1,63 @@
+/* Meter. The colour and type system for VERB.
+   Instrument-panel palette: one neutral ramp, four class colours, three status colours.
+   Nothing else. If a new colour is needed, one of these is wrong. */
+
+:root {
+  /* Neutral ramp */
+  --meter-ink:    #101418;
+  --meter-slate:  #2A333B;
+  --meter-steel:  #4A555F;
+  --meter-mist:   #6B7780;
+  --meter-line:   #DCD8CF;
+  --meter-shell:  #EDEBE5;
+  --meter-paper:  #F6F5F2;
+
+  /* Brand primary */
+  --meter-brand:  #1F3A34;
+  --meter-brand-bright: #2E7D6B;
+
+  /* Decision classes, ramped by cost of checking */
+  --meter-class-a: #2E7D6B;
+  --meter-class-b: #3C6E9F;
+  --meter-class-c: #B8843A;
+  --meter-class-d: #A34432;
+
+  /* Budget status */
+  --meter-ok:     #1F7A5C;
+  --meter-limit:  #B8843A;
+  --meter-over:   #A34432;
+
+  /* Type */
+  --meter-font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --meter-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Geometry */
+  --meter-radius:   6px;
+  --meter-radius-lg: 12px;
+  --meter-hairline: 1px solid var(--meter-line);
+  --meter-unit:     4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --meter-ink:    #F6F5F2;
+    --meter-slate:  #D3D0C9;
+    --meter-steel:  #9AA3AB;
+    --meter-mist:   #7E888F;
+    --meter-line:   #2B3238;
+    --meter-shell:  #171C21;
+    --meter-paper:  #101418;
+
+    --meter-brand:  #7FD8C2;
+    --meter-brand-bright: #5FBFA6;
+
+    --meter-class-a: #5FBFA6;
+    --meter-class-b: #7FB0DE;
+    --meter-class-c: #E0AE63;
+    --meter-class-d: #E4785C;
+
+    --meter-ok:     #5FBFA6;
+    --meter-limit:  #E0AE63;
+    --meter-over:   #E4785C;
+  }
+}

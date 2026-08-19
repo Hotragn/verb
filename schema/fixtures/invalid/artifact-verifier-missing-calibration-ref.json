@@ -1,0 +1,76 @@
+{
+  "artifact_id": "vv-2026-0819-3310",
+  "artifact_kind": "verifier_verdict",
+  "decision_type": "verification_verdict",
+  "decision_class": "A",
+  "agent_id": "schedule-verifier-01",
+  "agent_version": "2.1.0",
+  "timestamp": "2026-08-19T09:14:31Z",
+  "decision": "Pass decision artifact da-2026-0819-0447; all four slip-categorisation assertions hold.",
+  "verdict": "pass",
+  "proof_object": {
+    "assertions": [
+      {
+        "check": "basis.source_ids all resolve",
+        "expected": 3,
+        "observed": 3,
+        "passed": true
+      },
+      {
+        "check": "supplier notification within SLA clause 7.2 window",
+        "expected": "<= 5 working days",
+        "observed": "3 working days",
+        "passed": true
+      },
+      {
+        "check": "float after absorption matches P6 network",
+        "expected": 3.0,
+        "observed": 3.0,
+        "passed": true
+      },
+      {
+        "check": "no approved change request in the slip window",
+        "expected": 0,
+        "observed": 0,
+        "passed": true
+      }
+    ],
+    "recheck_command": "vb gates --artifact da-2026-0819-0447 --gate evidence"
+  },
+  "basis": [
+    {
+      "source_id": "ART:da-2026-0819-0447",
+      "retrieved_at": "2026-08-19T09:14:25Z",
+      "detail": "Slip categorisation artifact under verification, 4 checkable assertions extracted"
+    },
+    {
+      "source_id": "SUP:ACME:SLA:2025-11",
+      "retrieved_at": "2026-08-19T09:14:27Z",
+      "detail": "Clause 7.2 notification window is 5 working days"
+    }
+  ],
+  "alternatives": [
+    {
+      "option": "Return the artifact as cannot_decide",
+      "rejected_because": "All four assertions evaluated deterministically against resolvable sources, so no human judgement is required.",
+      "rejection_kind": "factual"
+    }
+  ],
+  "confidence_and_failure_mode": {
+    "confidence": 0.98,
+    "failure_mode": "If the SLA document was superseded after 2025-11, the notification-window assertion uses a stale threshold and a late notification would be passed. Detectable by comparing the contract register version on the nightly sync.",
+    "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
+  },
+  "reversal": {
+    "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
+    "cost_hours": 0.02,
+    "cheap_until": "2026-08-22T00:00:00Z",
+    "cheap_until_reason": "Weekly slip report distribution to programme leads."
+  },
+  "owner": {
+    "person_id": "u-2291",
+    "name": "R. Okonjo",
+    "role": "portfolio_scheduler",
+    "resolved_at": "2026-08-19T09:14:31Z"
+  }
+}

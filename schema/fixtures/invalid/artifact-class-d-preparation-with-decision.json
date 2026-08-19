@@ -1,0 +1,89 @@
+{
+  "artifact_id": "da-2026-0819-1044",
+  "artifact_kind": "class_d_preparation",
+  "decision_type": "workstream_cancellation_preparation",
+  "decision_class": "C",
+  "agent_id": "change-impact-01",
+  "agent_version": "0.9.2",
+  "timestamp": "2026-08-19T14:02:55Z",
+  "decides_class_d": "workstream_cancellation",
+  "recommendation": "Recommend cancelling the PRG7 legacy-migration workstream at the October gate, subject to the vendor exit terms in section 4 of this pack.",
+  "options_with_costs": [
+    {
+      "option": "Cancel at the October gate",
+      "cost": "Sunk 2.1m, exit fee 180k, forward saving 3.4m",
+      "reversal_cost_hours": 400.0
+    },
+    {
+      "option": "Continue to the December gate and re-assess",
+      "cost": "Additional 620k spend, exit fee unchanged, decision deferred 8 weeks",
+      "reversal_cost_hours": 0.0
+    },
+    {
+      "option": "Descope to the regulatory minimum and continue",
+      "cost": "Additional 1.1m, delivers 40 percent of the benefit case",
+      "reversal_cost_hours": 160.0
+    }
+  ],
+  "basis": [
+    {
+      "source_id": "FIN:PRG7:WS-LEG:actuals:2026-07",
+      "retrieved_at": "2026-08-19T13:58:12Z",
+      "detail": "Spend to date 2.1m against a 2.6m approved budget, 38 percent of scope delivered"
+    },
+    {
+      "source_id": "BEN:PRG7:case:v4",
+      "retrieved_at": "2026-08-19T13:58:31Z",
+      "detail": "Benefit case restated 2026-05, NPV now 0.4m against 3.9m at approval"
+    },
+    {
+      "source_id": "SUP:NORTHRIDGE:MSA:2024-03",
+      "retrieved_at": "2026-08-19T13:59:02Z",
+      "detail": "Clause 11.4, exit fee 180k with 60 days notice"
+    }
+  ],
+  "alternatives": {
+    "forced": true,
+    "reason": "The October gate is the last point at which the 60-day notice period clears the contract year end, so the option set is fixed by clause 11.4."
+  },
+  "confidence_and_failure_mode": {
+    "confidence": 0.71,
+    "failure_mode": "If the regulatory deadline referenced in the benefit case moves left, the descope option becomes mandatory rather than optional and the cancellation recommendation is wrong. Detectable from the regulator's Q3 consultation response, due 2026-09-15.",
+    "calibration_basis": "Reliability measured on 41 labelled preparation packs, 2025-2026. Brier score 0.19, small sample, treat the figure as indicative.",
+    "detectable_at": "2026-09-15T00:00:00Z"
+  },
+  "reversal": {
+    "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
+    "cost_hours": 6.0,
+    "cheap_until": "2026-09-26T00:00:00Z",
+    "cheap_until_reason": "Change authority papers issue two weeks before the October gate."
+  },
+  "owner": {
+    "person_id": "u-1180",
+    "name": "S. Lindqvist",
+    "role": "change_authority_chair",
+    "resolved_at": "2026-08-19T14:02:55Z"
+  },
+  "precedent_cases": [
+    {
+      "case_id": "PRG3:WS-DATA",
+      "outcome": "Cancelled at gate, exit fee absorbed, forward saving realised",
+      "relevance": "Same vendor, same MSA clause, comparable scope completion at cancellation"
+    }
+  ],
+  "stakeholder_positions": [
+    {
+      "stakeholder": "Programme sponsor",
+      "position": "Open to cancellation if the exit fee is contained",
+      "source_id": "MIN:PRGBOARD:2026-08-06"
+    }
+  ],
+  "second_order_impacts": [
+    {
+      "impact": "Two downstream workstreams lose their data-migration dependency and need re-planning",
+      "affected_id": "PRG7:WS-REPORTING",
+      "magnitude": "Re-plan of roughly 6 weeks"
+    }
+  ],
+  "decision": "Cancel the PRG7 legacy-migration workstream at the October gate."
+}

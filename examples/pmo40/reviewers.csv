@@ -1,0 +1,15 @@
+reviewer_id,name,role,qualified_classes,hours_per_period,utilisation
+u-1180,S. Lindqvist,change_authority_chair,"A,B,C",8,0.55
+u-2291,R. Okonjo,portfolio_scheduler,"A,B,C",8,0.55
+u-3042,M. Haddad,portfolio_scheduler,"A,B,C",8,0.55
+u-3119,J. Whitfield,programme_manager,"A,B,C",8,0.55
+u-3388,A. Bergstrom,programme_manager,"A,B,C",8,0.55
+u-3450,P. Nakamura,pmo_lead,"A,B,C",8,0.55
+u-4021,D. Castellanos,project_manager,"A,B",8,0.55
+u-4088,L. Fitzgerald,project_manager,"A,B",8,0.55
+u-4133,T. Abebe,project_manager,"A,B",8,0.55
+u-5010,K. Sorensen,pmo_analyst,A,8,0.55
+u-5044,N. Varga,pmo_analyst,A,8,0.55
+u-5077,H. Osei,pmo_analyst,A,8,0.55
+u-5091,C. Delacroix,pmo_analyst,A,8,0.55
+u-5123,E. Novak,pmo_analyst,A,8,0.55

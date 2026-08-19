@@ -1,0 +1,96 @@
+{
+  "artifact_id": "da-2026-0819-0912",
+  "artifact_kind": "decision",
+  "decision_type": "change_request_impact_assessment",
+  "decision_class": "C",
+  "agent_id": "change-impact-01",
+  "agent_version": "0.9.2",
+  "timestamp": "2026-08-19T11:31:07Z",
+  "decision": "Assess CR-PRG7-0104 as a 19-day schedule impact with 340k cost exposure, recommend absorption into the Q4 contingency rather than re-baselining.",
+  "basis": [
+    {
+      "source_id": "CR:PRG7-0104",
+      "retrieved_at": "2026-08-19T11:28:40Z",
+      "detail": "Scope addition: two integration environments, requested by the security workstream"
+    },
+    {
+      "source_id": "P6:PRG7:baseline:v12",
+      "retrieved_at": "2026-08-19T11:28:52Z",
+      "detail": "Critical path runs through integration test window, float 14d"
+    },
+    {
+      "source_id": "FIN:PRG7:contingency:2026Q4",
+      "retrieved_at": "2026-08-19T11:29:03Z",
+      "detail": "Unallocated contingency 610k against a 340k exposure"
+    },
+    {
+      "source_id": "MIN:PRGBOARD:2026-06-11",
+      "retrieved_at": "2026-08-19T11:29:20Z",
+      "detail": "Sponsor stated no further re-baselining before the December gate"
+    }
+  ],
+  "alternatives": [
+    {
+      "option": "Re-baseline the integration test window",
+      "rejected_because": "Sponsor position of 2026-06-11 rules out re-baselining before the December gate, and the contingency covers the exposure.",
+      "rejection_kind": "judgement"
+    },
+    {
+      "option": "Reject the change request",
+      "rejected_because": "The two environments are a stated precondition of the security workstream sign-off recorded in RISK-PRG7-0031.",
+      "rejection_kind": "factual"
+    },
+    {
+      "option": "Defer the decision to the December gate",
+      "rejected_because": "Procurement lead time for the environments is 14 weeks, so deferral pushes delivery past the March milestone.",
+      "rejection_kind": "factual"
+    }
+  ],
+  "confidence_and_failure_mode": {
+    "confidence": 0.78,
+    "failure_mode": "If the 340k exposure excludes the licence uplift for the second environment, contingency cover is insufficient and the absorption recommendation is wrong. Detectable when the vendor quote lands, expected 2026-08-29.",
+    "calibration_basis": "Reliability measured on 96 labelled impact assessments, 2026-H1. Brier score 0.14, over-confident above 0.9 so the reported figure is shrunk.",
+    "detectable_at": "2026-08-29T00:00:00Z"
+  },
+  "reversal": {
+    "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
+    "cost_hours": 2.0,
+    "cheap_until": "2026-09-05T00:00:00Z",
+    "cheap_until_reason": "Change authority decision meeting; after approval the procurement commitment starts."
+  },
+  "owner": {
+    "person_id": "u-1180",
+    "name": "S. Lindqvist",
+    "role": "change_authority_chair",
+    "resolved_at": "2026-08-19T11:31:07Z"
+  },
+  "stakeholder_positions": [
+    {
+      "stakeholder": "Programme sponsor",
+      "position": "No re-baselining before the December gate",
+      "source_id": "MIN:PRGBOARD:2026-06-11"
+    },
+    {
+      "stakeholder": "Security workstream lead",
+      "position": "Both environments required for sign-off",
+      "source_id": "RISK:PRG7-0031"
+    },
+    {
+      "stakeholder": "Finance business partner",
+      "position": "Contingency available but reportable above 250k",
+      "source_id": "FIN:PRG7:policy:2026"
+    }
+  ],
+  "second_order_impacts": [
+    {
+      "impact": "Q4 contingency headroom falls below the 40 percent policy floor",
+      "affected_id": "FIN:PRG7:contingency:2026Q4",
+      "magnitude": "610k to 270k, 44 percent of original"
+    },
+    {
+      "impact": "Integration test window compresses, reducing defect-fix float",
+      "affected_id": "P6:PRG7:WBS-4.3",
+      "magnitude": "14d to 9d"
+    }
+  ]
+}

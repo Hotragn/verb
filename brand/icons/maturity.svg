@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Maturity stages">
+  <path d="M2.5 20.5 H21.5"/>
+  <path d="M4 20.5 V17 M8.5 20.5 V13.5 M13 20.5 V10 M17.5 20.5 V6.5"/>
+  <path d="M21.5 20.5 V4" stroke-dasharray="2 2.5" opacity="0.55"/>
+</svg>

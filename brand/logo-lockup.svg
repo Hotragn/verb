@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 64" width="400" height="64" role="img" aria-label="VERB. The Verification Budget.">
+  <title>VERB. The Verification Budget.</title>
+  <g>
+    <rect x="6" y="6" width="52" height="52" rx="13" fill="none" stroke="#101418" stroke-width="3.5"/>
+    <rect x="16" y="15" width="11" height="6" rx="3" fill="#2E7D6B"/>
+    <rect x="16" y="25" width="18" height="6" rx="3" fill="#3C6E9F"/>
+    <rect x="16" y="35" width="25" height="6" rx="3" fill="#B8843A"/>
+    <rect x="16" y="45" width="47" height="6" rx="3" fill="#A34432"/>
+  </g>
+  <g fill="#101418" transform="translate(82,9) scale(0.62)">
+    <polygon points="0,0 9,0 17,30 25,0 34,0 21,48 13,48"/>
+    <g transform="translate(46,0)">
+      <rect x="0" y="0" width="9" height="48"/><rect x="0" y="0" width="32" height="9"/>
+      <rect x="0" y="19.5" width="27" height="9"/><rect x="0" y="39" width="32" height="9"/>
+    </g>
+    <g transform="translate(90,0)">
+      <rect x="0" y="0" width="9" height="48"/><rect x="0" y="0" width="30" height="9"/>
+      <rect x="21" y="0" width="9" height="24"/><rect x="0" y="15" width="30" height="9"/>
+      <polygon points="21,24 30,24 34,48 25,48"/>
+    </g>
+    <g transform="translate(136,0)">
+      <rect x="0" y="0" width="9" height="48"/><rect x="0" y="0" width="30" height="9"/>
+      <rect x="21" y="0" width="9" height="24"/><rect x="0" y="19.5" width="30" height="9"/>
+      <rect x="21" y="19.5" width="9" height="28.5"/><rect x="0" y="39" width="30" height="9"/>
+    </g>
+  </g>
+  <text x="192" y="39" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" letter-spacing="0.06em" fill="#6B7780">THE VERIFICATION BUDGET</text>
+</svg>

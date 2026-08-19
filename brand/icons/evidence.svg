@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Evidence plane, six fields">
+  <path d="M5 2.5 H14 L19 7.5 V21.5 H5 Z"/>
+  <path d="M14 2.5 V7.5 H19"/>
+  <path d="M8 11 H16 M8 14 H16 M8 17 H13"/>
+</svg>

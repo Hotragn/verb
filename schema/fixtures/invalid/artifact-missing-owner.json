@@ -1,0 +1,54 @@
+{
+  "artifact_id": "da-2026-0819-0447",
+  "artifact_kind": "decision",
+  "decision_type": "milestone_slip_categorisation",
+  "decision_class": "B",
+  "agent_id": "schedule-integrity-01",
+  "agent_version": "1.4.0",
+  "timestamp": "2026-08-19T09:14:22Z",
+  "decision": "Categorise slip on milestone MS-PRG7-014 as supplier-caused, 11 working days, absorbed by float.",
+  "basis": [
+    {
+      "source_id": "P6:PRG7:baseline:v12",
+      "retrieved_at": "2026-08-19T09:13:58Z",
+      "detail": "Baseline finish 2026-09-30, float 14d"
+    },
+    {
+      "source_id": "JIRA:PRG7-2291",
+      "retrieved_at": "2026-08-19T09:14:01Z",
+      "detail": "Supplier confirmed delay in writing 2026-08-15"
+    },
+    {
+      "source_id": "SUP:ACME:SLA:2025-11",
+      "retrieved_at": "2026-08-19T09:14:03Z",
+      "detail": "SLA clause 7.2, notification requirement met"
+    }
+  ],
+  "alternatives": [
+    {
+      "option": "Categorise as scope-change-caused",
+      "rejected_because": "No approved change request in the window. CR-PRG7-0088 closed 2026-07-02.",
+      "rejection_kind": "factual"
+    },
+    {
+      "option": "Escalate as a float-consuming risk",
+      "rejected_because": "Remaining float 3d after absorption, above the 2d escalation threshold.",
+      "rejection_kind": "factual"
+    }
+  ],
+  "confidence_and_failure_mode": {
+    "confidence": 0.86,
+    "failure_mode": "If the supplier delay is a symptom of an undisclosed resource loss on their side, the 11-day figure understates the slip and float absorption is wrong. Detectable at the next supplier checkpoint on 2026-08-26.",
+    "calibration_basis": "Reliability measured on 240 labelled categorisations, 2026-Q2. Brier score 0.09.",
+    "detectable_at": "2026-08-26T09:00:00Z"
+  },
+  "reversal": {
+    "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
+    "cost_hours": 0.5,
+    "cheap_until": "2026-09-02T00:00:00Z",
+    "cheap_until_reason": "Programme board pack lock for the September cycle."
+  },
+  "batch_id": "batch-2026-W34-slipcat",
+  "sampled": true,
+  "rubric_version": "slip-cause-v3.1"
+}

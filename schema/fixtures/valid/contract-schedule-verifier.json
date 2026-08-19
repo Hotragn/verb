@@ -1,0 +1,122 @@
+{
+  "agent_id": "schedule-verifier-01",
+  "name": "Schedule Verifier",
+  "version": "2.1.0",
+  "owner_role": "pmo_lead",
+  "agent_kind": "verifier",
+  "verifies": {
+    "agent_ids": [
+      "schedule-integrity-01"
+    ],
+    "decision_types": [
+      "critical_path_recalculation",
+      "dependency_cycle_flagging",
+      "float_erosion_alert",
+      "milestone_slip_categorisation"
+    ]
+  },
+  "scope": {
+    "in_scope": [
+      {
+        "decision_type": "verification_verdict",
+        "decision_class": "A",
+        "authority": "decide",
+        "rate_limit_per_period": 640
+      }
+    ],
+    "excluded": [
+      {
+        "decision_type": "verification_verdict_class_c",
+        "reason": "This verifier has no calibration on Class C. Uncalibrated means k = 0, so there is no point running it."
+      }
+    ],
+    "unlisted_types": "escalate"
+  },
+  "evidence": {
+    "required_fields": [
+      "decision",
+      "basis",
+      "alternatives",
+      "confidence_and_failure_mode",
+      "reversal",
+      "owner"
+    ],
+    "artifact_schema": "schema/decision-artifact.schema.json",
+    "on_evidence_failure": "escalate",
+    "retention_days": 730,
+    "verifier_additions": [
+      "verdict",
+      "proof_object",
+      "calibration_record_ref"
+    ]
+  },
+  "calibration": {
+    "labelled_set_size": 240,
+    "known_bad_count": 38,
+    "measured_at": "2026-07-30",
+    "false_negative_rate": 0.021,
+    "false_positive_rate": 0.094,
+    "containment_point_estimate": 0.71,
+    "containment_ci95": [
+      0.652,
+      0.762
+    ],
+    "containment_used_in_budget": 0.652,
+    "c_a_hours": 0.008,
+    "gate_3_status": "pass",
+    "next_recalibration_due": "2026-10-30"
+  },
+  "escalation": {
+    "conditions": [
+      {
+        "id": "unclassified_type",
+        "test": "decision_type not in verifies.decision_types",
+        "to_role": "pmo_lead"
+      },
+      {
+        "id": "evidence_unavailable",
+        "test": "proof_object cannot be constructed",
+        "to_role": "portfolio_scheduler"
+      },
+      {
+        "id": "class_d_detected",
+        "test": "classification result == D",
+        "to_role": "change_authority_chair"
+      },
+      {
+        "id": "cannot_decide",
+        "test": "verdict == cannot_decide",
+        "to_role": "portfolio_scheduler"
+      },
+      {
+        "id": "calibration_stale",
+        "test": "now > calibration.next_recalibration_due",
+        "to_role": "pmo_lead"
+      },
+      {
+        "id": "fnr_drift",
+        "test": "rolling_30d_false_negative_rate > 0.05",
+        "to_role": "pmo_lead"
+      }
+    ],
+    "target_resolution": "named_person_at_decision_time",
+    "max_response_hours": 4
+  },
+  "revocation": {
+    "who": [
+      "pmo_lead",
+      "head_of_delivery"
+    ],
+    "method": "Set status to REVOKED. Containment k drops to 0 for all classes this verifier covered.",
+    "max_time_to_effect_minutes": 5,
+    "in_flight_work": "halt_and_mark_unverified",
+    "rollback": "Decisions closed by this verifier in the last 72h re-enter the human review queue. This is a budget event: VB for Class A and B falls by roughly two thirds at the moment of revocation.",
+    "notify": [
+      "pmo_lead",
+      "portfolio_scheduler",
+      "head_of_delivery"
+    ],
+    "last_tested": "2026-08-05",
+    "last_tested_seconds": 95
+  }
+}

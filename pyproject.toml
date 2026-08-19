@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verb-vb"
+version = "0.1.0"
+description = "VERB. The verification budget: an operating model for autonomous AI in project delivery and end to end PMO."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Hotragn Pettugani" }]
+keywords = ["pmo", "ai-agents", "governance", "verification", "project-management", "evals"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Information Technology",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business :: Scheduling",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4",
+  "pytest-cov>=4.1",
+  "jsonschema>=4.20",
+]
+
+[project.urls]
+Homepage = "https://github.com/hotragn/verb"
+Specification = "https://github.com/hotragn/verb#readme"
+Calculator = "https://hotragn.github.io/verb"
+Issues = "https://github.com/hotragn/verb/issues"
+
+[project.scripts]
+vb = "vb.cli:main"
+
+[tool.setuptools]
+packages = ["vb"]
+
+[tool.setuptools.package-data]
+vb = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+# Coverage is measured on the calculation logic. The CLI is a presentation layer
+# and is covered by its own tests, but the threshold is about the arithmetic.
+source = ["vb"]
+omit = ["vb/__main__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if __name__ == .__main__.:",
+  "raise NotImplementedError",
+  "if TYPE_CHECKING:",
+]

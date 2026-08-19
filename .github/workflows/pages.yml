@@ -1,0 +1,60 @@
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Assemble the site
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The calculator is the site root, so hotragn.github.io/verb opens it
+      # directly. The deck rides along at /deck. Both are static files with no
+      # build step and no network requests, which is the point of them.
+      - name: Assemble
+        run: |
+          python deck/build.py
+          mkdir -p _site
+          cp -r calculator/. _site/
+          mkdir -p _site/deck
+          cp -r deck/. _site/deck/
+          mkdir -p _site/brand
+          cp -r brand/. _site/brand/
+          cp README.md _site/SPECIFICATION.md
+          touch _site/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

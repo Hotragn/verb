@@ -1,0 +1,51 @@
+{
+  "name": "PMO-40",
+  "synthetic": true,
+  "warning": "Synthetic. PMO-40 is an organisation that does not exist. These figures demonstrate that the arithmetic works and the tooling reproduces. They are not evidence and must not be cited as evidence.",
+  "generated_by": "examples/generate_pmo40.py",
+  "seed": 4242,
+  "period": "week",
+  "periods": 8,
+  "projects": 40,
+  "reviewers_total": 14,
+  "classes": {
+    "A": {
+      "reviewers": 14,
+      "hours_per_period": 8,
+      "utilisation": 0.55,
+      "cost_per_decision": 0.02,
+      "agent_check_cost": 0.005,
+      "median_artifact_words": 110,
+      "cost_measured_at": "2026-07-08",
+      "floor_percentile": 10.0
+    },
+    "B": {
+      "reviewers": 9,
+      "hours_per_period": 8,
+      "utilisation": 0.55,
+      "cost_per_decision": 0.15,
+      "agent_check_cost": 0.01,
+      "median_artifact_words": 700,
+      "cost_measured_at": "2026-07-08",
+      "floor_percentile": 10.0
+    },
+    "C": {
+      "reviewers": 6,
+      "hours_per_period": 8,
+      "utilisation": 0.55,
+      "cost_per_decision": 1.25,
+      "agent_check_cost": 0.0,
+      "median_artifact_words": 2100,
+      "cost_measured_at": "2026-07-08",
+      "floor_percentile": 10.0
+    },
+    "D": {
+      "reviewers": 6,
+      "hours_per_period": 8,
+      "utilisation": 0.55,
+      "cost_per_decision": null,
+      "agent_check_cost": 0.0,
+      "median_artifact_words": 3400
+    }
+  }
+}

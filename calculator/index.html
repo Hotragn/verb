@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tally. The verification budget calculator. VERB</title>
+<meta name="description" content="Work out how many AI agent decisions your organisation can genuinely review before review becomes rubber-stamping. VB = (R x H x u) / c. No sign-up, no tracking, works offline.">
+<meta name="author" content="Hotragn Pettugani">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101418'/%3E%3Crect x='14' y='17' width='12' height='6' rx='3' fill='%232E7D6B'/%3E%3Crect x='14' y='27' width='20' height='6' rx='3' fill='%233C6E9F'/%3E%3Crect x='14' y='37' width='27' height='6' rx='3' fill='%23B8843A'/%3E%3Crect x='14' y='47' width='46' height='6' rx='3' fill='%23A34432'/%3E%3C/svg%3E">
+<style>
+/* ---------------------------------------------------------------------------
+   Meter, the VERB colour and type system. Values duplicated from
+   brand/tokens.css on purpose: this file has to work opened straight from disk
+   with no server, so it cannot link anything.
+   --------------------------------------------------------------------------- */
+:root{
+  --ink:#101418; --slate:#2A333B; --steel:#4A555F; --mist:#6B7780;
+  --line:#DCD8CF; --shell:#EDEBE5; --paper:#F6F5F2;
+  --brand:#1F3A34; --bright:#2E7D6B;
+  --a:#2E7D6B; --b:#3C6E9F; --c:#B8843A; --d:#A34432;
+  --ok:#1F7A5C; --limit:#B8843A; --over:#A34432;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --u:4px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ink:#F6F5F2; --slate:#D3D0C9; --steel:#9AA3AB; --mist:#7E888F;
+    --line:#2B3238; --shell:#171C21; --paper:#101418;
+    --brand:#7FD8C2; --bright:#5FBFA6;
+    --a:#5FBFA6; --b:#7FB0DE; --c:#E0AE63; --d:#E4785C;
+    --ok:#5FBFA6; --limit:#E0AE63; --over:#E4785C;
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.55;
+  padding:calc(var(--u)*8) calc(var(--u)*5) calc(var(--u)*16);
+}
+.wrap{max-width:1080px; margin:0 auto}
+h1,h2,h3{line-height:1.2; margin:0}
+a{color:var(--bright)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
+  outline:2px solid var(--bright); outline-offset:2px;
+}
+
+/* Header ------------------------------------------------------------------ */
+header{display:flex; align-items:center; gap:calc(var(--u)*4); flex-wrap:wrap;
+  padding-bottom:calc(var(--u)*5); border-bottom:2px solid var(--ink)}
+header svg{flex:none}
+.title h1{font-size:28px; letter-spacing:-.01em}
+.title p{margin:calc(var(--u)*1) 0 0; color:var(--mist); font-size:15px}
+.spacer{flex:1}
+.links{display:flex; gap:calc(var(--u)*2); flex-wrap:wrap}
+.links a{
+  display:inline-block; padding:calc(var(--u)*1.5) calc(var(--u)*3);
+  border:1px solid var(--line); border-radius:6px; text-decoration:none;
+  color:var(--ink); font-size:13px; font-family:var(--mono);
+}
+.links a:hover{border-color:var(--ink); background:var(--shell)}
+
+/* Plain-English opener ----------------------------------------------------- */
+.lede{margin:calc(var(--u)*7) 0 calc(var(--u)*8); max-width:66ch}
+.lede p{margin:0 0 calc(var(--u)*3)}
+.lede strong{font-weight:650}
+.formula{
+  font-family:var(--mono); font-size:15px; background:var(--shell);
+  border-left:3px solid var(--bright); padding:calc(var(--u)*4) calc(var(--u)*5);
+  margin:calc(var(--u)*5) 0; white-space:pre; overflow-x:auto; line-height:1.6;
+}
+details.glossary{margin:calc(var(--u)*4) 0; border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line); padding:calc(var(--u)*3) 0}
+details.glossary summary{cursor:pointer; font-weight:600; font-size:15px}
+details.glossary dl{margin:calc(var(--u)*4) 0 0; display:grid;
+  grid-template-columns:auto 1fr; gap:calc(var(--u)*2) calc(var(--u)*5); font-size:15px}
+details.glossary dt{font-family:var(--mono); font-weight:600; color:var(--brand)}
+details.glossary dd{margin:0; color:var(--slate)}
+
+/* Section headings --------------------------------------------------------- */
+h2{font-size:13px; text-transform:uppercase; letter-spacing:.09em;
+  color:var(--mist); font-family:var(--mono); font-weight:600;
+  margin:calc(var(--u)*10) 0 calc(var(--u)*4);
+  padding-bottom:calc(var(--u)*2); border-bottom:1px solid var(--line)}
+h2:first-of-type{margin-top:0}
+
+/* Input grid --------------------------------------------------------------- */
+.classes{display:grid; gap:calc(var(--u)*4)}
+.cls{border:1px solid var(--line); border-radius:8px; overflow:hidden;
+  background:var(--paper)}
+.cls[data-status="overdraft"]{border-color:var(--over)}
+.cls[data-status="at_limit"]{border-color:var(--limit)}
+.cls-head{display:flex; align-items:center; gap:calc(var(--u)*3);
+  padding:calc(var(--u)*3) calc(var(--u)*4); background:var(--shell);
+  border-bottom:1px solid var(--line); flex-wrap:wrap}
+.chip{width:26px; height:26px; border-radius:6px; display:grid; place-items:center;
+  color:#F6F5F2; font-family:var(--mono); font-weight:700; font-size:14px; flex:none}
+.chip.A{background:var(--a)} .chip.B{background:var(--b)}
+.chip.C{background:var(--c)} .chip.D{background:var(--d)}
+.cls-head .name{font-weight:650; font-size:15px}
+.cls-head .what{color:var(--mist); font-size:14px}
+.status{margin-left:auto; font-family:var(--mono); font-size:12px; font-weight:700;
+  letter-spacing:.06em; padding:calc(var(--u)*1) calc(var(--u)*2.5); border-radius:4px;
+  text-transform:uppercase; white-space:nowrap}
+.status.in_budget{background:var(--ok); color:#F6F5F2}
+.status.at_limit{background:var(--limit); color:#F6F5F2}
+.status.overdraft{background:var(--over); color:#F6F5F2}
+.status.unbudgeted,.status.policy_violation{background:var(--slate); color:var(--paper)}
+.status.policy_violation{background:var(--over)}
+
+.fields{display:grid; grid-template-columns:repeat(auto-fit,minmax(112px,1fr));
+  gap:calc(var(--u)*3); padding:calc(var(--u)*4)}
+.f{display:flex; flex-direction:column; gap:calc(var(--u)*1)}
+.f label{font-size:12px; color:var(--mist); font-family:var(--mono);
+  display:flex; align-items:baseline; gap:calc(var(--u)*1.5)}
+.f label b{color:var(--ink); font-size:13px}
+.f input{
+  font-family:var(--mono); font-size:16px; padding:calc(var(--u)*2) calc(var(--u)*2.5);
+  border:1px solid var(--line); border-radius:5px; background:var(--paper);
+  color:var(--ink); width:100%; min-width:0;
+}
+.f input:hover{border-color:var(--steel)}
+.f input:disabled{background:var(--shell); color:var(--mist); cursor:not-allowed}
+
+.results{display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+  gap:calc(var(--u)*3); padding:0 calc(var(--u)*4) calc(var(--u)*4)}
+.r{border-top:1px solid var(--line); padding-top:calc(var(--u)*2.5)}
+.r .k{font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+  color:var(--mist); font-family:var(--mono)}
+.r .v{font-family:var(--mono); font-size:21px; font-weight:600; margin-top:2px}
+.r .v.big{font-size:26px}
+.r .n{font-size:12px; color:var(--mist)}
+.v.over{color:var(--over)} .v.ok{color:var(--ok)} .v.limit{color:var(--limit)}
+.note{padding:0 calc(var(--u)*4) calc(var(--u)*4); font-size:14px; color:var(--slate);
+  max-width:78ch}
+
+/* Chart -------------------------------------------------------------------- */
+.chart{border:1px solid var(--line); border-radius:8px; padding:calc(var(--u)*5)}
+.chart svg{width:100%; height:auto; display:block}
+.legend{display:flex; gap:calc(var(--u)*5); flex-wrap:wrap; margin-top:calc(var(--u)*4);
+  font-size:13px; color:var(--mist); font-family:var(--mono)}
+.legend i{display:inline-block; width:11px; height:11px; border-radius:2px;
+  margin-right:6px; vertical-align:-1px}
+
+/* Fix panel ---------------------------------------------------------------- */
+.fix{border:1px solid var(--line); border-left:3px solid var(--over); border-radius:8px;
+  padding:calc(var(--u)*5)}
+.fix h3{font-size:17px; margin-bottom:calc(var(--u)*3)}
+.fix table{border-collapse:collapse; width:100%; font-size:15px; margin-top:calc(var(--u)*3)}
+.fix th,.fix td{text-align:left; padding:calc(var(--u)*2.5) calc(var(--u)*2.5) calc(var(--u)*2.5) 0;
+  border-bottom:1px solid var(--line); vertical-align:top}
+.fix th{font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--mist);
+  font-family:var(--mono); font-weight:600}
+.fix td.num{font-family:var(--mono); white-space:nowrap}
+.fix .verdict{color:var(--slate); font-size:14px}
+.slider{margin-top:calc(var(--u)*6); border-top:1px solid var(--line); padding-top:calc(var(--u)*5)}
+.slider label{display:flex; justify-content:space-between; align-items:baseline;
+  font-size:14px; gap:calc(var(--u)*3); flex-wrap:wrap}
+.slider output{font-family:var(--mono); font-weight:600; font-size:17px}
+.slider input[type=range]{width:100%; margin-top:calc(var(--u)*3); accent-color:var(--bright)}
+.slider .out{margin-top:calc(var(--u)*3); font-family:var(--mono); font-size:15px}
+
+/* Toolbar ------------------------------------------------------------------ */
+.tools{display:flex; gap:calc(var(--u)*2.5); flex-wrap:wrap; margin:calc(var(--u)*4) 0 0}
+button{
+  font-family:var(--sans); font-size:14px; padding:calc(var(--u)*2.5) calc(var(--u)*4);
+  border:1px solid var(--line); border-radius:6px; background:var(--paper);
+  color:var(--ink); cursor:pointer;
+}
+button:hover{border-color:var(--ink); background:var(--shell)}
+button.primary{background:var(--brand); border-color:var(--brand); color:var(--paper)}
+button.primary:hover{background:var(--bright); border-color:var(--bright)}
+
+/* Footer ------------------------------------------------------------------- */
+footer{margin-top:calc(var(--u)*14); padding-top:calc(var(--u)*6);
+  border-top:2px solid var(--ink); font-size:14px; color:var(--mist)}
+footer p{margin:0 0 calc(var(--u)*3); max-width:74ch}
+footer .foot-links{display:flex; gap:calc(var(--u)*4); flex-wrap:wrap;
+  font-family:var(--mono); font-size:13px; margin-top:calc(var(--u)*4)}
+.warn{background:var(--shell); border-left:3px solid var(--limit);
+  padding:calc(var(--u)*3) calc(var(--u)*4); font-size:14px; margin:calc(var(--u)*5) 0;
+  color:var(--slate)}
+@media print{
+  body{padding:0} .tools,.links{display:none} .cls{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true">
+    <rect x="6" y="6" width="52" height="52" rx="13" fill="none" stroke="currentColor" stroke-width="3.5"/>
+    <rect x="16" y="15" width="11" height="6" rx="3" fill="#2E7D6B"/>
+    <rect x="16" y="25" width="18" height="6" rx="3" fill="#3C6E9F"/>
+    <rect x="16" y="35" width="25" height="6" rx="3" fill="#B8843A"/>
+    <rect x="16" y="45" width="47" height="6" rx="3" fill="#A34432"/>
+  </svg>
+  <div class="title">
+    <h1>Tally</h1>
+    <p>The verification budget calculator. Part of VERB.</p>
+  </div>
+  <div class="spacer"></div>
+  <nav class="links">
+    <a href="https://github.com/hotragn/verb">Repository</a>
+    <a href="https://github.com/hotragn/verb#readme">Specification</a>
+    <a href="https://www.linkedin.com/in/hotragn">LinkedIn</a>
+    <a href="https://x.com/hotragn">x.com/hotragn</a>
+  </nav>
+</header>
+
+<section class="lede">
+  <p><strong>The question this answers:</strong> how many decisions can your team actually check
+  before checking turns into signing?</p>
+
+  <p>AI agents can now produce more decisions in a week than your people can review in a month.
+  When that happens, the extra decisions do not stop. They get approved anyway, by somebody with
+  eleven minutes and nineteen items in a queue. The approval is recorded. The checking is not.</p>
+
+  <p>Nobody chooses to rubber-stamp. It is simply what running out of review capacity looks like
+  from the inside, and there is no error message for it. This page puts a number on the capacity
+  you have, so you can compare it against the work you are sending.</p>
+
+  <div class="formula">        R x H x u
+  VB = -----------
+             c</div>
+
+  <p>Fill in four numbers per row and read the answer. Nothing is sent anywhere: this page has no
+  network requests, no analytics and no sign-up. It works with your laptop offline.</p>
+
+  <details class="glossary">
+    <summary>What the four numbers mean, in plain terms</summary>
+    <dl>
+      <dt>R</dt><dd>How many people are genuinely qualified to judge this kind of decision. Not
+        everyone with the approve button. The people whose sign-off you would defend if something
+        went wrong.</dd>
+      <dt>H</dt><dd>Hours per week each of those people has nominally set aside for reviewing.</dd>
+      <dt>u</dt><dd>The share of those hours that survives meetings, holidays and everything else.
+        Between 0 and 1. If you have not measured it, 0.5 is a fair starting guess. Above 0.7 is
+        almost always wishful.</dd>
+      <dt>c</dt><dd>Hours it takes one qualified person to genuinely check one decision. This is
+        the number that matters most, and the one nobody has. Measure it: time thirty reviews,
+        then ask each reviewer afterwards whether they really checked, and throw away the ones
+        who say no.</dd>
+      <dt>D</dt><dd>How many decisions of this kind get produced per week, by agents and people
+        together.</dd>
+      <dt>k</dt><dd>Optional. If a second agent checks the first agent's work and closes some of
+        it without a human, this is the share it closes. Only count it if you have measured how
+        often that checker misses a bad decision. If you have not, leave it at zero.</dd>
+    </dl>
+  </details>
+</section>
+
+<h2>Your numbers</h2>
+<div class="classes" id="classes"></div>
+
+<div class="tools">
+  <button class="primary" id="load-example">Load the PMO-40 example</button>
+  <button id="reset">Reset to blank</button>
+  <button id="print">Print or save as PDF</button>
+  <button id="copy">Copy results as text</button>
+</div>
+
+<h2>Where the capacity goes</h2>
+<div class="chart">
+  <svg id="chart" viewBox="0 0 720 230" role="img" aria-labelledby="chart-title">
+    <title id="chart-title">Demand against verification budget, per decision class</title>
+  </svg>
+  <div class="legend">
+    <span><i style="background:var(--ok)"></i>within budget</span>
+    <span><i style="background:var(--over)"></i>beyond budget, approved without being checked</span>
+    <span><i style="background:var(--line)"></i>unused capacity</span>
+  </div>
+</div>
+
+<div id="fix-wrap"></div>
+
+<footer>
+  <p><strong>What to do with this.</strong> If any row comes back as an overdraft, that class is
+  the one to act on, and the table above it tells you which of the four levers could close the gap.
+  Two of them have real range: making the check cheaper, and sending less work for review. Hiring
+  is usually neither fast enough nor available.</p>
+
+  <p>The full specification, the decision classifier, the drift detector and the eval gates are in
+  the repository. A PMO director can implement the whole model from the README with no code at all.</p>
+
+  <div class="warn">
+    Estimated inputs give you an estimated answer. The formula turns your assumptions into
+    arithmetic; it does not turn them into evidence. Measure <b>c</b> before you present the result,
+    and say out loud that reviewers work faster when observed, which makes the budget look better
+    than it is.
+  </div>
+
+  <div class="foot-links">
+    <a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a>
+    <a href="https://hotragn.github.io/verb">hotragn.github.io/verb</a>
+    <a href="https://www.linkedin.com/in/hotragn">LinkedIn</a>
+    <a href="https://x.com/hotragn">x.com/hotragn</a>
+  </div>
+  <p style="margin-top:16px">VERB by Hotragn Pettugani. Apache 2.0. Issues and measured
+  verification costs welcome.</p>
+</footer>
+
+</div>
+
+<script>
+"use strict";
+
+/* --------------------------------------------------------------------------
+   Model. The same arithmetic as vb/budget.py, kept deliberately small so that
+   anyone can read it and confirm the page is not doing anything clever.
+   -------------------------------------------------------------------------- */
+
+var AT_LIMIT = 0.95;
+
+var CLASSES = [
+  { id:"A", name:"Class A", what:"machine-checkable", hint:"A test decides it. A human only sees the exceptions." },
+  { id:"B", name:"Class B", what:"sample-checkable", hint:"Check twenty, conclude about two hundred." },
+  { id:"C", name:"Class C", what:"expert-checkable", hint:"A qualified person has to reconstruct the reasoning. This is where budgets break." },
+  { id:"D", name:"Class D", what:"not checkable in advance", hint:"Irreversible, or only judgeable after the outcome. Never delegated: agents prepare it, a human decides." }
+];
+
+var BLANK = {
+  A:{R:0,H:8,u:0.55,c:0.02,D:0,k:0,ca:0},
+  B:{R:0,H:8,u:0.55,c:0.15,D:0,k:0,ca:0},
+  C:{R:0,H:8,u:0.55,c:1.25,D:0,k:0,ca:0},
+  D:{R:0,H:8,u:0.55,c:null,D:0,k:0,ca:0}
+};
+
+var PMO40 = {
+  A:{R:14,H:8,u:0.55,c:0.02,D:320,k:0.693,ca:0.005},
+  B:{R:9, H:8,u:0.55,c:0.15,D:160,k:0,     ca:0.010},
+  C:{R:6, H:8,u:0.55,c:1.25,D:70, k:0,     ca:0},
+  D:{R:6, H:8,u:0.55,c:null,D:0,  k:0,     ca:0}
+};
+
+var state = load();
+
+function effectiveCost(c, k, ca){ return ca + (1 - k) * c; }
+
+function evaluate(id, v){
+  var out = { id:id, budget:0, demand:v.D, cost:v.c, effective:null, k:v.k,
+              ratio:null, unverified:0, status:"in_budget" };
+
+  if (id === "D"){
+    out.status = v.D > 0 ? "policy_violation" : "unbudgeted";
+    out.unverified = v.D;
+    return out;
+  }
+  if (!(v.c > 0)) { out.status = "in_budget"; return out; }
+
+  var ce = effectiveCost(v.c, v.k, v.ca);
+  out.effective = ce;
+  out.budget = (v.R * v.H * v.u) / ce;
+
+  if (out.budget === 0) {
+    out.ratio = v.D > 0 ? Infinity : null;
+  } else {
+    out.ratio = v.D / out.budget;
+  }
+  out.unverified = Math.max(0, v.D - out.budget);
+  out.status = out.ratio === null ? "in_budget"
+             : out.ratio > 1 ? "overdraft"
+             : out.ratio >= AT_LIMIT ? "at_limit" : "in_budget";
+  return out;
+}
+
+/* What would have to change, each lever on its own. */
+function costForTarget(v, target){
+  if (!(v.D > 0)) return null;
+  var cap = v.R * v.H * v.u;
+  if (cap <= 0 || v.k >= 1) return null;
+  var nominal = ((cap * target) / v.D - v.ca) / (1 - v.k);
+  return nominal > 0 ? nominal : null;
+}
+function reviewersForTarget(v, target){
+  if (!(v.D > 0)) return 0;
+  if (v.H <= 0 || v.u <= 0) return null;
+  return (v.D * effectiveCost(v.c, v.k, v.ca)) / (v.H * v.u * target);
+}
+function utilisationForTarget(v, target){
+  if (!(v.D > 0)) return 0;
+  if (v.R <= 0 || v.H <= 0) return null;
+  var need = (v.D * effectiveCost(v.c, v.k, v.ca)) / (v.R * v.H * target);
+  return need > 1 ? null : need;
+}
+function reclassificationShare(demand, budget, target){
+  if (!(demand > 0)) return 0;
+  var keep = budget * target;
+  return keep >= demand ? 0 : Math.min(1, 1 - keep / demand);
+}
+
+/* --------------------------------------------------------------------------
+   Persistence. localStorage only, so a half-filled model survives a reload.
+   -------------------------------------------------------------------------- */
+function load(){
+  try {
+    var raw = localStorage.getItem("verb.tally.v1");
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      var merged = JSON.parse(JSON.stringify(BLANK));
+      for (var id in merged) if (parsed[id]) for (var f in merged[id]) {
+        if (parsed[id][f] !== undefined) merged[id][f] = parsed[id][f];
+      }
+      return merged;
+    }
+  } catch (e) { /* a corrupt entry is not worth an error message */ }
+  return JSON.parse(JSON.stringify(PMO40));
+}
+function save(){
+  try { localStorage.setItem("verb.tally.v1", JSON.stringify(state)); } catch (e) {}
+}
+
+/* --------------------------------------------------------------------------
+   Formatting
+   -------------------------------------------------------------------------- */
+function num(x, dp){
+  if (x === null || x === undefined || !isFinite(x)) return "n/a";
+  return x.toLocaleString(undefined, { minimumFractionDigits:dp, maximumFractionDigits:dp });
+}
+function statusWord(s){ return s.replace(/_/g, " "); }
+function el(tag, cls, text){
+  var n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+
+var FIELDS = [
+  { key:"R",  label:"qualified reviewers",   sym:"R", step:"1",     min:"0" },
+  { key:"H",  label:"review hours each",     sym:"H", step:"0.5",   min:"0" },
+  { key:"u",  label:"utilisation 0 to 1",    sym:"u", step:"0.05",  min:"0", max:"1" },
+  { key:"c",  label:"hours to check one",    sym:"c", step:"0.01",  min:"0" },
+  { key:"D",  label:"decisions per week",    sym:"D", step:"1",     min:"0" },
+  { key:"k",  label:"agent containment",     sym:"k", step:"0.01",  min:"0", max:"1" },
+  { key:"ca", label:"hours on agent verdict",sym:"c_a", step:"0.001", min:"0" }
+];
+
+/* --------------------------------------------------------------------------
+   Render
+   -------------------------------------------------------------------------- */
+function render(){
+  var host = document.getElementById("classes");
+  host.textContent = "";
+
+  CLASSES.forEach(function(meta){
+    var v = state[meta.id];
+    var r = evaluate(meta.id, v);
+
+    var card = el("div", "cls");
+    card.setAttribute("data-status", r.status);
+
+    var head = el("div", "cls-head");
+    head.appendChild(el("span", "chip " + meta.id, meta.id));
+    head.appendChild(el("span", "name", meta.name));
+    head.appendChild(el("span", "what", meta.what));
+    var st = el("span", "status " + r.status, statusWord(r.status));
+    head.appendChild(st);
+    card.appendChild(head);
+
+    var fields = el("div", "fields");
+    FIELDS.forEach(function(f){
+      if (meta.id === "D" && f.key !== "D") return;
+      var box = el("div", "f");
+      var lab = el("label");
+      lab.appendChild(el("b", null, f.sym));
+      lab.appendChild(document.createTextNode(f.label));
+      lab.htmlFor = "f-" + meta.id + "-" + f.key;
+      var inp = document.createElement("input");
+      inp.type = "number"; inp.id = lab.htmlFor;
+      inp.step = f.step; if (f.min) inp.min = f.min; if (f.max) inp.max = f.max;
+      inp.value = v[f.key] === null ? "" : v[f.key];
+      inp.addEventListener("input", function(){
+        var parsed = parseFloat(inp.value);
+        state[meta.id][f.key] = isNaN(parsed) ? 0 : parsed;
+        save(); render();
+      });
+      box.appendChild(lab); box.appendChild(inp);
+      fields.appendChild(box);
+    });
+    card.appendChild(fields);
+
+    var res = el("div", "results");
+    function stat(k, value, note, cls){
+      var b = el("div", "r");
+      b.appendChild(el("div", "k", k));
+      var val = el("div", "v" + (cls ? " " + cls : ""), value);
+      b.appendChild(val);
+      if (note) b.appendChild(el("div", "n", note));
+      res.appendChild(b);
+      return val;
+    }
+
+    if (meta.id === "D"){
+      stat("verification budget", "none", "Class D has no finite cost of checking");
+      stat("taken by agents", num(v.D, 0), v.D > 0 ? "must be zero" : "correct",
+           v.D > 0 ? "over" : "ok");
+    } else {
+      stat("budget VB", num(r.budget, 1), "decisions a week you can genuinely review");
+      stat("demand D", num(r.demand, 0), "decisions a week produced");
+      var ratioTxt = r.ratio === null ? "n/a" : (r.ratio === Infinity ? "no capacity" : num(r.ratio, 2) + "x");
+      stat("overdraft O", ratioTxt, "demand divided by budget",
+           r.status === "overdraft" ? "over" : r.status === "at_limit" ? "limit" : "ok")
+        .classList.add("big");
+      if (r.unverified > 0){
+        stat("unverified", num(r.unverified, 0),
+             "a week, approved with nobody able to check them", "over");
+      } else {
+        stat("spare capacity", num(Math.max(0, r.budget - r.demand), 1),
+             "a week", "ok");
+      }
+      if (v.k > 0 && r.effective !== null){
+        stat("cost after agent check", num(r.effective, 4),
+             "hours, down from " + num(v.c, 4));
+      }
+    }
+    card.appendChild(res);
+
+    var note = el("div", "note");
+    if (meta.id === "D" && v.D > 0){
+      note.textContent = "Agents have taken " + num(v.D, 0) + " Class D decisions. "
+        + "That is not an overdraft, it is a contract breach: a Class D decision has no finite "
+        + "cost of checking, so there is no amount of it you can afford. Withdraw the agent's "
+        + "authority and find out how it got into scope.";
+    } else if (meta.id === "D"){
+      note.textContent = meta.hint;
+    } else if (r.status === "overdraft"){
+      note.textContent = "About " + num(r.unverified, 0) + " decisions a week here carry an "
+        + "approval nobody had the capacity to make. Not at risk of being unchecked. Unchecked. "
+        + "The arithmetic does not leave anywhere else for them to go.";
+    } else if (r.status === "at_limit"){
+      note.textContent = "No slack. Work does not arrive evenly, so a busy week will push this "
+        + "over and you will not see it happen.";
+    } else {
+      note.textContent = meta.hint;
+    }
+    card.appendChild(note);
+
+    host.appendChild(card);
+  });
+
+  drawChart();
+  drawFix();
+}
+
+/* Bar chart, hand-drawn SVG. No library, no build step. */
+function drawChart(){
+  var svg = document.getElementById("chart");
+  while (svg.childNodes.length > 1) svg.removeChild(svg.lastChild);
+
+  var rows = CLASSES.filter(function(m){ return m.id !== "D"; }).map(function(m){
+    return { meta:m, r:evaluate(m.id, state[m.id]) };
+  });
+  var max = 1;
+  rows.forEach(function(row){ max = Math.max(max, row.r.budget, row.r.demand); });
+
+  var left = 74, right = 700, top = 26, rowH = 62, barH = 20;
+
+  function add(tag, attrs, text){
+    var n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (var a in attrs) n.setAttribute(a, attrs[a]);
+    if (text !== undefined) n.textContent = text;
+    svg.appendChild(n);
+    return n;
+  }
+  var mono = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace";
+
+  rows.forEach(function(row, i){
+    var y = top + i * rowH;
+    var scale = function(x){ return (x / max) * (right - left); };
+
+    add("text", { x:0, y:y + 14, "font-family":mono, "font-size":"13",
+                  "font-weight":"700", fill:"var(--" + row.meta.id.toLowerCase() + ")" },
+        "Class " + row.meta.id);
+
+    // Capacity line: the budget.
+    add("rect", { x:left, y:y, width:Math.max(1, scale(row.r.budget)), height:barH,
+                  fill:"var(--line)", rx:"3" });
+    // Demand, split at the budget line.
+    var within = Math.min(row.r.demand, row.r.budget);
+    var beyond = Math.max(0, row.r.demand - row.r.budget);
+    add("rect", { x:left, y:y, width:Math.max(0, scale(within)), height:barH,
+                  fill:"var(--ok)", rx:"3" });
+    if (beyond > 0){
+      add("rect", { x:left + scale(within), y:y, width:Math.max(2, scale(beyond)),
+                    height:barH, fill:"var(--over)", rx:"3" });
+    }
+    // The budget marker.
+    add("line", { x1:left + scale(row.r.budget), y1:y - 5,
+                  x2:left + scale(row.r.budget), y2:y + barH + 5,
+                  stroke:"var(--ink)", "stroke-width":"1.5" });
+
+    var label = "demand " + num(row.r.demand, 0) + "   budget " + num(row.r.budget, 0);
+    if (row.r.ratio !== null && isFinite(row.r.ratio)) label += "   O " + num(row.r.ratio, 2) + "x";
+    add("text", { x:left, y:y + barH + 20, "font-family":mono, "font-size":"12",
+                  fill:"var(--mist)" }, label);
+  });
+
+  svg.setAttribute("viewBox", "0 0 720 " + (top + rows.length * rowH + 6));
+}
+
+/* The "what would fix it" panel, for the worst class. */
+function drawFix(){
+  var host = document.getElementById("fix-wrap");
+  host.textContent = "";
+
+  var worst = null;
+  CLASSES.forEach(function(m){
+    if (m.id === "D") return;
+    var r = evaluate(m.id, state[m.id]);
+    if (r.ratio !== null && isFinite(r.ratio) && (!worst || r.ratio > worst.r.ratio)) {
+      worst = { meta:m, r:r, v:state[m.id] };
+    }
+  });
+  if (!worst || worst.r.status !== "overdraft") return;
+
+  var v = worst.v, r = worst.r;
+
+  host.appendChild(el("h2", null, "What would close the gap"));
+  var box = el("div", "fix");
+  box.appendChild(el("h3", null,
+    "Class " + worst.meta.id + " is running at " + num(r.ratio, 2) + " times its budget"));
+  box.appendChild(el("p", null,
+    "Each row below is one lever pulled on its own, far enough to bring this class back to "
+    + "break-even. If none of them looks achievable alone, that is the normal answer, and it is "
+    + "why the last row usually matters most."));
+
+  var table = document.createElement("table");
+  var head = document.createElement("tr");
+  ["lever", "would have to become", "realistic?"].forEach(function(h){
+    var th = document.createElement("th"); th.textContent = h; head.appendChild(th);
+  });
+  table.appendChild(head);
+
+  function row(lever, change, verdict){
+    var tr = document.createElement("tr");
+    var a = document.createElement("td"); a.textContent = lever;
+    var b = document.createElement("td"); b.className = "num"; b.textContent = change;
+    var c = document.createElement("td"); c.className = "verdict"; c.textContent = verdict;
+    tr.appendChild(a); tr.appendChild(b); tr.appendChild(c);
+    table.appendChild(tr);
+  }
+
+  var tc = costForTarget(v, 1.0);
+  if (tc !== null){
+    var cut = (1 - tc / v.c) * 100;
+    row("c, make the check cheaper",
+        num(v.c, 3) + " h  to  " + num(tc, 3) + " h",
+        "a " + num(cut, 0) + "% cut. Better evidence typically buys 30 to 60%. "
+        + "Beyond that you are changing the decision, not the paperwork.");
+  }
+  var tr_ = reviewersForTarget(v, 1.0);
+  if (tr_ !== null){
+    row("R, add qualified reviewers",
+        num(v.R, 0) + "  to  " + num(tr_, 1),
+        tr_ > v.R * 1.5
+          ? "Qualification takes months and those people may not exist."
+          : "Possibly available. Qualification, not headcount, is the constraint.");
+  }
+  var tu = utilisationForTarget(v, 1.0);
+  row("u, protect review time",
+      tu === null ? "unreachable" : num(v.u, 2) + "  to  " + num(tu, 2),
+      tu === null
+        ? "Out of reach even if reviewers did nothing else all week."
+        : "The cheapest real gain most teams have. Above 0.7 is fiction.");
+
+  var share = reclassificationShare(v.D, r.budget, 1.0);
+  row("D, send less for review",
+      "move " + num(share * 100, 0) + "% to a cheaper class",
+      "Means making those decisions genuinely easier to check. Renaming them changes nothing "
+      + "except how visible the gap is.");
+
+  box.appendChild(table);
+
+  /* c-reduction slider */
+  var slider = el("div", "slider");
+  var lab = document.createElement("label");
+  lab.appendChild(el("span", null, "If the cost of checking one decision fell to"));
+  var out = document.createElement("output"); out.id = "c-out";
+  lab.appendChild(out);
+  slider.appendChild(lab);
+
+  var range = document.createElement("input");
+  range.type = "range"; range.min = "5"; range.max = "100"; range.step = "1"; range.value = "100";
+  range.setAttribute("aria-label", "percentage of current cost of checking");
+  slider.appendChild(range);
+
+  var result = el("div", "out"); result.id = "c-result";
+  slider.appendChild(result);
+
+  function update(){
+    var pct = parseFloat(range.value) / 100;
+    var newC = v.c * pct;
+    var trial = { R:v.R, H:v.H, u:v.u, c:newC, D:v.D, k:v.k, ca:v.ca };
+    var res = evaluate(worst.meta.id, trial);
+    out.textContent = num(newC, 3) + " h  (" + num(pct * 100, 0) + "% of today)";
+    result.textContent =
+      "budget " + num(res.budget, 1) + " a week   "
+      + "overdraft " + (res.ratio === null ? "n/a" : num(res.ratio, 2) + "x") + "   "
+      + statusWord(res.status).toUpperCase()
+      + (res.unverified > 0 ? "   unverified " + num(res.unverified, 0) + " a week" : "");
+    result.style.color = res.status === "overdraft" ? "var(--over)"
+                       : res.status === "at_limit" ? "var(--limit)" : "var(--ok)";
+  }
+  range.addEventListener("input", update);
+  update();
+
+  box.appendChild(slider);
+  host.appendChild(box);
+}
+
+/* --------------------------------------------------------------------------
+   Toolbar
+   -------------------------------------------------------------------------- */
+document.getElementById("load-example").addEventListener("click", function(){
+  state = JSON.parse(JSON.stringify(PMO40)); save(); render();
+});
+document.getElementById("reset").addEventListener("click", function(){
+  state = JSON.parse(JSON.stringify(BLANK)); save(); render();
+});
+document.getElementById("print").addEventListener("click", function(){ window.print(); });
+document.getElementById("copy").addEventListener("click", function(){
+  var lines = ["VERB verification budget", ""];
+  CLASSES.forEach(function(m){
+    var v = state[m.id], r = evaluate(m.id, v);
+    if (m.id === "D"){
+      lines.push("Class D  not budgeted. Agent-taken decisions: " + num(v.D, 0)
+                 + (v.D > 0 ? "  POLICY VIOLATION" : ""));
+      return;
+    }
+    lines.push(
+      "Class " + m.id
+      + "  R=" + num(v.R, 0) + " H=" + num(v.H, 1) + " u=" + num(v.u, 2) + " c=" + num(v.c, 3)
+      + (v.k > 0 ? " k=" + num(v.k, 3) : "")
+      + "  VB=" + num(r.budget, 1)
+      + "  D=" + num(v.D, 0)
+      + "  O=" + (r.ratio === null ? "n/a" : num(r.ratio, 2) + "x")
+      + "  " + statusWord(r.status).toUpperCase()
+      + (r.unverified > 0 ? "  unverified " + num(r.unverified, 0) + "/week" : "")
+    );
+  });
+  lines.push("", "Inputs are yours. If c was estimated rather than measured, this is an");
+  lines.push("estimate wearing the shape of arithmetic. github.com/hotragn/verb");
+  var text = lines.join("\n");
+  var done = function(){
+    var b = document.getElementById("copy");
+    var old = b.textContent; b.textContent = "Copied";
+    setTimeout(function(){ b.textContent = old; }, 1400);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, function(){ window.prompt("Copy:", text); });
+  } else {
+    window.prompt("Copy:", text);
+  }
+});
+
+render();
+</script>
+</body>
+</html>

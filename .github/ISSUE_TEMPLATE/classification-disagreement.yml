@@ -1,0 +1,56 @@
+name: Report a classification disagreement
+description: A case where the A/B/C/D tree gives the wrong answer, or two qualified people split.
+title: "Classification: <decision type>"
+labels: ["classification"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Class boundaries are not crisp, particularly between B and C. Field
+        disagreement rates are unknown because nobody has published any.
+
+        Disagreement is a property of the rubric, not of the people. A case where
+        the tree gives a clearly wrong answer is more valuable than a hard case,
+        because it points at a defect rather than at a judgement call.
+
+  - type: input
+    id: decision-type
+    attributes:
+      label: Decision type
+    validations:
+      required: true
+
+  - type: input
+    id: tree-result
+    attributes:
+      label: What the tree gave
+      description: "Run vb classify --tree, or walk it by hand. Include the path, for example q0=no, q1=no, q2=yes, q2a=no."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: your-answer
+    attributes:
+      label: What you think the right class is
+      options:
+        - "A, machine-checkable"
+        - "B, sample-checkable"
+        - "C, expert-checkable"
+        - "D, not checkable in advance"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reasoning
+    attributes:
+      label: Why
+      description: If two people split, both rationales please.
+    validations:
+      required: true
+
+  - type: input
+    id: kappa
+    attributes:
+      label: Cohen's kappa, if you ran Gate 1
+      description: Whatever it was. A low kappa is a finding, not an embarrassment.
+      placeholder: "0.52 across 50 decisions, two classifiers"

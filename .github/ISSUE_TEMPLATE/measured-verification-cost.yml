@@ -1,0 +1,152 @@
+name: Report a measured verification cost
+description: The single most useful contribution to this repository. Anonymised is fine.
+title: "Measured verification cost: <decision type>"
+labels: ["measured-cost", "data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Every number in this repository that touches `c` is currently
+        either synthetic or an estimate, because there is no published field data
+        on verification cost. One measured value with an honest method is worth
+        more than a page of argument.
+
+        Anonymised is completely fine. Round the numbers if you need to. A rough
+        figure with a stated method beats a clean figure with an unknown one.
+
+        If you tried to measure it and could not, please still file this and say
+        what stopped you. Negative results are wanted.
+
+  - type: input
+    id: decision-type
+    attributes:
+      label: Decision type
+      description: Described well enough that somebody else could recognise it in their own organisation.
+      placeholder: "Schedule re-baselining after a supplier delay, single programme"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: decision-class
+    attributes:
+      label: Class you assigned
+      options:
+        - "A, machine-checkable"
+        - "B, sample-checkable"
+        - "C, expert-checkable"
+        - "D, not checkable in advance"
+        - "We could not agree"
+    validations:
+      required: true
+
+  - type: textarea
+    id: class-reasoning
+    attributes:
+      label: Why that class
+      description: Which branch of the tree in spec/decision-classes.md, or where the tree failed you.
+      placeholder: |
+        Reversible, so not D at Q0. No deterministic check, so not A. Only about 8
+        per week and heterogeneous, so it fails the Class B volume and homogeneity
+        conditions. A portfolio scheduler can check it in bounded time, so C.
+    validations:
+      required: true
+
+  - type: input
+    id: measured-cost
+    attributes:
+      label: Measured c-hat, in hours per decision
+      description: The median of the observations you kept, not the mean.
+      placeholder: "1.4"
+    validations:
+      required: true
+
+  - type: input
+    id: sample-size
+    attributes:
+      label: Sample size
+      description: How many observations survived after discarding the ones that were not genuine reviews.
+      placeholder: "31"
+    validations:
+      required: true
+
+  - type: input
+    id: iqr
+    attributes:
+      label: Interquartile range, if you have it
+      description: P25 and P75. A range spanning an order of magnitude usually means this is not one class.
+      placeholder: "0.9 to 2.6"
+
+  - type: input
+    id: measured-date
+    attributes:
+      label: When it was measured
+      placeholder: "2026-06"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: method
+    attributes:
+      label: Method
+      description: Tick everything that applies. Honest gaps are more useful than tidy claims.
+      options:
+        - label: Timed from artifact-open to approval-submit, instrumented rather than self-reported
+        - label: Idle gaps over 10 minutes were trimmed
+        - label: Reviewers were asked afterwards whether they genuinely checked, and the ones who said no were discarded
+        - label: Reviewers knew they were being observed
+        - label: Sampled across reviewers and across days of the week
+        - label: The median was used, not the mean
+
+  - type: textarea
+    id: method-notes
+    attributes:
+      label: Anything the tick boxes miss
+      description: |
+        Especially: what did you do instead where a box is unticked? The third box
+        is the one that separates a verification cost from an approval duration,
+        so if you skipped it, say so plainly.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Organisation context
+      description: No names. Enough for a reader to judge whether it transfers.
+      placeholder: "Roughly 900 people, engineering consultancy, UK, 30 to 40 concurrent projects, 7 qualified schedule reviewers."
+    validations:
+      required: true
+
+  - type: input
+    id: evidence-plane
+    attributes:
+      label: Was an evidence plane in use when you measured?
+      description: If yes, which fields. This changes c substantially and the number means something different without it.
+      placeholder: "Partly. Decisions carried basis and owner, but no alternatives and no reversal."
+
+  - type: textarea
+    id: budget
+    attributes:
+      label: Your verification budget, if you computed it
+      description: R, H, u, the resulting VB, your demand, and the overdraft ratio.
+      placeholder: |
+        R = 7 qualified, H = 6 h/week, u = 0.5, c = 1.4
+        VB = 15 decisions/week
+        Demand = 34/week
+        O = 2.3
+
+  - type: textarea
+    id: surprises
+    attributes:
+      label: What surprised you
+      description: Optional, and often the most interesting box on this form.
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Before you submit
+      options:
+        - label: This contains no data that identifies an individual reviewer, and no per-person review durations
+          required: true
+        - label: I have the right to share this, and it contains nothing commercially sensitive
+          required: true
+        - label: I understand this may be quoted, anonymised, in the repository or in a talk
+          required: true

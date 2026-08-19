@@ -1,0 +1,127 @@
+{
+  "agent_id": "change-impact-01",
+  "name": "Change Impact Agent",
+  "version": "0.9.2",
+  "owner_role": "change_authority_chair",
+  "agent_kind": "agent",
+  "scope": {
+    "in_scope": [
+      {
+        "decision_type": "change_request_impact_assessment",
+        "decision_class": "C",
+        "authority": "propose",
+        "rate_limit_per_period": 30
+      },
+      {
+        "decision_type": "schedule_rebaselining_proposal",
+        "decision_class": "C",
+        "authority": "propose",
+        "rate_limit_per_period": 12
+      },
+      {
+        "decision_type": "workstream_cancellation_preparation",
+        "decision_class": "C",
+        "authority": "prepare",
+        "rate_limit_per_period": 4,
+        "prepares_class_d": "workstream_cancellation"
+      }
+    ],
+    "excluded": [
+      {
+        "decision_type": "workstream_cancellation",
+        "reason": "Class D. Prepared here, decided by change authority. Rule R2."
+      },
+      {
+        "decision_type": "contract_termination",
+        "reason": "Class D. Legal and commercial. Not prepared here either."
+      },
+      {
+        "decision_type": "change_request_approval",
+        "reason": "Class D. Change authority only."
+      }
+    ],
+    "unlisted_types": "escalate"
+  },
+  "evidence": {
+    "required_fields": [
+      "decision",
+      "basis",
+      "alternatives",
+      "confidence_and_failure_mode",
+      "reversal",
+      "owner"
+    ],
+    "artifact_schema": "schema/decision-artifact.schema.json",
+    "on_evidence_failure": "escalate",
+    "retention_days": 2555,
+    "class_c_additions": [
+      "precedent_cases",
+      "stakeholder_positions",
+      "second_order_impacts"
+    ],
+    "class_d_preparation_additions": [
+      "recommendation",
+      "options_with_costs",
+      "reversal_cost_of_each_option"
+    ]
+  },
+  "escalation": {
+    "conditions": [
+      {
+        "id": "unclassified_type",
+        "test": "decision_type not in scope.in_scope",
+        "to_role": "pmo_lead"
+      },
+      {
+        "id": "evidence_unavailable",
+        "test": "any required evidence field cannot be produced",
+        "to_role": "portfolio_scheduler"
+      },
+      {
+        "id": "class_d_detected",
+        "test": "classification result == D",
+        "to_role": "change_authority_chair"
+      },
+      {
+        "id": "low_confidence",
+        "test": "confidence < 0.85",
+        "to_role": "change_authority_chair"
+      },
+      {
+        "id": "contractual_exposure",
+        "test": "commercial_impact > 250000 or contract_clause_triggered",
+        "to_role": "commercial_lead"
+      },
+      {
+        "id": "no_precedent",
+        "test": "precedent_cases.length == 0",
+        "to_role": "change_authority_chair"
+      },
+      {
+        "id": "budget_pressure",
+        "test": "class_c_overdraft_ratio > 1.0",
+        "to_role": "pmo_lead"
+      }
+    ],
+    "target_resolution": "named_person_at_decision_time",
+    "max_response_hours": 24
+  },
+  "revocation": {
+    "who": [
+      "change_authority_chair",
+      "pmo_lead"
+    ],
+    "method": "Set status to REVOKED in the agent registry.",
+    "max_time_to_effect_minutes": 30,
+    "in_flight_work": "halt_and_mark_unverified",
+    "rollback": "All proposals from the last 7 days withdrawn from the change queue and re-submitted for human preparation. Any change request already approved on the basis of a withdrawn proposal is flagged to the change authority chair individually.",
+    "notify": [
+      "change_authority_chair",
+      "pmo_lead",
+      "commercial_lead",
+      "head_of_delivery"
+    ],
+    "last_tested": "2026-08-02",
+    "last_tested_seconds": 410
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hotragn/verb/schema/decision-artifact.schema.json",
+  "title": "VERB decision artifact",
+  "description": "The evidence plane. Six mandatory fields plus class-specific additions. An artifact missing any mandatory field is not a decision, it is an output, and outputs must not be actioned. See spec/evidence-plane.md.",
+  "type": "object",
+
+  "properties": {
+    "artifact_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable unique identifier for this artifact."
+    },
+    "artifact_kind": {
+      "type": "string",
+      "enum": ["decision", "class_d_preparation", "verifier_verdict"],
+      "default": "decision",
+      "description": "class_d_preparation packs recommend and must not contain a decision field. verifier_verdict artifacts carry the verifier additions."
+    },
+    "decision_type": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Named decision type. Must appear in the emitting agent's contract scope."
+    },
+    "decision_class": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D"],
+      "description": "Cost of checking, not risk. See spec/decision-classes.md."
+    },
+    "agent_id": { "type": "string", "minLength": 1 },
+    "agent_version": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+
+    "decision": {
+      "type": "string",
+      "minLength": 20,
+      "description": "Field 1. What was decided, one sentence, stated as an action, object identified by stable ID. Prohibited on class_d_preparation artifacts."
+    },
+
+    "basis": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Field 2. The actual inputs used. A list, not a summary. This field carries 40 to 60 percent of the verification cost saving.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 4,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/#-]{3,}$",
+            "description": "Resolvable identifier. A reviewer clicks it and lands on the source. Free text such as 'the project plan' fails this."
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the agent read it, not when the decision was made."
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 8,
+            "description": "The specific fact used, not a description of the source."
+          },
+          "influenced_outcome": { "type": "boolean", "default": true }
+        },
+        "required": ["source_id", "retrieved_at", "detail"]
+      }
+    },
+
+    "alternatives": {
+      "description": "Field 3. What was considered and rejected, with reasons. Converts an unbounded question into a bounded one.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "option": { "type": "string", "minLength": 8 },
+              "rejected_because": {
+                "type": "string",
+                "minLength": 15,
+                "description": "A specific reason with a fact in it. 'Not applicable' fails."
+              },
+              "rejection_kind": {
+                "type": "string",
+                "enum": ["factual", "judgement"],
+                "default": "factual"
+              }
+            },
+            "required": ["option", "rejected_because"]
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "forced": { "const": true },
+            "reason": { "type": "string", "minLength": 15 }
+          },
+          "required": ["forced", "reason"]
+        }
+      ]
+    },
+
+    "confidence_and_failure_mode": {
+      "type": "object",
+      "description": "Field 4. Calibrated confidence plus the specific way this decision would be wrong.",
+      "properties": {
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "failure_mode": {
+          "type": "string",
+          "minLength": 40,
+          "not": {
+            "pattern": "([Mm]ay be inaccurate|[Mm]ay not be accurate|[Mm]ay contain errors|[Cc]ould be (wrong|incorrect)|[Rr]esults may vary|[Pp]ossibly incorrect|[Mm]ight be wrong)"
+          },
+          "description": "Names a specific, detectable failure: the condition, the consequence, and where it would show up. Hedging phrases are prohibited."
+        },
+        "calibration_basis": {
+          "type": "string",
+          "minLength": 10,
+          "description": "What the confidence is calibrated against. Model self-report is not calibration."
+        },
+        "detectable_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["confidence", "failure_mode", "calibration_basis"]
+    },
+
+    "reversal": {
+      "type": "object",
+      "description": "Field 5. How to undo it, what undoing costs, and the window in which undoing is cheap.",
+      "properties": {
+        "how": {
+          "type": "string",
+          "minLength": 20,
+          "description": "A procedure, not a sentiment. 'Can be revisited' fails."
+        },
+        "cost_hours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Same units as c, so the two can be compared."
+        },
+        "cheap_until": { "type": "string", "format": "date-time" },
+        "cheap_until_reason": {
+          "type": "string",
+          "minLength": 10,
+          "description": "What changes at that moment. Usually an external commitment."
+        }
+      },
+      "required": ["how", "cost_hours", "cheap_until", "cheap_until_reason"]
+    },
+
+    "owner": {
+      "type": "object",
+      "description": "Field 6. The named human accountable. Resolved to a person at decision time, not a role.",
+      "properties": {
+        "person_id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "resolved_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["person_id", "name", "role", "resolved_at"]
+    },
+
+    "batch_id": { "type": "string", "minLength": 1 },
+    "sampled": { "type": "boolean" },
+    "rubric_version": { "type": "string", "minLength": 1 },
+
+    "precedent_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "case_id": { "type": "string", "minLength": 1 },
+          "outcome": { "type": "string", "minLength": 5 },
+          "relevance": { "type": "string", "minLength": 5 }
+        },
+        "required": ["case_id", "outcome", "relevance"]
+      }
+    },
+    "stakeholder_positions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stakeholder": { "type": "string", "minLength": 1 },
+          "position": { "type": "string", "minLength": 5 },
+          "source_id": { "type": "string", "minLength": 4 }
+        },
+        "required": ["stakeholder", "position", "source_id"]
+      }
+    },
+    "second_order_impacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "impact": { "type": "string", "minLength": 8 },
+          "affected_id": { "type": "string", "minLength": 1 },
+          "magnitude": { "type": "string", "minLength": 1 }
+        },
+        "required": ["impact", "affected_id"]
+      }
+    },
+
+    "recommendation": { "type": "string", "minLength": 20 },
+    "options_with_costs": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "properties": {
+          "option": { "type": "string", "minLength": 8 },
+          "cost": { "type": "string", "minLength": 1 },
+          "reversal_cost_hours": { "type": "number", "minimum": 0 }
+        },
+        "required": ["option", "cost", "reversal_cost_hours"]
+      }
+    },
+    "decides_class_d": { "type": "string", "minLength": 3 },
+
+    "verdict": {
+      "type": "string",
+      "enum": ["pass", "reject", "cannot_decide"]
+    },
+    "proof_object": {
+      "type": "object",
+      "description": "Machine re-checkable assertions. Prose here means the verifier moved the cost rather than removing it, and supplies no containment.",
+      "properties": {
+        "assertions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "check": { "type": "string", "minLength": 3 },
+              "expected": {},
+              "observed": {},
+              "passed": { "type": "boolean" }
+            },
+            "required": ["check", "expected", "observed", "passed"]
+          }
+        },
+        "recheck_command": { "type": "string", "minLength": 3 }
+      },
+      "required": ["assertions"]
+    },
+    "calibration_record_ref": { "type": "string", "minLength": 3 },
+
+    "review": {
+      "type": "object",
+      "description": "Populated by the review system, not the agent.",
+      "properties": {
+        "reviewer_id": { "type": "string" },
+        "opened_at": { "type": "string", "format": "date-time" },
+        "submitted_at": { "type": "string", "format": "date-time" },
+        "review_seconds": { "type": "number", "minimum": 0 },
+        "idle_trimmed_seconds": { "type": "number", "minimum": 0 },
+        "outcome": { "type": "string", "enum": ["approved", "rejected", "returned"] }
+      }
+    }
+  },
+
+  "required": [
+    "artifact_id",
+    "decision_type",
+    "decision_class",
+    "agent_id",
+    "timestamp",
+    "basis",
+    "alternatives",
+    "confidence_and_failure_mode",
+    "reversal",
+    "owner"
+  ],
+
+  "allOf": [
+    {
+      "$comment": "Class D preparation packs recommend, they do not decide. The absence of a decision field is the structural guarantee that the human made the call.",
+      "if": {
+        "properties": { "artifact_kind": { "const": "class_d_preparation" } },
+        "required": ["artifact_kind"]
+      },
+      "then": {
+        "not": { "required": ["decision"] },
+        "required": ["recommendation", "options_with_costs", "decides_class_d"]
+      },
+      "else": {
+        "required": ["decision"]
+      }
+    },
+    {
+      "$comment": "Class B sampling only bounds a batch if the batch and its rubric are identifiable.",
+      "if": {
+        "properties": { "decision_class": { "const": "B" } },
+        "required": ["decision_class"]
+      },
+      "then": {
+        "required": ["batch_id", "sampled", "rubric_version"]
+      }
+    },
+    {
+      "$comment": "Class C additions. Each is retrieval the reviewer would otherwise redo.",
+      "if": {
+        "properties": {
+          "decision_class": { "const": "C" },
+          "artifact_kind": { "not": { "const": "class_d_preparation" } }
+        },
+        "required": ["decision_class"]
+      },
+      "then": {
+        "required": ["precedent_cases", "stakeholder_positions", "second_order_impacts"]
+      }
+    },
+    {
+      "$comment": "Verifier verdicts must carry a machine re-checkable proof object and a calibration reference. Rules E3 and E4.",
+      "if": {
+        "properties": { "artifact_kind": { "const": "verifier_verdict" } },
+        "required": ["artifact_kind"]
+      },
+      "then": {
+        "required": ["verdict", "proof_object", "calibration_record_ref"],
+        "properties": { "decision_class": { "const": "A" } }
+      }
+    },
+    {
+      "$comment": "An agent must never emit a Class D decision artifact. Class D is prepared, never decided.",
+      "if": {
+        "properties": { "decision_class": { "const": "D" } },
+        "required": ["decision_class"]
+      },
+      "then": {
+        "properties": { "artifact_kind": { "const": "class_d_preparation" } },
+        "required": ["artifact_kind"]
+      }
+    }
+  ]
+}

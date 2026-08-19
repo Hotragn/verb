@@ -1,0 +1,219 @@
+{
+  "description": "Fixtures for the VERB schemas. Every file under valid/ must validate. Every file under invalid/ must fail, for the stated reason. Regenerate with: python schema/fixtures/build_fixtures.py",
+  "valid": [
+    {
+      "file": "valid/artifact-class-a.json",
+      "schema": "decision-artifact"
+    },
+    {
+      "file": "valid/artifact-class-b.json",
+      "schema": "decision-artifact"
+    },
+    {
+      "file": "valid/artifact-class-c.json",
+      "schema": "decision-artifact"
+    },
+    {
+      "file": "valid/artifact-class-d-preparation.json",
+      "schema": "decision-artifact"
+    },
+    {
+      "file": "valid/artifact-verifier-verdict.json",
+      "schema": "decision-artifact"
+    },
+    {
+      "file": "valid/contract-schedule-integrity.json",
+      "schema": "agent-contract"
+    },
+    {
+      "file": "valid/contract-change-impact.json",
+      "schema": "agent-contract"
+    },
+    {
+      "file": "valid/contract-schedule-verifier.json",
+      "schema": "agent-contract"
+    }
+  ],
+  "invalid": [
+    {
+      "file": "invalid/artifact-missing-owner.json",
+      "schema": "decision-artifact",
+      "rule": "evidence-plane field 6",
+      "why": "No owner. An artifact missing any of the six fields is an output, not a decision."
+    },
+    {
+      "file": "invalid/artifact-missing-basis.json",
+      "schema": "decision-artifact",
+      "rule": "evidence-plane field 2",
+      "why": "No basis. The reviewer has to re-gather every input, which is 40 to 60 percent of c."
+    },
+    {
+      "file": "invalid/artifact-basis-not-resolvable.json",
+      "schema": "decision-artifact",
+      "rule": "B1",
+      "why": "source_id is free text, not a resolvable identifier."
+    },
+    {
+      "file": "invalid/artifact-empty-basis.json",
+      "schema": "decision-artifact",
+      "rule": "B1",
+      "why": "basis present but empty. Same effect as absent."
+    },
+    {
+      "file": "invalid/artifact-empty-alternatives.json",
+      "schema": "decision-artifact",
+      "rule": "A1",
+      "why": "No alternatives and no forced declaration. The review question stays unbounded."
+    },
+    {
+      "file": "invalid/artifact-hedged-failure-mode.json",
+      "schema": "decision-artifact",
+      "rule": "C3",
+      "why": "Prohibited hedging phrase. Carries no information and trains reviewers to skip the field."
+    },
+    {
+      "file": "invalid/artifact-confidence-out-of-range.json",
+      "schema": "decision-artifact",
+      "rule": "C1",
+      "why": "Confidence outside the range 0 to 1, so it is not a probability and cannot be calibrated."
+    },
+    {
+      "file": "invalid/artifact-reversal-as-sentiment.json",
+      "schema": "decision-artifact",
+      "rule": "R1",
+      "why": "Reversal states a sentiment, not a procedure."
+    },
+    {
+      "file": "invalid/artifact-owner-role-not-person.json",
+      "schema": "decision-artifact",
+      "rule": "O1",
+      "why": "Owner is a role with no resolved person. Accountability diffuses and review becomes optional."
+    },
+    {
+      "file": "invalid/artifact-class-b-missing-batch.json",
+      "schema": "decision-artifact",
+      "rule": "class B additions",
+      "why": "No batch_id. Sampling cannot bound a batch that cannot be identified."
+    },
+    {
+      "file": "invalid/artifact-class-c-missing-precedent.json",
+      "schema": "decision-artifact",
+      "rule": "class C additions",
+      "why": "No precedent_cases. The reviewer redoes the retrieval the field exists to remove."
+    },
+    {
+      "file": "invalid/artifact-class-d-preparation-with-decision.json",
+      "schema": "decision-artifact",
+      "rule": "Class D rule",
+      "why": "A preparation pack containing a decision field is an agent that made a Class D decision."
+    },
+    {
+      "file": "invalid/artifact-class-d-decided.json",
+      "schema": "decision-artifact",
+      "rule": "Class D rule",
+      "why": "A Class D artifact that is not a preparation pack. Class D is never delegated."
+    },
+    {
+      "file": "invalid/artifact-verifier-prose-proof.json",
+      "schema": "decision-artifact",
+      "rule": "E4",
+      "why": "Verifier proof object with no machine re-checkable assertions. Supplies an opinion, not containment."
+    },
+    {
+      "file": "invalid/artifact-verifier-missing-calibration-ref.json",
+      "schema": "decision-artifact",
+      "rule": "E3",
+      "why": "Verifier verdict with no calibration reference. Uncalibrated verifiers contribute k = 0."
+    },
+    {
+      "file": "invalid/contract-class-d-in-scope.json",
+      "schema": "agent-contract",
+      "rule": "R2",
+      "why": "Class D in scope. A Class D decision has no finite c, so no quantity of it is affordable."
+    },
+    {
+      "file": "invalid/contract-unlisted-not-escalate.json",
+      "schema": "agent-contract",
+      "rule": "R1",
+      "why": "Unlisted decision types permitted. This is the back door the default exists to close."
+    },
+    {
+      "file": "invalid/contract-class-c-authority-decide.json",
+      "schema": "agent-contract",
+      "rule": "R3",
+      "why": "Agent given authority to decide a Class C decision type. Class C is proposed, never decided."
+    },
+    {
+      "file": "invalid/contract-class-b-no-sampling-rate.json",
+      "schema": "agent-contract",
+      "rule": "R4",
+      "why": "Class B without a sampling rate is not sample-checked, so its c is unknown."
+    },
+    {
+      "file": "invalid/contract-evidence-failure-not-escalate.json",
+      "schema": "agent-contract",
+      "rule": "E1",
+      "why": "Agent permitted to decide without evidence. There is no configuration under which this is acceptable."
+    },
+    {
+      "file": "invalid/contract-evidence-missing-alternatives.json",
+      "schema": "agent-contract",
+      "rule": "evidence-plane field 3",
+      "why": "alternatives not required, so the review question stays unbounded and c stays high."
+    },
+    {
+      "file": "invalid/contract-missing-mandatory-escalation.json",
+      "schema": "agent-contract",
+      "rule": "S2",
+      "why": "No class_d_detected escalation. The agent has no defined stop on the one class it must never decide."
+    },
+    {
+      "file": "invalid/contract-escalation-to-unresolved-role.json",
+      "schema": "agent-contract",
+      "rule": "S3",
+      "why": "Escalation to a role that never resolves to a person is an escalation to nobody."
+    },
+    {
+      "file": "invalid/contract-single-revoker.json",
+      "schema": "agent-contract",
+      "rule": "V1",
+      "why": "One revoker. Revocation depends on one person's availability."
+    },
+    {
+      "file": "invalid/contract-no-revocation.json",
+      "schema": "agent-contract",
+      "rule": "field 4",
+      "why": "No revocation clause. Every other field is decoration."
+    },
+    {
+      "file": "invalid/contract-complete-then-halt-non-class-a.json",
+      "schema": "agent-contract",
+      "rule": "V3",
+      "why": "In-flight Class C work allowed to complete after revocation. That work is unverified."
+    },
+    {
+      "file": "invalid/contract-verifier-without-calibration.json",
+      "schema": "agent-contract",
+      "rule": "E3",
+      "why": "Verifier claiming containment with no calibration record. k must be 0."
+    },
+    {
+      "file": "invalid/contract-verifier-fnr-above-gate.json",
+      "schema": "agent-contract",
+      "rule": "Gate 3.1",
+      "why": "False-negative rate above 0.05. Bad decisions reach production wearing a green tick."
+    },
+    {
+      "file": "invalid/contract-verifier-output-not-class-a.json",
+      "schema": "agent-contract",
+      "rule": "E4 and Gate 3.2",
+      "why": "Verifier output is Class C, so checking the verifier costs what checking the original cost. The cost moved, it did not go away."
+    },
+    {
+      "file": "invalid/contract-bad-version.json",
+      "schema": "agent-contract",
+      "rule": "lifecycle",
+      "why": "Version is not semantic, so a material change cannot be distinguished from a patch."
+    }
+  ]
+}

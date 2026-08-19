@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use VERB, cite it as below. Measured verification costs are more welcome than citations."
+title: "VERB: The Verification Budget"
+abstract: >-
+  An operating model for autonomous AI in project delivery and end to end PMO.
+  Core claim: AI agents in project management are no longer constrained by model
+  capability but by verification bandwidth, meaning how many agent decisions an
+  organisation can genuinely review before review becomes rubber-stamping. The
+  repository contains the specification, the verification budget formula
+  VB = (R x H x u) / c, the A/B/C/D decision classes, the agent role contract,
+  the evidence plane, six operating metrics including silent drift, four eval
+  gates, maturity stages S0 to S4, JSON schemas, a Python reference
+  implementation and a static calculator.
+type: software
+version: 0.1.0
+date-released: "2026-08-19"
+license: Apache-2.0
+repository-code: "https://github.com/hotragn/verb"
+url: "https://hotragn.github.io/verb"
+authors:
+  - family-names: Pettugani
+    given-names: Hotragn
+keywords:
+  - verification budget
+  - AI governance
+  - project management office
+  - autonomous agents
+  - decision classification
+  - silent drift
+  - evaluation gates
+  - operating model

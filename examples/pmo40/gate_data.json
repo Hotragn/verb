@@ -1,0 +1,4981 @@
+{
+  "classification": {
+    "note": "Two qualified classifiers, independently, on 50 sampled decisions.",
+    "classifier_a": [
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "D",
+      "D",
+      "D"
+    ],
+    "classifier_b": [
+      "A",
+      "A",
+      "B",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "B",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "B",
+      "B",
+      "B",
+      "C",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "C",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "B",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "B",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "D",
+      "D",
+      "D"
+    ],
+    "decision_types": [
+      "baseline_variance_threshold",
+      "baseline_variance_threshold",
+      "invoice_to_po_match",
+      "budget_rollup_reconciliation",
+      "critical_path_recalculation",
+      "raid_register_completeness",
+      "invoice_to_po_match",
+      "invoice_to_po_match",
+      "dependency_cycle_flagging",
+      "baseline_variance_threshold",
+      "raid_register_completeness",
+      "float_erosion_alert",
+      "budget_rollup_reconciliation",
+      "baseline_variance_threshold",
+      "float_erosion_alert",
+      "dependency_cycle_flagging",
+      "dependency_cycle_flagging",
+      "dependency_cycle_flagging",
+      "milestone_slip_categorisation",
+      "rag_rating_proposal",
+      "milestone_slip_categorisation",
+      "risk_rescoring_against_rubric",
+      "milestone_slip_categorisation",
+      "change_request_categorisation",
+      "status_narrative_draft",
+      "milestone_slip_categorisation",
+      "change_request_categorisation",
+      "milestone_slip_categorisation",
+      "change_request_categorisation",
+      "milestone_slip_categorisation",
+      "risk_rescoring_against_rubric",
+      "status_narrative_draft",
+      "rag_rating_proposal",
+      "risk_rescoring_against_rubric",
+      "schedule_rebaselining_proposal",
+      "schedule_rebaselining_proposal",
+      "workstream_cancellation_preparation",
+      "schedule_rebaselining_proposal",
+      "change_request_impact_assessment",
+      "vendor_scope_dispute_position",
+      "dependency_renegotiation",
+      "workstream_cancellation_preparation",
+      "schedule_rebaselining_proposal",
+      "resource_reallocation_across_programmes",
+      "workstream_cancellation_preparation",
+      "dependency_renegotiation",
+      "workstream_cancellation_preparation",
+      "workstream_cancellation",
+      "workstream_cancellation",
+      "workstream_cancellation"
+    ],
+    "scope_types": [
+      "critical_path_recalculation",
+      "dependency_cycle_flagging",
+      "float_erosion_alert",
+      "budget_rollup_reconciliation",
+      "raid_register_completeness",
+      "resource_overallocation_detection",
+      "invoice_to_po_match",
+      "baseline_variance_threshold",
+      "milestone_slip_categorisation",
+      "status_narrative_draft",
+      "meeting_action_extraction",
+      "risk_rescoring_against_rubric",
+      "change_request_categorisation",
+      "rag_rating_proposal",
+      "schedule_rebaselining_proposal",
+      "change_request_impact_assessment",
+      "resource_reallocation_across_programmes",
+      "vendor_scope_dispute_position",
+      "forecast_revision_beyond_tolerance",
+      "dependency_renegotiation",
+      "workstream_cancellation_preparation"
+    ],
+    "disagreements_logged": true
+  },
+  "evidence": {
+    "note": "Artifacts drawn from schema/fixtures/valid. Human sample of 20, one failure.",
+    "artifacts": [
+      {
+        "artifact_id": "da-2026-0819-0001-s0",
+        "artifact_kind": "decision",
+        "decision_type": "critical_path_recalculation",
+        "decision_class": "A",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T08:02:11Z",
+        "decision": "Recalculate critical path for PRG7 after task T-4419 update; path unchanged, total float 14d.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:network:v88",
+            "retrieved_at": "2026-08-19T08:02:04Z",
+            "detail": "412 activities, 3 open constraint violations, none on the critical path"
+          },
+          {
+            "source_id": "P6:PRG7:T-4419",
+            "retrieved_at": "2026-08-19T08:02:05Z",
+            "detail": "Remaining duration changed 12d to 15d, actual start 2026-08-17"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T08:02:06Z",
+            "detail": "Baseline finish 2026-09-30, baseline total float 14d",
+            "influenced_outcome": false
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Flag the change as a critical path shift",
+            "rejected_because": "Forward and backward pass both return the same critical path; float on T-4419 remains 9d, above the 0d threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.99,
+          "failure_mode": "If the P6 network export is stale, the recalculation runs on a superseded logic set and the unchanged verdict is wrong. Detectable by comparing network version v88 against the P6 change log on the next sync at 09:00.",
+          "calibration_basis": "Deterministic. Verified against P6 native scheduler on 1,000 networks, 2026-Q2, zero disagreements.",
+          "detectable_at": "2026-08-19T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
+          "cost_hours": 0.05,
+          "cheap_until": "2026-08-26T00:00:00Z",
+          "cheap_until_reason": "Weekly float report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T08:02:11Z"
+        },
+        "review": {
+          "reviewer_id": "u-2291",
+          "opened_at": "2026-08-19T08:40:00Z",
+          "submitted_at": "2026-08-19T08:41:12Z",
+          "review_seconds": 72,
+          "idle_trimmed_seconds": 72,
+          "outcome": "approved"
+        }
+      },
+      {
+        "artifact_id": "da-2026-0819-0001-s1",
+        "artifact_kind": "decision",
+        "decision_type": "critical_path_recalculation",
+        "decision_class": "A",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T08:02:11Z",
+        "decision": "Recalculate critical path for PRG7 after task T-4419 update; path unchanged, total float 14d.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:network:v88",
+            "retrieved_at": "2026-08-19T08:02:04Z",
+            "detail": "412 activities, 3 open constraint violations, none on the critical path"
+          },
+          {
+            "source_id": "P6:PRG7:T-4419",
+            "retrieved_at": "2026-08-19T08:02:05Z",
+            "detail": "Remaining duration changed 12d to 15d, actual start 2026-08-17"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T08:02:06Z",
+            "detail": "Baseline finish 2026-09-30, baseline total float 14d",
+            "influenced_outcome": false
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Flag the change as a critical path shift",
+            "rejected_because": "Forward and backward pass both return the same critical path; float on T-4419 remains 9d, above the 0d threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.99,
+          "failure_mode": "If the P6 network export is stale, the recalculation runs on a superseded logic set and the unchanged verdict is wrong. Detectable by comparing network version v88 against the P6 change log on the next sync at 09:00.",
+          "calibration_basis": "Deterministic. Verified against P6 native scheduler on 1,000 networks, 2026-Q2, zero disagreements.",
+          "detectable_at": "2026-08-19T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
+          "cost_hours": 0.05,
+          "cheap_until": "2026-08-26T00:00:00Z",
+          "cheap_until_reason": "Weekly float report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T08:02:11Z"
+        },
+        "review": {
+          "reviewer_id": "u-2291",
+          "opened_at": "2026-08-19T08:40:00Z",
+          "submitted_at": "2026-08-19T08:41:12Z",
+          "review_seconds": 72,
+          "idle_trimmed_seconds": 72,
+          "outcome": "approved"
+        }
+      },
+      {
+        "artifact_id": "da-2026-0819-0001-s2",
+        "artifact_kind": "decision",
+        "decision_type": "critical_path_recalculation",
+        "decision_class": "A",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T08:02:11Z",
+        "decision": "Recalculate critical path for PRG7 after task T-4419 update; path unchanged, total float 14d.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:network:v88",
+            "retrieved_at": "2026-08-19T08:02:04Z",
+            "detail": "412 activities, 3 open constraint violations, none on the critical path"
+          },
+          {
+            "source_id": "P6:PRG7:T-4419",
+            "retrieved_at": "2026-08-19T08:02:05Z",
+            "detail": "Remaining duration changed 12d to 15d, actual start 2026-08-17"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T08:02:06Z",
+            "detail": "Baseline finish 2026-09-30, baseline total float 14d",
+            "influenced_outcome": false
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Flag the change as a critical path shift",
+            "rejected_because": "Forward and backward pass both return the same critical path; float on T-4419 remains 9d, above the 0d threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.99,
+          "failure_mode": "If the P6 network export is stale, the recalculation runs on a superseded logic set and the unchanged verdict is wrong. Detectable by comparing network version v88 against the P6 change log on the next sync at 09:00.",
+          "calibration_basis": "Deterministic. Verified against P6 native scheduler on 1,000 networks, 2026-Q2, zero disagreements.",
+          "detectable_at": "2026-08-19T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
+          "cost_hours": 0.05,
+          "cheap_until": "2026-08-26T00:00:00Z",
+          "cheap_until_reason": "Weekly float report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T08:02:11Z"
+        },
+        "review": {
+          "reviewer_id": "u-2291",
+          "opened_at": "2026-08-19T08:40:00Z",
+          "submitted_at": "2026-08-19T08:41:12Z",
+          "review_seconds": 72,
+          "idle_trimmed_seconds": 72,
+          "outcome": "approved"
+        }
+      },
+      {
+        "artifact_id": "da-2026-0819-0001-s3",
+        "artifact_kind": "decision",
+        "decision_type": "critical_path_recalculation",
+        "decision_class": "A",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T08:02:11Z",
+        "decision": "Recalculate critical path for PRG7 after task T-4419 update; path unchanged, total float 14d.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:network:v88",
+            "retrieved_at": "2026-08-19T08:02:04Z",
+            "detail": "412 activities, 3 open constraint violations, none on the critical path"
+          },
+          {
+            "source_id": "P6:PRG7:T-4419",
+            "retrieved_at": "2026-08-19T08:02:05Z",
+            "detail": "Remaining duration changed 12d to 15d, actual start 2026-08-17"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T08:02:06Z",
+            "detail": "Baseline finish 2026-09-30, baseline total float 14d",
+            "influenced_outcome": false
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Flag the change as a critical path shift",
+            "rejected_because": "Forward and backward pass both return the same critical path; float on T-4419 remains 9d, above the 0d threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.99,
+          "failure_mode": "If the P6 network export is stale, the recalculation runs on a superseded logic set and the unchanged verdict is wrong. Detectable by comparing network version v88 against the P6 change log on the next sync at 09:00.",
+          "calibration_basis": "Deterministic. Verified against P6 native scheduler on 1,000 networks, 2026-Q2, zero disagreements.",
+          "detectable_at": "2026-08-19T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
+          "cost_hours": 0.05,
+          "cheap_until": "2026-08-26T00:00:00Z",
+          "cheap_until_reason": "Weekly float report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T08:02:11Z"
+        },
+        "review": {
+          "reviewer_id": "u-2291",
+          "opened_at": "2026-08-19T08:40:00Z",
+          "submitted_at": "2026-08-19T08:41:12Z",
+          "review_seconds": 72,
+          "idle_trimmed_seconds": 72,
+          "outcome": "approved"
+        }
+      },
+      {
+        "artifact_id": "da-2026-0819-0001-s4",
+        "artifact_kind": "decision",
+        "decision_type": "critical_path_recalculation",
+        "decision_class": "A",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T08:02:11Z",
+        "decision": "Recalculate critical path for PRG7 after task T-4419 update; path unchanged, total float 14d.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:network:v88",
+            "retrieved_at": "2026-08-19T08:02:04Z",
+            "detail": "412 activities, 3 open constraint violations, none on the critical path"
+          },
+          {
+            "source_id": "P6:PRG7:T-4419",
+            "retrieved_at": "2026-08-19T08:02:05Z",
+            "detail": "Remaining duration changed 12d to 15d, actual start 2026-08-17"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T08:02:06Z",
+            "detail": "Baseline finish 2026-09-30, baseline total float 14d",
+            "influenced_outcome": false
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Flag the change as a critical path shift",
+            "rejected_because": "Forward and backward pass both return the same critical path; float on T-4419 remains 9d, above the 0d threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.99,
+          "failure_mode": "If the P6 network export is stale, the recalculation runs on a superseded logic set and the unchanged verdict is wrong. Detectable by comparing network version v88 against the P6 change log on the next sync at 09:00.",
+          "calibration_basis": "Deterministic. Verified against P6 native scheduler on 1,000 networks, 2026-Q2, zero disagreements.",
+          "detectable_at": "2026-08-19T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
+          "cost_hours": 0.05,
+          "cheap_until": "2026-08-26T00:00:00Z",
+          "cheap_until_reason": "Weekly float report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T08:02:11Z"
+        },
+        "review": {
+          "reviewer_id": "u-2291",
+          "opened_at": "2026-08-19T08:40:00Z",
+          "submitted_at": "2026-08-19T08:41:12Z",
+          "review_seconds": 72,
+          "idle_trimmed_seconds": 72,
+          "outcome": "approved"
+        }
+      },
+      {
+        "artifact_id": "da-2026-0819-0447-s0",
+        "artifact_kind": "decision",
+        "decision_type": "milestone_slip_categorisation",
+        "decision_class": "B",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T09:14:22Z",
+        "decision": "Categorise slip on milestone MS-PRG7-014 as supplier-caused, 11 working days, absorbed by float.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T09:13:58Z",
+            "detail": "Baseline finish 2026-09-30, float 14d"
+          },
+          {
+            "source_id": "JIRA:PRG7-2291",
+            "retrieved_at": "2026-08-19T09:14:01Z",
+            "detail": "Supplier confirmed delay in writing 2026-08-15"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:03Z",
+            "detail": "SLA clause 7.2, notification requirement met"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Categorise as scope-change-caused",
+            "rejected_because": "No approved change request in the window. CR-PRG7-0088 closed 2026-07-02.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Escalate as a float-consuming risk",
+            "rejected_because": "Remaining float 3d after absorption, above the 2d escalation threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.86,
+          "failure_mode": "If the supplier delay is a symptom of an undisclosed resource loss on their side, the 11-day figure understates the slip and float absorption is wrong. Detectable at the next supplier checkpoint on 2026-08-26.",
+          "calibration_basis": "Reliability measured on 240 labelled categorisations, 2026-Q2. Brier score 0.09.",
+          "detectable_at": "2026-08-26T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
+          "cost_hours": 0.5,
+          "cheap_until": "2026-09-02T00:00:00Z",
+          "cheap_until_reason": "Programme board pack lock for the September cycle."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:22Z"
+        },
+        "batch_id": "batch-2026-W34-slipcat",
+        "sampled": true,
+        "rubric_version": "slip-cause-v3.1"
+      },
+      {
+        "artifact_id": "da-2026-0819-0447-s1",
+        "artifact_kind": "decision",
+        "decision_type": "milestone_slip_categorisation",
+        "decision_class": "B",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T09:14:22Z",
+        "decision": "Categorise slip on milestone MS-PRG7-014 as supplier-caused, 11 working days, absorbed by float.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T09:13:58Z",
+            "detail": "Baseline finish 2026-09-30, float 14d"
+          },
+          {
+            "source_id": "JIRA:PRG7-2291",
+            "retrieved_at": "2026-08-19T09:14:01Z",
+            "detail": "Supplier confirmed delay in writing 2026-08-15"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:03Z",
+            "detail": "SLA clause 7.2, notification requirement met"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Categorise as scope-change-caused",
+            "rejected_because": "No approved change request in the window. CR-PRG7-0088 closed 2026-07-02.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Escalate as a float-consuming risk",
+            "rejected_because": "Remaining float 3d after absorption, above the 2d escalation threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.86,
+          "failure_mode": "If the supplier delay is a symptom of an undisclosed resource loss on their side, the 11-day figure understates the slip and float absorption is wrong. Detectable at the next supplier checkpoint on 2026-08-26.",
+          "calibration_basis": "Reliability measured on 240 labelled categorisations, 2026-Q2. Brier score 0.09.",
+          "detectable_at": "2026-08-26T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
+          "cost_hours": 0.5,
+          "cheap_until": "2026-09-02T00:00:00Z",
+          "cheap_until_reason": "Programme board pack lock for the September cycle."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:22Z"
+        },
+        "batch_id": "batch-2026-W34-slipcat",
+        "sampled": true,
+        "rubric_version": "slip-cause-v3.1"
+      },
+      {
+        "artifact_id": "da-2026-0819-0447-s2",
+        "artifact_kind": "decision",
+        "decision_type": "milestone_slip_categorisation",
+        "decision_class": "B",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T09:14:22Z",
+        "decision": "Categorise slip on milestone MS-PRG7-014 as supplier-caused, 11 working days, absorbed by float.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T09:13:58Z",
+            "detail": "Baseline finish 2026-09-30, float 14d"
+          },
+          {
+            "source_id": "JIRA:PRG7-2291",
+            "retrieved_at": "2026-08-19T09:14:01Z",
+            "detail": "Supplier confirmed delay in writing 2026-08-15"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:03Z",
+            "detail": "SLA clause 7.2, notification requirement met"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Categorise as scope-change-caused",
+            "rejected_because": "No approved change request in the window. CR-PRG7-0088 closed 2026-07-02.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Escalate as a float-consuming risk",
+            "rejected_because": "Remaining float 3d after absorption, above the 2d escalation threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.86,
+          "failure_mode": "If the supplier delay is a symptom of an undisclosed resource loss on their side, the 11-day figure understates the slip and float absorption is wrong. Detectable at the next supplier checkpoint on 2026-08-26.",
+          "calibration_basis": "Reliability measured on 240 labelled categorisations, 2026-Q2. Brier score 0.09.",
+          "detectable_at": "2026-08-26T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
+          "cost_hours": 0.5,
+          "cheap_until": "2026-09-02T00:00:00Z",
+          "cheap_until_reason": "Programme board pack lock for the September cycle."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:22Z"
+        },
+        "batch_id": "batch-2026-W34-slipcat",
+        "sampled": true,
+        "rubric_version": "slip-cause-v3.1"
+      },
+      {
+        "artifact_id": "da-2026-0819-0447-s3",
+        "artifact_kind": "decision",
+        "decision_type": "milestone_slip_categorisation",
+        "decision_class": "B",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T09:14:22Z",
+        "decision": "Categorise slip on milestone MS-PRG7-014 as supplier-caused, 11 working days, absorbed by float.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T09:13:58Z",
+            "detail": "Baseline finish 2026-09-30, float 14d"
+          },
+          {
+            "source_id": "JIRA:PRG7-2291",
+            "retrieved_at": "2026-08-19T09:14:01Z",
+            "detail": "Supplier confirmed delay in writing 2026-08-15"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:03Z",
+            "detail": "SLA clause 7.2, notification requirement met"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Categorise as scope-change-caused",
+            "rejected_because": "No approved change request in the window. CR-PRG7-0088 closed 2026-07-02.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Escalate as a float-consuming risk",
+            "rejected_because": "Remaining float 3d after absorption, above the 2d escalation threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.86,
+          "failure_mode": "If the supplier delay is a symptom of an undisclosed resource loss on their side, the 11-day figure understates the slip and float absorption is wrong. Detectable at the next supplier checkpoint on 2026-08-26.",
+          "calibration_basis": "Reliability measured on 240 labelled categorisations, 2026-Q2. Brier score 0.09.",
+          "detectable_at": "2026-08-26T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
+          "cost_hours": 0.5,
+          "cheap_until": "2026-09-02T00:00:00Z",
+          "cheap_until_reason": "Programme board pack lock for the September cycle."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:22Z"
+        },
+        "batch_id": "batch-2026-W34-slipcat",
+        "sampled": true,
+        "rubric_version": "slip-cause-v3.1"
+      },
+      {
+        "artifact_id": "da-2026-0819-0447-s4",
+        "artifact_kind": "decision",
+        "decision_type": "milestone_slip_categorisation",
+        "decision_class": "B",
+        "agent_id": "schedule-integrity-01",
+        "agent_version": "1.4.0",
+        "timestamp": "2026-08-19T09:14:22Z",
+        "decision": "Categorise slip on milestone MS-PRG7-014 as supplier-caused, 11 working days, absorbed by float.",
+        "basis": [
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T09:13:58Z",
+            "detail": "Baseline finish 2026-09-30, float 14d"
+          },
+          {
+            "source_id": "JIRA:PRG7-2291",
+            "retrieved_at": "2026-08-19T09:14:01Z",
+            "detail": "Supplier confirmed delay in writing 2026-08-15"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:03Z",
+            "detail": "SLA clause 7.2, notification requirement met"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Categorise as scope-change-caused",
+            "rejected_because": "No approved change request in the window. CR-PRG7-0088 closed 2026-07-02.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Escalate as a float-consuming risk",
+            "rejected_because": "Remaining float 3d after absorption, above the 2d escalation threshold.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.86,
+          "failure_mode": "If the supplier delay is a symptom of an undisclosed resource loss on their side, the 11-day figure understates the slip and float absorption is wrong. Detectable at the next supplier checkpoint on 2026-08-26.",
+          "calibration_basis": "Reliability measured on 240 labelled categorisations, 2026-Q2. Brier score 0.09.",
+          "detectable_at": "2026-08-26T09:00:00Z"
+        },
+        "reversal": {
+          "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
+          "cost_hours": 0.5,
+          "cheap_until": "2026-09-02T00:00:00Z",
+          "cheap_until_reason": "Programme board pack lock for the September cycle."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:22Z"
+        },
+        "batch_id": "batch-2026-W34-slipcat",
+        "sampled": true,
+        "rubric_version": "slip-cause-v3.1"
+      },
+      {
+        "artifact_id": "da-2026-0819-0912-s0",
+        "artifact_kind": "decision",
+        "decision_type": "change_request_impact_assessment",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T11:31:07Z",
+        "decision": "Assess CR-PRG7-0104 as a 19-day schedule impact with 340k cost exposure, recommend absorption into the Q4 contingency rather than re-baselining.",
+        "basis": [
+          {
+            "source_id": "CR:PRG7-0104",
+            "retrieved_at": "2026-08-19T11:28:40Z",
+            "detail": "Scope addition: two integration environments, requested by the security workstream"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T11:28:52Z",
+            "detail": "Critical path runs through integration test window, float 14d"
+          },
+          {
+            "source_id": "FIN:PRG7:contingency:2026Q4",
+            "retrieved_at": "2026-08-19T11:29:03Z",
+            "detail": "Unallocated contingency 610k against a 340k exposure"
+          },
+          {
+            "source_id": "MIN:PRGBOARD:2026-06-11",
+            "retrieved_at": "2026-08-19T11:29:20Z",
+            "detail": "Sponsor stated no further re-baselining before the December gate"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Re-baseline the integration test window",
+            "rejected_because": "Sponsor position of 2026-06-11 rules out re-baselining before the December gate, and the contingency covers the exposure.",
+            "rejection_kind": "judgement"
+          },
+          {
+            "option": "Reject the change request",
+            "rejected_because": "The two environments are a stated precondition of the security workstream sign-off recorded in RISK-PRG7-0031.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Defer the decision to the December gate",
+            "rejected_because": "Procurement lead time for the environments is 14 weeks, so deferral pushes delivery past the March milestone.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.78,
+          "failure_mode": "If the 340k exposure excludes the licence uplift for the second environment, contingency cover is insufficient and the absorption recommendation is wrong. Detectable when the vendor quote lands, expected 2026-08-29.",
+          "calibration_basis": "Reliability measured on 96 labelled impact assessments, 2026-H1. Brier score 0.14, over-confident above 0.9 so the reported figure is shrunk.",
+          "detectable_at": "2026-08-29T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
+          "cost_hours": 2.0,
+          "cheap_until": "2026-09-05T00:00:00Z",
+          "cheap_until_reason": "Change authority decision meeting; after approval the procurement commitment starts."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T11:31:07Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "CR:PRG4-0077",
+            "outcome": "Absorbed into contingency, no re-baseline, delivered on the original date",
+            "relevance": "Same sponsor, same objection to re-baselining, comparable exposure of 290k"
+          },
+          {
+            "case_id": "CR:PRG7-0088",
+            "outcome": "Rejected, security workstream escalated, reinstated six weeks later at higher cost",
+            "relevance": "Shows the cost of rejecting a security precondition on this programme"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "No re-baselining before the December gate",
+            "source_id": "MIN:PRGBOARD:2026-06-11"
+          },
+          {
+            "stakeholder": "Security workstream lead",
+            "position": "Both environments required for sign-off",
+            "source_id": "RISK:PRG7-0031"
+          },
+          {
+            "stakeholder": "Finance business partner",
+            "position": "Contingency available but reportable above 250k",
+            "source_id": "FIN:PRG7:policy:2026"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Q4 contingency headroom falls below the 40 percent policy floor",
+            "affected_id": "FIN:PRG7:contingency:2026Q4",
+            "magnitude": "610k to 270k, 44 percent of original"
+          },
+          {
+            "impact": "Integration test window compresses, reducing defect-fix float",
+            "affected_id": "P6:PRG7:WBS-4.3",
+            "magnitude": "14d to 9d"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-0912-s1",
+        "artifact_kind": "decision",
+        "decision_type": "change_request_impact_assessment",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T11:31:07Z",
+        "decision": "Assess CR-PRG7-0104 as a 19-day schedule impact with 340k cost exposure, recommend absorption into the Q4 contingency rather than re-baselining.",
+        "basis": [
+          {
+            "source_id": "CR:PRG7-0104",
+            "retrieved_at": "2026-08-19T11:28:40Z",
+            "detail": "Scope addition: two integration environments, requested by the security workstream"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T11:28:52Z",
+            "detail": "Critical path runs through integration test window, float 14d"
+          },
+          {
+            "source_id": "FIN:PRG7:contingency:2026Q4",
+            "retrieved_at": "2026-08-19T11:29:03Z",
+            "detail": "Unallocated contingency 610k against a 340k exposure"
+          },
+          {
+            "source_id": "MIN:PRGBOARD:2026-06-11",
+            "retrieved_at": "2026-08-19T11:29:20Z",
+            "detail": "Sponsor stated no further re-baselining before the December gate"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Re-baseline the integration test window",
+            "rejected_because": "Sponsor position of 2026-06-11 rules out re-baselining before the December gate, and the contingency covers the exposure.",
+            "rejection_kind": "judgement"
+          },
+          {
+            "option": "Reject the change request",
+            "rejected_because": "The two environments are a stated precondition of the security workstream sign-off recorded in RISK-PRG7-0031.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Defer the decision to the December gate",
+            "rejected_because": "Procurement lead time for the environments is 14 weeks, so deferral pushes delivery past the March milestone.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.78,
+          "failure_mode": "If the 340k exposure excludes the licence uplift for the second environment, contingency cover is insufficient and the absorption recommendation is wrong. Detectable when the vendor quote lands, expected 2026-08-29.",
+          "calibration_basis": "Reliability measured on 96 labelled impact assessments, 2026-H1. Brier score 0.14, over-confident above 0.9 so the reported figure is shrunk.",
+          "detectable_at": "2026-08-29T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
+          "cost_hours": 2.0,
+          "cheap_until": "2026-09-05T00:00:00Z",
+          "cheap_until_reason": "Change authority decision meeting; after approval the procurement commitment starts."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T11:31:07Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "CR:PRG4-0077",
+            "outcome": "Absorbed into contingency, no re-baseline, delivered on the original date",
+            "relevance": "Same sponsor, same objection to re-baselining, comparable exposure of 290k"
+          },
+          {
+            "case_id": "CR:PRG7-0088",
+            "outcome": "Rejected, security workstream escalated, reinstated six weeks later at higher cost",
+            "relevance": "Shows the cost of rejecting a security precondition on this programme"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "No re-baselining before the December gate",
+            "source_id": "MIN:PRGBOARD:2026-06-11"
+          },
+          {
+            "stakeholder": "Security workstream lead",
+            "position": "Both environments required for sign-off",
+            "source_id": "RISK:PRG7-0031"
+          },
+          {
+            "stakeholder": "Finance business partner",
+            "position": "Contingency available but reportable above 250k",
+            "source_id": "FIN:PRG7:policy:2026"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Q4 contingency headroom falls below the 40 percent policy floor",
+            "affected_id": "FIN:PRG7:contingency:2026Q4",
+            "magnitude": "610k to 270k, 44 percent of original"
+          },
+          {
+            "impact": "Integration test window compresses, reducing defect-fix float",
+            "affected_id": "P6:PRG7:WBS-4.3",
+            "magnitude": "14d to 9d"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-0912-s2",
+        "artifact_kind": "decision",
+        "decision_type": "change_request_impact_assessment",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T11:31:07Z",
+        "decision": "Assess CR-PRG7-0104 as a 19-day schedule impact with 340k cost exposure, recommend absorption into the Q4 contingency rather than re-baselining.",
+        "basis": [
+          {
+            "source_id": "CR:PRG7-0104",
+            "retrieved_at": "2026-08-19T11:28:40Z",
+            "detail": "Scope addition: two integration environments, requested by the security workstream"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T11:28:52Z",
+            "detail": "Critical path runs through integration test window, float 14d"
+          },
+          {
+            "source_id": "FIN:PRG7:contingency:2026Q4",
+            "retrieved_at": "2026-08-19T11:29:03Z",
+            "detail": "Unallocated contingency 610k against a 340k exposure"
+          },
+          {
+            "source_id": "MIN:PRGBOARD:2026-06-11",
+            "retrieved_at": "2026-08-19T11:29:20Z",
+            "detail": "Sponsor stated no further re-baselining before the December gate"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Re-baseline the integration test window",
+            "rejected_because": "Sponsor position of 2026-06-11 rules out re-baselining before the December gate, and the contingency covers the exposure.",
+            "rejection_kind": "judgement"
+          },
+          {
+            "option": "Reject the change request",
+            "rejected_because": "The two environments are a stated precondition of the security workstream sign-off recorded in RISK-PRG7-0031.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Defer the decision to the December gate",
+            "rejected_because": "Procurement lead time for the environments is 14 weeks, so deferral pushes delivery past the March milestone.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.78,
+          "failure_mode": "If the 340k exposure excludes the licence uplift for the second environment, contingency cover is insufficient and the absorption recommendation is wrong. Detectable when the vendor quote lands, expected 2026-08-29.",
+          "calibration_basis": "Reliability measured on 96 labelled impact assessments, 2026-H1. Brier score 0.14, over-confident above 0.9 so the reported figure is shrunk.",
+          "detectable_at": "2026-08-29T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
+          "cost_hours": 2.0,
+          "cheap_until": "2026-09-05T00:00:00Z",
+          "cheap_until_reason": "Change authority decision meeting; after approval the procurement commitment starts."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T11:31:07Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "CR:PRG4-0077",
+            "outcome": "Absorbed into contingency, no re-baseline, delivered on the original date",
+            "relevance": "Same sponsor, same objection to re-baselining, comparable exposure of 290k"
+          },
+          {
+            "case_id": "CR:PRG7-0088",
+            "outcome": "Rejected, security workstream escalated, reinstated six weeks later at higher cost",
+            "relevance": "Shows the cost of rejecting a security precondition on this programme"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "No re-baselining before the December gate",
+            "source_id": "MIN:PRGBOARD:2026-06-11"
+          },
+          {
+            "stakeholder": "Security workstream lead",
+            "position": "Both environments required for sign-off",
+            "source_id": "RISK:PRG7-0031"
+          },
+          {
+            "stakeholder": "Finance business partner",
+            "position": "Contingency available but reportable above 250k",
+            "source_id": "FIN:PRG7:policy:2026"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Q4 contingency headroom falls below the 40 percent policy floor",
+            "affected_id": "FIN:PRG7:contingency:2026Q4",
+            "magnitude": "610k to 270k, 44 percent of original"
+          },
+          {
+            "impact": "Integration test window compresses, reducing defect-fix float",
+            "affected_id": "P6:PRG7:WBS-4.3",
+            "magnitude": "14d to 9d"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-0912-s3",
+        "artifact_kind": "decision",
+        "decision_type": "change_request_impact_assessment",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T11:31:07Z",
+        "decision": "Assess CR-PRG7-0104 as a 19-day schedule impact with 340k cost exposure, recommend absorption into the Q4 contingency rather than re-baselining.",
+        "basis": [
+          {
+            "source_id": "CR:PRG7-0104",
+            "retrieved_at": "2026-08-19T11:28:40Z",
+            "detail": "Scope addition: two integration environments, requested by the security workstream"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T11:28:52Z",
+            "detail": "Critical path runs through integration test window, float 14d"
+          },
+          {
+            "source_id": "FIN:PRG7:contingency:2026Q4",
+            "retrieved_at": "2026-08-19T11:29:03Z",
+            "detail": "Unallocated contingency 610k against a 340k exposure"
+          },
+          {
+            "source_id": "MIN:PRGBOARD:2026-06-11",
+            "retrieved_at": "2026-08-19T11:29:20Z",
+            "detail": "Sponsor stated no further re-baselining before the December gate"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Re-baseline the integration test window",
+            "rejected_because": "Sponsor position of 2026-06-11 rules out re-baselining before the December gate, and the contingency covers the exposure.",
+            "rejection_kind": "judgement"
+          },
+          {
+            "option": "Reject the change request",
+            "rejected_because": "The two environments are a stated precondition of the security workstream sign-off recorded in RISK-PRG7-0031.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Defer the decision to the December gate",
+            "rejected_because": "Procurement lead time for the environments is 14 weeks, so deferral pushes delivery past the March milestone.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.78,
+          "failure_mode": "If the 340k exposure excludes the licence uplift for the second environment, contingency cover is insufficient and the absorption recommendation is wrong. Detectable when the vendor quote lands, expected 2026-08-29.",
+          "calibration_basis": "Reliability measured on 96 labelled impact assessments, 2026-H1. Brier score 0.14, over-confident above 0.9 so the reported figure is shrunk.",
+          "detectable_at": "2026-08-29T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
+          "cost_hours": 2.0,
+          "cheap_until": "2026-09-05T00:00:00Z",
+          "cheap_until_reason": "Change authority decision meeting; after approval the procurement commitment starts."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T11:31:07Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "CR:PRG4-0077",
+            "outcome": "Absorbed into contingency, no re-baseline, delivered on the original date",
+            "relevance": "Same sponsor, same objection to re-baselining, comparable exposure of 290k"
+          },
+          {
+            "case_id": "CR:PRG7-0088",
+            "outcome": "Rejected, security workstream escalated, reinstated six weeks later at higher cost",
+            "relevance": "Shows the cost of rejecting a security precondition on this programme"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "No re-baselining before the December gate",
+            "source_id": "MIN:PRGBOARD:2026-06-11"
+          },
+          {
+            "stakeholder": "Security workstream lead",
+            "position": "Both environments required for sign-off",
+            "source_id": "RISK:PRG7-0031"
+          },
+          {
+            "stakeholder": "Finance business partner",
+            "position": "Contingency available but reportable above 250k",
+            "source_id": "FIN:PRG7:policy:2026"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Q4 contingency headroom falls below the 40 percent policy floor",
+            "affected_id": "FIN:PRG7:contingency:2026Q4",
+            "magnitude": "610k to 270k, 44 percent of original"
+          },
+          {
+            "impact": "Integration test window compresses, reducing defect-fix float",
+            "affected_id": "P6:PRG7:WBS-4.3",
+            "magnitude": "14d to 9d"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-0912-s4",
+        "artifact_kind": "decision",
+        "decision_type": "change_request_impact_assessment",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T11:31:07Z",
+        "decision": "Assess CR-PRG7-0104 as a 19-day schedule impact with 340k cost exposure, recommend absorption into the Q4 contingency rather than re-baselining.",
+        "basis": [
+          {
+            "source_id": "CR:PRG7-0104",
+            "retrieved_at": "2026-08-19T11:28:40Z",
+            "detail": "Scope addition: two integration environments, requested by the security workstream"
+          },
+          {
+            "source_id": "P6:PRG7:baseline:v12",
+            "retrieved_at": "2026-08-19T11:28:52Z",
+            "detail": "Critical path runs through integration test window, float 14d"
+          },
+          {
+            "source_id": "FIN:PRG7:contingency:2026Q4",
+            "retrieved_at": "2026-08-19T11:29:03Z",
+            "detail": "Unallocated contingency 610k against a 340k exposure"
+          },
+          {
+            "source_id": "MIN:PRGBOARD:2026-06-11",
+            "retrieved_at": "2026-08-19T11:29:20Z",
+            "detail": "Sponsor stated no further re-baselining before the December gate"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Re-baseline the integration test window",
+            "rejected_because": "Sponsor position of 2026-06-11 rules out re-baselining before the December gate, and the contingency covers the exposure.",
+            "rejection_kind": "judgement"
+          },
+          {
+            "option": "Reject the change request",
+            "rejected_because": "The two environments are a stated precondition of the security workstream sign-off recorded in RISK-PRG7-0031.",
+            "rejection_kind": "factual"
+          },
+          {
+            "option": "Defer the decision to the December gate",
+            "rejected_because": "Procurement lead time for the environments is 14 weeks, so deferral pushes delivery past the March milestone.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.78,
+          "failure_mode": "If the 340k exposure excludes the licence uplift for the second environment, contingency cover is insufficient and the absorption recommendation is wrong. Detectable when the vendor quote lands, expected 2026-08-29.",
+          "calibration_basis": "Reliability measured on 96 labelled impact assessments, 2026-H1. Brier score 0.14, over-confident above 0.9 so the reported figure is shrunk.",
+          "detectable_at": "2026-08-29T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
+          "cost_hours": 2.0,
+          "cheap_until": "2026-09-05T00:00:00Z",
+          "cheap_until_reason": "Change authority decision meeting; after approval the procurement commitment starts."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T11:31:07Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "CR:PRG4-0077",
+            "outcome": "Absorbed into contingency, no re-baseline, delivered on the original date",
+            "relevance": "Same sponsor, same objection to re-baselining, comparable exposure of 290k"
+          },
+          {
+            "case_id": "CR:PRG7-0088",
+            "outcome": "Rejected, security workstream escalated, reinstated six weeks later at higher cost",
+            "relevance": "Shows the cost of rejecting a security precondition on this programme"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "No re-baselining before the December gate",
+            "source_id": "MIN:PRGBOARD:2026-06-11"
+          },
+          {
+            "stakeholder": "Security workstream lead",
+            "position": "Both environments required for sign-off",
+            "source_id": "RISK:PRG7-0031"
+          },
+          {
+            "stakeholder": "Finance business partner",
+            "position": "Contingency available but reportable above 250k",
+            "source_id": "FIN:PRG7:policy:2026"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Q4 contingency headroom falls below the 40 percent policy floor",
+            "affected_id": "FIN:PRG7:contingency:2026Q4",
+            "magnitude": "610k to 270k, 44 percent of original"
+          },
+          {
+            "impact": "Integration test window compresses, reducing defect-fix float",
+            "affected_id": "P6:PRG7:WBS-4.3",
+            "magnitude": "14d to 9d"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-1044-s0",
+        "artifact_kind": "class_d_preparation",
+        "decision_type": "workstream_cancellation_preparation",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T14:02:55Z",
+        "decides_class_d": "workstream_cancellation",
+        "recommendation": "Recommend cancelling the PRG7 legacy-migration workstream at the October gate, subject to the vendor exit terms in section 4 of this pack.",
+        "options_with_costs": [
+          {
+            "option": "Cancel at the October gate",
+            "cost": "Sunk 2.1m, exit fee 180k, forward saving 3.4m",
+            "reversal_cost_hours": 400.0
+          },
+          {
+            "option": "Continue to the December gate and re-assess",
+            "cost": "Additional 620k spend, exit fee unchanged, decision deferred 8 weeks",
+            "reversal_cost_hours": 0.0
+          },
+          {
+            "option": "Descope to the regulatory minimum and continue",
+            "cost": "Additional 1.1m, delivers 40 percent of the benefit case",
+            "reversal_cost_hours": 160.0
+          }
+        ],
+        "basis": [
+          {
+            "source_id": "FIN:PRG7:WS-LEG:actuals:2026-07",
+            "retrieved_at": "2026-08-19T13:58:12Z",
+            "detail": "Spend to date 2.1m against a 2.6m approved budget, 38 percent of scope delivered"
+          },
+          {
+            "source_id": "BEN:PRG7:case:v4",
+            "retrieved_at": "2026-08-19T13:58:31Z",
+            "detail": "Benefit case restated 2026-05, NPV now 0.4m against 3.9m at approval"
+          },
+          {
+            "source_id": "SUP:NORTHRIDGE:MSA:2024-03",
+            "retrieved_at": "2026-08-19T13:59:02Z",
+            "detail": "Clause 11.4, exit fee 180k with 60 days notice"
+          }
+        ],
+        "alternatives": {
+          "forced": true,
+          "reason": "The October gate is the last point at which the 60-day notice period clears the contract year end, so the option set is fixed by clause 11.4."
+        },
+        "confidence_and_failure_mode": {
+          "confidence": 0.71,
+          "failure_mode": "If the regulatory deadline referenced in the benefit case moves left, the descope option becomes mandatory rather than optional and the cancellation recommendation is wrong. Detectable from the regulator's Q3 consultation response, due 2026-09-15.",
+          "calibration_basis": "Reliability measured on 41 labelled preparation packs, 2025-2026. Brier score 0.19, small sample, treat the figure as indicative.",
+          "detectable_at": "2026-09-15T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
+          "cost_hours": 6.0,
+          "cheap_until": "2026-09-26T00:00:00Z",
+          "cheap_until_reason": "Change authority papers issue two weeks before the October gate."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T14:02:55Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "PRG3:WS-DATA",
+            "outcome": "Cancelled at gate, exit fee absorbed, forward saving realised",
+            "relevance": "Same vendor, same MSA clause, comparable scope completion at cancellation"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "Open to cancellation if the exit fee is contained",
+            "source_id": "MIN:PRGBOARD:2026-08-06"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Two downstream workstreams lose their data-migration dependency and need re-planning",
+            "affected_id": "PRG7:WS-REPORTING",
+            "magnitude": "Re-plan of roughly 6 weeks"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-1044-s1",
+        "artifact_kind": "class_d_preparation",
+        "decision_type": "workstream_cancellation_preparation",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T14:02:55Z",
+        "decides_class_d": "workstream_cancellation",
+        "recommendation": "Recommend cancelling the PRG7 legacy-migration workstream at the October gate, subject to the vendor exit terms in section 4 of this pack.",
+        "options_with_costs": [
+          {
+            "option": "Cancel at the October gate",
+            "cost": "Sunk 2.1m, exit fee 180k, forward saving 3.4m",
+            "reversal_cost_hours": 400.0
+          },
+          {
+            "option": "Continue to the December gate and re-assess",
+            "cost": "Additional 620k spend, exit fee unchanged, decision deferred 8 weeks",
+            "reversal_cost_hours": 0.0
+          },
+          {
+            "option": "Descope to the regulatory minimum and continue",
+            "cost": "Additional 1.1m, delivers 40 percent of the benefit case",
+            "reversal_cost_hours": 160.0
+          }
+        ],
+        "basis": [
+          {
+            "source_id": "FIN:PRG7:WS-LEG:actuals:2026-07",
+            "retrieved_at": "2026-08-19T13:58:12Z",
+            "detail": "Spend to date 2.1m against a 2.6m approved budget, 38 percent of scope delivered"
+          },
+          {
+            "source_id": "BEN:PRG7:case:v4",
+            "retrieved_at": "2026-08-19T13:58:31Z",
+            "detail": "Benefit case restated 2026-05, NPV now 0.4m against 3.9m at approval"
+          },
+          {
+            "source_id": "SUP:NORTHRIDGE:MSA:2024-03",
+            "retrieved_at": "2026-08-19T13:59:02Z",
+            "detail": "Clause 11.4, exit fee 180k with 60 days notice"
+          }
+        ],
+        "alternatives": {
+          "forced": true,
+          "reason": "The October gate is the last point at which the 60-day notice period clears the contract year end, so the option set is fixed by clause 11.4."
+        },
+        "confidence_and_failure_mode": {
+          "confidence": 0.71,
+          "failure_mode": "If the regulatory deadline referenced in the benefit case moves left, the descope option becomes mandatory rather than optional and the cancellation recommendation is wrong. Detectable from the regulator's Q3 consultation response, due 2026-09-15.",
+          "calibration_basis": "Reliability measured on 41 labelled preparation packs, 2025-2026. Brier score 0.19, small sample, treat the figure as indicative.",
+          "detectable_at": "2026-09-15T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
+          "cost_hours": 6.0,
+          "cheap_until": "2026-09-26T00:00:00Z",
+          "cheap_until_reason": "Change authority papers issue two weeks before the October gate."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T14:02:55Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "PRG3:WS-DATA",
+            "outcome": "Cancelled at gate, exit fee absorbed, forward saving realised",
+            "relevance": "Same vendor, same MSA clause, comparable scope completion at cancellation"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "Open to cancellation if the exit fee is contained",
+            "source_id": "MIN:PRGBOARD:2026-08-06"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Two downstream workstreams lose their data-migration dependency and need re-planning",
+            "affected_id": "PRG7:WS-REPORTING",
+            "magnitude": "Re-plan of roughly 6 weeks"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-1044-s2",
+        "artifact_kind": "class_d_preparation",
+        "decision_type": "workstream_cancellation_preparation",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T14:02:55Z",
+        "decides_class_d": "workstream_cancellation",
+        "recommendation": "Recommend cancelling the PRG7 legacy-migration workstream at the October gate, subject to the vendor exit terms in section 4 of this pack.",
+        "options_with_costs": [
+          {
+            "option": "Cancel at the October gate",
+            "cost": "Sunk 2.1m, exit fee 180k, forward saving 3.4m",
+            "reversal_cost_hours": 400.0
+          },
+          {
+            "option": "Continue to the December gate and re-assess",
+            "cost": "Additional 620k spend, exit fee unchanged, decision deferred 8 weeks",
+            "reversal_cost_hours": 0.0
+          },
+          {
+            "option": "Descope to the regulatory minimum and continue",
+            "cost": "Additional 1.1m, delivers 40 percent of the benefit case",
+            "reversal_cost_hours": 160.0
+          }
+        ],
+        "basis": [
+          {
+            "source_id": "FIN:PRG7:WS-LEG:actuals:2026-07",
+            "retrieved_at": "2026-08-19T13:58:12Z",
+            "detail": "Spend to date 2.1m against a 2.6m approved budget, 38 percent of scope delivered"
+          },
+          {
+            "source_id": "BEN:PRG7:case:v4",
+            "retrieved_at": "2026-08-19T13:58:31Z",
+            "detail": "Benefit case restated 2026-05, NPV now 0.4m against 3.9m at approval"
+          },
+          {
+            "source_id": "SUP:NORTHRIDGE:MSA:2024-03",
+            "retrieved_at": "2026-08-19T13:59:02Z",
+            "detail": "Clause 11.4, exit fee 180k with 60 days notice"
+          }
+        ],
+        "alternatives": {
+          "forced": true,
+          "reason": "The October gate is the last point at which the 60-day notice period clears the contract year end, so the option set is fixed by clause 11.4."
+        },
+        "confidence_and_failure_mode": {
+          "confidence": 0.71,
+          "failure_mode": "If the regulatory deadline referenced in the benefit case moves left, the descope option becomes mandatory rather than optional and the cancellation recommendation is wrong. Detectable from the regulator's Q3 consultation response, due 2026-09-15.",
+          "calibration_basis": "Reliability measured on 41 labelled preparation packs, 2025-2026. Brier score 0.19, small sample, treat the figure as indicative.",
+          "detectable_at": "2026-09-15T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
+          "cost_hours": 6.0,
+          "cheap_until": "2026-09-26T00:00:00Z",
+          "cheap_until_reason": "Change authority papers issue two weeks before the October gate."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T14:02:55Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "PRG3:WS-DATA",
+            "outcome": "Cancelled at gate, exit fee absorbed, forward saving realised",
+            "relevance": "Same vendor, same MSA clause, comparable scope completion at cancellation"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "Open to cancellation if the exit fee is contained",
+            "source_id": "MIN:PRGBOARD:2026-08-06"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Two downstream workstreams lose their data-migration dependency and need re-planning",
+            "affected_id": "PRG7:WS-REPORTING",
+            "magnitude": "Re-plan of roughly 6 weeks"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-1044-s3",
+        "artifact_kind": "class_d_preparation",
+        "decision_type": "workstream_cancellation_preparation",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T14:02:55Z",
+        "decides_class_d": "workstream_cancellation",
+        "recommendation": "Recommend cancelling the PRG7 legacy-migration workstream at the October gate, subject to the vendor exit terms in section 4 of this pack.",
+        "options_with_costs": [
+          {
+            "option": "Cancel at the October gate",
+            "cost": "Sunk 2.1m, exit fee 180k, forward saving 3.4m",
+            "reversal_cost_hours": 400.0
+          },
+          {
+            "option": "Continue to the December gate and re-assess",
+            "cost": "Additional 620k spend, exit fee unchanged, decision deferred 8 weeks",
+            "reversal_cost_hours": 0.0
+          },
+          {
+            "option": "Descope to the regulatory minimum and continue",
+            "cost": "Additional 1.1m, delivers 40 percent of the benefit case",
+            "reversal_cost_hours": 160.0
+          }
+        ],
+        "basis": [
+          {
+            "source_id": "FIN:PRG7:WS-LEG:actuals:2026-07",
+            "retrieved_at": "2026-08-19T13:58:12Z",
+            "detail": "Spend to date 2.1m against a 2.6m approved budget, 38 percent of scope delivered"
+          },
+          {
+            "source_id": "BEN:PRG7:case:v4",
+            "retrieved_at": "2026-08-19T13:58:31Z",
+            "detail": "Benefit case restated 2026-05, NPV now 0.4m against 3.9m at approval"
+          },
+          {
+            "source_id": "SUP:NORTHRIDGE:MSA:2024-03",
+            "retrieved_at": "2026-08-19T13:59:02Z",
+            "detail": "Clause 11.4, exit fee 180k with 60 days notice"
+          }
+        ],
+        "alternatives": {
+          "forced": true,
+          "reason": "The October gate is the last point at which the 60-day notice period clears the contract year end, so the option set is fixed by clause 11.4."
+        },
+        "confidence_and_failure_mode": {
+          "confidence": 0.71,
+          "failure_mode": "If the regulatory deadline referenced in the benefit case moves left, the descope option becomes mandatory rather than optional and the cancellation recommendation is wrong. Detectable from the regulator's Q3 consultation response, due 2026-09-15.",
+          "calibration_basis": "Reliability measured on 41 labelled preparation packs, 2025-2026. Brier score 0.19, small sample, treat the figure as indicative.",
+          "detectable_at": "2026-09-15T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
+          "cost_hours": 6.0,
+          "cheap_until": "2026-09-26T00:00:00Z",
+          "cheap_until_reason": "Change authority papers issue two weeks before the October gate."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T14:02:55Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "PRG3:WS-DATA",
+            "outcome": "Cancelled at gate, exit fee absorbed, forward saving realised",
+            "relevance": "Same vendor, same MSA clause, comparable scope completion at cancellation"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "Open to cancellation if the exit fee is contained",
+            "source_id": "MIN:PRGBOARD:2026-08-06"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Two downstream workstreams lose their data-migration dependency and need re-planning",
+            "affected_id": "PRG7:WS-REPORTING",
+            "magnitude": "Re-plan of roughly 6 weeks"
+          }
+        ]
+      },
+      {
+        "artifact_id": "da-2026-0819-1044-s4",
+        "artifact_kind": "class_d_preparation",
+        "decision_type": "workstream_cancellation_preparation",
+        "decision_class": "C",
+        "agent_id": "change-impact-01",
+        "agent_version": "0.9.2",
+        "timestamp": "2026-08-19T14:02:55Z",
+        "decides_class_d": "workstream_cancellation",
+        "recommendation": "Recommend cancelling the PRG7 legacy-migration workstream at the October gate, subject to the vendor exit terms in section 4 of this pack.",
+        "options_with_costs": [
+          {
+            "option": "Cancel at the October gate",
+            "cost": "Sunk 2.1m, exit fee 180k, forward saving 3.4m",
+            "reversal_cost_hours": 400.0
+          },
+          {
+            "option": "Continue to the December gate and re-assess",
+            "cost": "Additional 620k spend, exit fee unchanged, decision deferred 8 weeks",
+            "reversal_cost_hours": 0.0
+          },
+          {
+            "option": "Descope to the regulatory minimum and continue",
+            "cost": "Additional 1.1m, delivers 40 percent of the benefit case",
+            "reversal_cost_hours": 160.0
+          }
+        ],
+        "basis": [
+          {
+            "source_id": "FIN:PRG7:WS-LEG:actuals:2026-07",
+            "retrieved_at": "2026-08-19T13:58:12Z",
+            "detail": "Spend to date 2.1m against a 2.6m approved budget, 38 percent of scope delivered"
+          },
+          {
+            "source_id": "BEN:PRG7:case:v4",
+            "retrieved_at": "2026-08-19T13:58:31Z",
+            "detail": "Benefit case restated 2026-05, NPV now 0.4m against 3.9m at approval"
+          },
+          {
+            "source_id": "SUP:NORTHRIDGE:MSA:2024-03",
+            "retrieved_at": "2026-08-19T13:59:02Z",
+            "detail": "Clause 11.4, exit fee 180k with 60 days notice"
+          }
+        ],
+        "alternatives": {
+          "forced": true,
+          "reason": "The October gate is the last point at which the 60-day notice period clears the contract year end, so the option set is fixed by clause 11.4."
+        },
+        "confidence_and_failure_mode": {
+          "confidence": 0.71,
+          "failure_mode": "If the regulatory deadline referenced in the benefit case moves left, the descope option becomes mandatory rather than optional and the cancellation recommendation is wrong. Detectable from the regulator's Q3 consultation response, due 2026-09-15.",
+          "calibration_basis": "Reliability measured on 41 labelled preparation packs, 2025-2026. Brier score 0.19, small sample, treat the figure as indicative.",
+          "detectable_at": "2026-09-15T00:00:00Z"
+        },
+        "reversal": {
+          "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
+          "cost_hours": 6.0,
+          "cheap_until": "2026-09-26T00:00:00Z",
+          "cheap_until_reason": "Change authority papers issue two weeks before the October gate."
+        },
+        "owner": {
+          "person_id": "u-1180",
+          "name": "S. Lindqvist",
+          "role": "change_authority_chair",
+          "resolved_at": "2026-08-19T14:02:55Z"
+        },
+        "precedent_cases": [
+          {
+            "case_id": "PRG3:WS-DATA",
+            "outcome": "Cancelled at gate, exit fee absorbed, forward saving realised",
+            "relevance": "Same vendor, same MSA clause, comparable scope completion at cancellation"
+          }
+        ],
+        "stakeholder_positions": [
+          {
+            "stakeholder": "Programme sponsor",
+            "position": "Open to cancellation if the exit fee is contained",
+            "source_id": "MIN:PRGBOARD:2026-08-06"
+          }
+        ],
+        "second_order_impacts": [
+          {
+            "impact": "Two downstream workstreams lose their data-migration dependency and need re-planning",
+            "affected_id": "PRG7:WS-REPORTING",
+            "magnitude": "Re-plan of roughly 6 weeks"
+          }
+        ]
+      },
+      {
+        "artifact_id": "vv-2026-0819-3310-s0",
+        "artifact_kind": "verifier_verdict",
+        "decision_type": "verification_verdict",
+        "decision_class": "A",
+        "agent_id": "schedule-verifier-01",
+        "agent_version": "2.1.0",
+        "timestamp": "2026-08-19T09:14:31Z",
+        "decision": "Pass decision artifact da-2026-0819-0447; all four slip-categorisation assertions hold.",
+        "verdict": "pass",
+        "proof_object": {
+          "assertions": [
+            {
+              "check": "basis.source_ids all resolve",
+              "expected": 3,
+              "observed": 3,
+              "passed": true
+            },
+            {
+              "check": "supplier notification within SLA clause 7.2 window",
+              "expected": "<= 5 working days",
+              "observed": "3 working days",
+              "passed": true
+            },
+            {
+              "check": "float after absorption matches P6 network",
+              "expected": 3.0,
+              "observed": 3.0,
+              "passed": true
+            },
+            {
+              "check": "no approved change request in the slip window",
+              "expected": 0,
+              "observed": 0,
+              "passed": true
+            }
+          ],
+          "recheck_command": "vb gates --artifact da-2026-0819-0447 --gate evidence"
+        },
+        "calibration_record_ref": "CAL:schedule-verifier-01:2026-07-30",
+        "basis": [
+          {
+            "source_id": "ART:da-2026-0819-0447",
+            "retrieved_at": "2026-08-19T09:14:25Z",
+            "detail": "Slip categorisation artifact under verification, 4 checkable assertions extracted"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:27Z",
+            "detail": "Clause 7.2 notification window is 5 working days"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Return the artifact as cannot_decide",
+            "rejected_because": "All four assertions evaluated deterministically against resolvable sources, so no human judgement is required.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.98,
+          "failure_mode": "If the SLA document was superseded after 2025-11, the notification-window assertion uses a stale threshold and a late notification would be passed. Detectable by comparing the contract register version on the nightly sync.",
+          "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
+        },
+        "reversal": {
+          "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
+          "cost_hours": 0.02,
+          "cheap_until": "2026-08-22T00:00:00Z",
+          "cheap_until_reason": "Weekly slip report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:31Z"
+        }
+      },
+      {
+        "artifact_id": "vv-2026-0819-3310-s1",
+        "artifact_kind": "verifier_verdict",
+        "decision_type": "verification_verdict",
+        "decision_class": "A",
+        "agent_id": "schedule-verifier-01",
+        "agent_version": "2.1.0",
+        "timestamp": "2026-08-19T09:14:31Z",
+        "decision": "Pass decision artifact da-2026-0819-0447; all four slip-categorisation assertions hold.",
+        "verdict": "pass",
+        "proof_object": {
+          "assertions": [
+            {
+              "check": "basis.source_ids all resolve",
+              "expected": 3,
+              "observed": 3,
+              "passed": true
+            },
+            {
+              "check": "supplier notification within SLA clause 7.2 window",
+              "expected": "<= 5 working days",
+              "observed": "3 working days",
+              "passed": true
+            },
+            {
+              "check": "float after absorption matches P6 network",
+              "expected": 3.0,
+              "observed": 3.0,
+              "passed": true
+            },
+            {
+              "check": "no approved change request in the slip window",
+              "expected": 0,
+              "observed": 0,
+              "passed": true
+            }
+          ],
+          "recheck_command": "vb gates --artifact da-2026-0819-0447 --gate evidence"
+        },
+        "calibration_record_ref": "CAL:schedule-verifier-01:2026-07-30",
+        "basis": [
+          {
+            "source_id": "ART:da-2026-0819-0447",
+            "retrieved_at": "2026-08-19T09:14:25Z",
+            "detail": "Slip categorisation artifact under verification, 4 checkable assertions extracted"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:27Z",
+            "detail": "Clause 7.2 notification window is 5 working days"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Return the artifact as cannot_decide",
+            "rejected_because": "All four assertions evaluated deterministically against resolvable sources, so no human judgement is required.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.98,
+          "failure_mode": "If the SLA document was superseded after 2025-11, the notification-window assertion uses a stale threshold and a late notification would be passed. Detectable by comparing the contract register version on the nightly sync.",
+          "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
+        },
+        "reversal": {
+          "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
+          "cost_hours": 0.02,
+          "cheap_until": "2026-08-22T00:00:00Z",
+          "cheap_until_reason": "Weekly slip report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:31Z"
+        }
+      },
+      {
+        "artifact_id": "vv-2026-0819-3310-s2",
+        "artifact_kind": "verifier_verdict",
+        "decision_type": "verification_verdict",
+        "decision_class": "A",
+        "agent_id": "schedule-verifier-01",
+        "agent_version": "2.1.0",
+        "timestamp": "2026-08-19T09:14:31Z",
+        "decision": "Pass decision artifact da-2026-0819-0447; all four slip-categorisation assertions hold.",
+        "verdict": "pass",
+        "proof_object": {
+          "assertions": [
+            {
+              "check": "basis.source_ids all resolve",
+              "expected": 3,
+              "observed": 3,
+              "passed": true
+            },
+            {
+              "check": "supplier notification within SLA clause 7.2 window",
+              "expected": "<= 5 working days",
+              "observed": "3 working days",
+              "passed": true
+            },
+            {
+              "check": "float after absorption matches P6 network",
+              "expected": 3.0,
+              "observed": 3.0,
+              "passed": true
+            },
+            {
+              "check": "no approved change request in the slip window",
+              "expected": 0,
+              "observed": 0,
+              "passed": true
+            }
+          ],
+          "recheck_command": "vb gates --artifact da-2026-0819-0447 --gate evidence"
+        },
+        "calibration_record_ref": "CAL:schedule-verifier-01:2026-07-30",
+        "basis": [
+          {
+            "source_id": "ART:da-2026-0819-0447",
+            "retrieved_at": "2026-08-19T09:14:25Z",
+            "detail": "Slip categorisation artifact under verification, 4 checkable assertions extracted"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:27Z",
+            "detail": "Clause 7.2 notification window is 5 working days"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Return the artifact as cannot_decide",
+            "rejected_because": "All four assertions evaluated deterministically against resolvable sources, so no human judgement is required.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.98,
+          "failure_mode": "If the SLA document was superseded after 2025-11, the notification-window assertion uses a stale threshold and a late notification would be passed. Detectable by comparing the contract register version on the nightly sync.",
+          "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
+        },
+        "reversal": {
+          "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
+          "cost_hours": 0.02,
+          "cheap_until": "2026-08-22T00:00:00Z",
+          "cheap_until_reason": "Weekly slip report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:31Z"
+        }
+      },
+      {
+        "artifact_id": "vv-2026-0819-3310-s3",
+        "artifact_kind": "verifier_verdict",
+        "decision_type": "verification_verdict",
+        "decision_class": "A",
+        "agent_id": "schedule-verifier-01",
+        "agent_version": "2.1.0",
+        "timestamp": "2026-08-19T09:14:31Z",
+        "decision": "Pass decision artifact da-2026-0819-0447; all four slip-categorisation assertions hold.",
+        "verdict": "pass",
+        "proof_object": {
+          "assertions": [
+            {
+              "check": "basis.source_ids all resolve",
+              "expected": 3,
+              "observed": 3,
+              "passed": true
+            },
+            {
+              "check": "supplier notification within SLA clause 7.2 window",
+              "expected": "<= 5 working days",
+              "observed": "3 working days",
+              "passed": true
+            },
+            {
+              "check": "float after absorption matches P6 network",
+              "expected": 3.0,
+              "observed": 3.0,
+              "passed": true
+            },
+            {
+              "check": "no approved change request in the slip window",
+              "expected": 0,
+              "observed": 0,
+              "passed": true
+            }
+          ],
+          "recheck_command": "vb gates --artifact da-2026-0819-0447 --gate evidence"
+        },
+        "calibration_record_ref": "CAL:schedule-verifier-01:2026-07-30",
+        "basis": [
+          {
+            "source_id": "ART:da-2026-0819-0447",
+            "retrieved_at": "2026-08-19T09:14:25Z",
+            "detail": "Slip categorisation artifact under verification, 4 checkable assertions extracted"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:27Z",
+            "detail": "Clause 7.2 notification window is 5 working days"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Return the artifact as cannot_decide",
+            "rejected_because": "All four assertions evaluated deterministically against resolvable sources, so no human judgement is required.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.98,
+          "failure_mode": "If the SLA document was superseded after 2025-11, the notification-window assertion uses a stale threshold and a late notification would be passed. Detectable by comparing the contract register version on the nightly sync.",
+          "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
+        },
+        "reversal": {
+          "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
+          "cost_hours": 0.02,
+          "cheap_until": "2026-08-22T00:00:00Z",
+          "cheap_until_reason": "Weekly slip report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:31Z"
+        }
+      },
+      {
+        "artifact_id": "vv-2026-0819-3310-s4",
+        "artifact_kind": "verifier_verdict",
+        "decision_type": "verification_verdict",
+        "decision_class": "A",
+        "agent_id": "schedule-verifier-01",
+        "agent_version": "2.1.0",
+        "timestamp": "2026-08-19T09:14:31Z",
+        "decision": "Pass decision artifact da-2026-0819-0447; all four slip-categorisation assertions hold.",
+        "verdict": "pass",
+        "proof_object": {
+          "assertions": [
+            {
+              "check": "basis.source_ids all resolve",
+              "expected": 3,
+              "observed": 3,
+              "passed": true
+            },
+            {
+              "check": "supplier notification within SLA clause 7.2 window",
+              "expected": "<= 5 working days",
+              "observed": "3 working days",
+              "passed": true
+            },
+            {
+              "check": "float after absorption matches P6 network",
+              "expected": 3.0,
+              "observed": 3.0,
+              "passed": true
+            },
+            {
+              "check": "no approved change request in the slip window",
+              "expected": 0,
+              "observed": 0,
+              "passed": true
+            }
+          ],
+          "recheck_command": "vb gates --artifact da-2026-0819-0447 --gate evidence"
+        },
+        "calibration_record_ref": "CAL:schedule-verifier-01:2026-07-30",
+        "basis": [
+          {
+            "source_id": "ART:da-2026-0819-0447",
+            "retrieved_at": "2026-08-19T09:14:25Z",
+            "detail": "Slip categorisation artifact under verification, 4 checkable assertions extracted"
+          },
+          {
+            "source_id": "SUP:ACME:SLA:2025-11",
+            "retrieved_at": "2026-08-19T09:14:27Z",
+            "detail": "Clause 7.2 notification window is 5 working days"
+          }
+        ],
+        "alternatives": [
+          {
+            "option": "Return the artifact as cannot_decide",
+            "rejected_because": "All four assertions evaluated deterministically against resolvable sources, so no human judgement is required.",
+            "rejection_kind": "factual"
+          }
+        ],
+        "confidence_and_failure_mode": {
+          "confidence": 0.98,
+          "failure_mode": "If the SLA document was superseded after 2025-11, the notification-window assertion uses a stale threshold and a late notification would be passed. Detectable by comparing the contract register version on the nightly sync.",
+          "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
+        },
+        "reversal": {
+          "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
+          "cost_hours": 0.02,
+          "cheap_until": "2026-08-22T00:00:00Z",
+          "cheap_until_reason": "Weekly slip report distribution to programme leads."
+        },
+        "owner": {
+          "person_id": "u-2291",
+          "name": "R. Okonjo",
+          "role": "portfolio_scheduler",
+          "resolved_at": "2026-08-19T09:14:31Z"
+        }
+      }
+    ],
+    "substantive_sample": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "measured_cost_hours": 1.31,
+    "budgeted_cost_hours": 1.25
+  },
+  "verifier_calibration": {
+    "note": "240 labelled decisions, 38 known bad, one false negative.",
+    "agent_id": "schedule-verifier-01",
+    "verifier_output_class": "A",
+    "cost_remeasured": true,
+    "labelled_set": [
+      {
+        "record_id": "cal-0000",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0001",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0002",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0003",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0004",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0005",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0006",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0007",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0008",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0009",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0010",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0011",
+        "known_bad": true,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0012",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0013",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0014",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0015",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0016",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0017",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0018",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0019",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0020",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0021",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0022",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0023",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0024",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0025",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0026",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0027",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0028",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0029",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0030",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0031",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0032",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0033",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0034",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0035",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0036",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0037",
+        "known_bad": true,
+        "verdict": "reject",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0038",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0039",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0040",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0041",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0042",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0043",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0044",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0045",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0046",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0047",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0048",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0049",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0050",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0051",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0052",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0053",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0054",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0055",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0056",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0057",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0058",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0059",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0060",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0061",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0062",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0063",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0064",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0065",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0066",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0067",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0068",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0069",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0070",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0071",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0072",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0073",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0074",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0075",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0076",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0077",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0078",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0079",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0080",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0081",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0082",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0083",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0084",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0085",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0086",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0087",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0088",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0089",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0090",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0091",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0092",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0093",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0094",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0095",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0096",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0097",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0098",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0099",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0100",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0101",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0102",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0103",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0104",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0105",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0106",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0107",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0108",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0109",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0110",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0111",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0112",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0113",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0114",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0115",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0116",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0117",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0118",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0119",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0120",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0121",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0122",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0123",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0124",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0125",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0126",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0127",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0128",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0129",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0130",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0131",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0132",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0133",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0134",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0135",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0136",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0137",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0138",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0139",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0140",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0141",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0142",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0143",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0144",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0145",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0146",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0147",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0148",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0149",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0150",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0151",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0152",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0153",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0154",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0155",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0156",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0157",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0158",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0159",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0160",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0161",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0162",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0163",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0164",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0165",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0166",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0167",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0168",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0169",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0170",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0171",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0172",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0173",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0174",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0175",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0176",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0177",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0178",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0179",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0180",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0181",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0182",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0183",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0184",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0185",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0186",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0187",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0188",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0189",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0190",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0191",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0192",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0193",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0194",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0195",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0196",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0197",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0198",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0199",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0200",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0201",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0202",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0203",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0204",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0205",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0206",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0207",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0208",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0209",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0210",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0211",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0212",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0213",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0214",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0215",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0216",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0217",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0218",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0219",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0220",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0221",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0222",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0223",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0224",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0225",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0226",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0227",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0228",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0229",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0230",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0231",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0232",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0233",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0234",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0235",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0236",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0237",
+        "known_bad": false,
+        "verdict": "pass",
+        "contained": true
+      },
+      {
+        "record_id": "cal-0238",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      },
+      {
+        "record_id": "cal-0239",
+        "known_bad": false,
+        "verdict": "cannot_decide",
+        "contained": false
+      }
+    ]
+  },
+  "replay": {
+    "note": "120 historical decisions with known outcomes, point-in-time blind.",
+    "scope_types": [
+      "critical_path_recalculation",
+      "dependency_cycle_flagging",
+      "float_erosion_alert",
+      "budget_rollup_reconciliation",
+      "raid_register_completeness",
+      "resource_overallocation_detection",
+      "invoice_to_po_match",
+      "baseline_variance_threshold",
+      "milestone_slip_categorisation",
+      "status_narrative_draft",
+      "meeting_action_extraction",
+      "risk_rescoring_against_rubric",
+      "change_request_categorisation",
+      "rag_rating_proposal",
+      "schedule_rebaselining_proposal",
+      "change_request_impact_assessment",
+      "resource_reallocation_across_programmes",
+      "vendor_scope_dispute_position",
+      "forecast_revision_beyond_tolerance",
+      "dependency_renegotiation",
+      "workstream_cancellation_preparation"
+    ],
+    "cost_hours": 1.25,
+    "records": [
+      {
+        "record_id": "rep-0000",
+        "decision_type": "vendor_scope_dispute_position",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.36,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0001",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.46,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0002",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.4,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0003",
+        "decision_type": "critical_path_recalculation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.55,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0004",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.84,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0005",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.82,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0006",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.75,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0007",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.72,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0008",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.18,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0009",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.57,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0010",
+        "decision_type": "raid_register_completeness",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.69,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0011",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.04,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0012",
+        "decision_type": "change_request_impact_assessment",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.02,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0013",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.16,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0014",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.26,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0015",
+        "decision_type": "float_erosion_alert",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.55,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0016",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.91,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0017",
+        "decision_type": "critical_path_recalculation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.96,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0018",
+        "decision_type": "rag_rating_proposal",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.87,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0019",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.43,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0020",
+        "decision_type": "vendor_scope_dispute_position",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.45,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0021",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.78,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0022",
+        "decision_type": "resource_reallocation_across_programmes",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.41,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0023",
+        "decision_type": "rag_rating_proposal",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.91,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0024",
+        "decision_type": "resource_reallocation_across_programmes",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.81,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0025",
+        "decision_type": "float_erosion_alert",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.01,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0026",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.14,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0027",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.76,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0028",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.04,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0029",
+        "decision_type": "rag_rating_proposal",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.1,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0030",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.55,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0031",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.97,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0032",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.93,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0033",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.59,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0034",
+        "decision_type": "meeting_action_extraction",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.33,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0035",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.38,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0036",
+        "decision_type": "change_request_impact_assessment",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.83,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0037",
+        "decision_type": "change_request_impact_assessment",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.5,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0038",
+        "decision_type": "raid_register_completeness",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.39,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0039",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.38,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0040",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.79,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0041",
+        "decision_type": "dependency_renegotiation",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.01,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0042",
+        "decision_type": "invoice_to_po_match",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.25,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0043",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.92,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0044",
+        "decision_type": "dependency_cycle_flagging",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.28,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0045",
+        "decision_type": "resource_reallocation_across_programmes",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.92,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0046",
+        "decision_type": "schedule_rebaselining_proposal",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.59,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0047",
+        "decision_type": "dependency_cycle_flagging",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.63,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0048",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.26,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0049",
+        "decision_type": "invoice_to_po_match",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.04,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0050",
+        "decision_type": "workstream_cancellation_preparation",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.18,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0051",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.55,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0052",
+        "decision_type": "dependency_cycle_flagging",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.72,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0053",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.37,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0054",
+        "decision_type": "dependency_cycle_flagging",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.29,
+        "escalated": true,
+        "escalation_upheld": false
+      },
+      {
+        "record_id": "rep-0055",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.07,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0056",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.96,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0057",
+        "decision_type": "dependency_cycle_flagging",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.89,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0058",
+        "decision_type": "rag_rating_proposal",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.84,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0059",
+        "decision_type": "workstream_cancellation_preparation",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.01,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0060",
+        "decision_type": "resource_overallocation_detection",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.89,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0061",
+        "decision_type": "dependency_renegotiation",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.77,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0062",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.67,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0063",
+        "decision_type": "invoice_to_po_match",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.04,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0064",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.66,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0065",
+        "decision_type": "dependency_cycle_flagging",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.78,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0066",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.12,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0067",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.14,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0068",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.61,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0069",
+        "decision_type": "vendor_scope_dispute_position",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.38,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0070",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.91,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0071",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.39,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0072",
+        "decision_type": "critical_path_recalculation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.47,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0073",
+        "decision_type": "resource_overallocation_detection",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.37,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0074",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.8,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0075",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.64,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0076",
+        "decision_type": "meeting_action_extraction",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.12,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0077",
+        "decision_type": "invoice_to_po_match",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.08,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0078",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.41,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0079",
+        "decision_type": "change_request_impact_assessment",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.39,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0080",
+        "decision_type": "forecast_revision_beyond_tolerance",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.44,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0081",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.68,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0082",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 1.01,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0083",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.7,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0084",
+        "decision_type": "invoice_to_po_match",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.85,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0085",
+        "decision_type": "change_request_impact_assessment",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.79,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0086",
+        "decision_type": "forecast_revision_beyond_tolerance",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.83,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0087",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.97,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0088",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.23,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0089",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.56,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0090",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.98,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0091",
+        "decision_type": "forecast_revision_beyond_tolerance",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.14,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0092",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.83,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0093",
+        "decision_type": "forecast_revision_beyond_tolerance",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.59,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0094",
+        "decision_type": "float_erosion_alert",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.88,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0095",
+        "decision_type": "resource_overallocation_detection",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.33,
+        "escalated": true,
+        "escalation_upheld": false
+      },
+      {
+        "record_id": "rep-0096",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.24,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0097",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.18,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0098",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.6,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0099",
+        "decision_type": "schedule_rebaselining_proposal",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.45,
+        "escalated": true,
+        "escalation_upheld": false
+      },
+      {
+        "record_id": "rep-0100",
+        "decision_type": "float_erosion_alert",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.84,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0101",
+        "decision_type": "forecast_revision_beyond_tolerance",
+        "agent_class": "C",
+        "agent_authority": "propose",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.78,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0102",
+        "decision_type": "meeting_action_extraction",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.47,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0103",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.2,
+        "escalated": true,
+        "escalation_upheld": false
+      },
+      {
+        "record_id": "rep-0104",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.31,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0105",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.36,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0106",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.79,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0107",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.87,
+        "escalated": true,
+        "escalation_upheld": false
+      },
+      {
+        "record_id": "rep-0108",
+        "decision_type": "resource_overallocation_detection",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.39,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0109",
+        "decision_type": "meeting_action_extraction",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.96,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0110",
+        "decision_type": "change_request_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.17,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0111",
+        "decision_type": "critical_path_recalculation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.86,
+        "escalated": true,
+        "escalation_upheld": true
+      },
+      {
+        "record_id": "rep-0112",
+        "decision_type": "raid_register_completeness",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.97,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0113",
+        "decision_type": "budget_rollup_reconciliation",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.05,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0114",
+        "decision_type": "milestone_slip_categorisation",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.92,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0115",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 1.02,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0116",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.79,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0117",
+        "decision_type": "baseline_variance_threshold",
+        "agent_class": "A",
+        "agent_authority": "decide",
+        "historical_outcome_ok": false,
+        "agent_outcome_ok": false,
+        "adjudication_hours": 0.31,
+        "escalated": true,
+        "escalation_upheld": false
+      },
+      {
+        "record_id": "rep-0118",
+        "decision_type": "risk_rescoring_against_rubric",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 1.06,
+        "escalated": false,
+        "escalation_upheld": null
+      },
+      {
+        "record_id": "rep-0119",
+        "decision_type": "status_narrative_draft",
+        "agent_class": "B",
+        "agent_authority": "decide",
+        "historical_outcome_ok": true,
+        "agent_outcome_ok": true,
+        "adjudication_hours": 0.69,
+        "escalated": false,
+        "escalation_upheld": null
+      }
+    ]
+  }
+}

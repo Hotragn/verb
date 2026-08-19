@@ -1,0 +1,116 @@
+{
+  "agent_id": "schedule-integrity-01",
+  "name": "Schedule Integrity Agent",
+  "version": "1.4.0",
+  "owner_role": "pmo_lead",
+  "agent_kind": "agent",
+  "scope": {
+    "in_scope": [
+      {
+        "decision_type": "critical_path_recalculation",
+        "decision_class": "A",
+        "authority": "decide",
+        "rate_limit_per_period": 200
+      },
+      {
+        "decision_type": "dependency_cycle_flagging",
+        "decision_class": "A",
+        "authority": "decide",
+        "rate_limit_per_period": 120
+      },
+      {
+        "decision_type": "float_erosion_alert",
+        "decision_class": "A",
+        "authority": "decide",
+        "rate_limit_per_period": 160
+      },
+      {
+        "decision_type": "milestone_slip_categorisation",
+        "decision_class": "B",
+        "authority": "decide",
+        "sampling_rate": 0.15,
+        "rate_limit_per_period": 160
+      }
+    ],
+    "excluded": [
+      {
+        "decision_type": "schedule_rebaselining",
+        "reason": "Class C. Proposed by change-impact-01. This agent does not decide it."
+      },
+      {
+        "decision_type": "milestone_removal",
+        "reason": "Class D. Requires change authority."
+      },
+      {
+        "decision_type": "baseline_approval",
+        "reason": "Class D. Requires programme board."
+      }
+    ],
+    "unlisted_types": "escalate"
+  },
+  "evidence": {
+    "required_fields": [
+      "decision",
+      "basis",
+      "confidence_and_failure_mode",
+      "reversal",
+      "owner",
+      "timestamp"
+    ],
+    "artifact_schema": "schema/decision-artifact.schema.json",
+    "on_evidence_failure": "escalate",
+    "retention_days": 730
+  },
+  "escalation": {
+    "conditions": [
+      {
+        "id": "unclassified_type",
+        "test": "decision_type not in scope.in_scope",
+        "to_role": "pmo_lead"
+      },
+      {
+        "id": "evidence_unavailable",
+        "test": "any required evidence field cannot be produced",
+        "to_role": "portfolio_scheduler"
+      },
+      {
+        "id": "class_d_detected",
+        "test": "classification result == D",
+        "to_role": "change_authority_chair"
+      },
+      {
+        "id": "low_confidence",
+        "test": "confidence < 0.80",
+        "to_role": "portfolio_scheduler"
+      },
+      {
+        "id": "cross_programme_impact",
+        "test": "affected_programmes > 1",
+        "to_role": "pmo_lead"
+      },
+      {
+        "id": "critical_path_change",
+        "test": "critical_path_changed and slip_days > 5",
+        "to_role": "portfolio_scheduler"
+      }
+    ],
+    "target_resolution": "named_person_at_decision_time",
+    "max_response_hours": 8
+  },
+  "revocation": {
+    "who": [
+      "pmo_lead",
+      "head_of_delivery"
+    ],
+    "method": "Set status to REVOKED in the agent registry. Single action, no approval chain.",
+    "max_time_to_effect_minutes": 15,
+    "in_flight_work": "halt_and_mark_unverified",
+    "rollback": "Decisions from the last 24h flagged for human re-review. Class A decisions auto-revalidated by their deterministic check, which clears most of them without consuming budget.",
+    "notify": [
+      "portfolio_scheduler",
+      "change_authority_chair"
+    ],
+    "last_tested": "2026-07-14",
+    "last_tested_seconds": 190
+  }
+}

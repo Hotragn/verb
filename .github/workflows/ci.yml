@@ -1,0 +1,139 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: pytest (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run the suite
+        run: pytest -q
+
+      - name: Coverage on the calculation logic
+        if: matrix.python-version == '3.12'
+        run: |
+          pytest -q --cov=vb --cov=tools --cov-report=term-missing --cov-fail-under=85
+
+  schemas:
+    name: JSON Schema validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Every valid fixture validates, every invalid one fails
+        run: python scripts/validate_schemas.py
+
+      - name: Fixtures are reproducible from the builder
+        run: |
+          python schema/fixtures/build_fixtures.py
+          git diff --exit-code -- schema/fixtures
+
+  reproducibility:
+    name: The synthetic example reproduces
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Regenerate PMO-40 and check nothing moved
+        run: |
+          python examples/generate_pmo40.py
+          git diff --exit-code -- examples/pmo40
+
+      - name: The 3.3x Class C overdraft still reproduces
+        run: |
+          vb budget --input examples/pmo40
+          python - <<'PY'
+          import json, subprocess
+          out = subprocess.run(
+              ["vb", "budget", "--input", "examples/pmo40", "--json"],
+              capture_output=True, text=True, check=True,
+          ).stdout
+          classes = {c["decision_class"]: c for c in json.loads(out)["classes"]}
+          ratio = classes["C"]["overdraft_ratio"]
+          assert 3.30 <= ratio <= 3.32, f"Class C overdraft moved to {ratio}"
+          assert classes["C"]["status"] == "overdraft"
+          assert classes["D"]["status"] == "unbudgeted"
+          print(f"Class C overdraft {ratio:.2f}x, as documented")
+          PY
+
+      - name: All four eval gates pass on the reference bundle
+        run: vb gates --input examples/pmo40
+
+  deck:
+    name: The deck builds
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build the deck and its QR codes
+        run: python deck/build.py
+
+      - name: The built deck is committed and up to date
+        run: git diff --exit-code -- deck
+
+  prose:
+    name: Tone constraints
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: No em dashes, no banned words
+        run: python scripts/check_prose.py

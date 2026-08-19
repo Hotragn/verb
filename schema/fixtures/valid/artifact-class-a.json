@@ -1,0 +1,61 @@
+{
+  "artifact_id": "da-2026-0819-0001",
+  "artifact_kind": "decision",
+  "decision_type": "critical_path_recalculation",
+  "decision_class": "A",
+  "agent_id": "schedule-integrity-01",
+  "agent_version": "1.4.0",
+  "timestamp": "2026-08-19T08:02:11Z",
+  "decision": "Recalculate critical path for PRG7 after task T-4419 update; path unchanged, total float 14d.",
+  "basis": [
+    {
+      "source_id": "P6:PRG7:network:v88",
+      "retrieved_at": "2026-08-19T08:02:04Z",
+      "detail": "412 activities, 3 open constraint violations, none on the critical path"
+    },
+    {
+      "source_id": "P6:PRG7:T-4419",
+      "retrieved_at": "2026-08-19T08:02:05Z",
+      "detail": "Remaining duration changed 12d to 15d, actual start 2026-08-17"
+    },
+    {
+      "source_id": "P6:PRG7:baseline:v12",
+      "retrieved_at": "2026-08-19T08:02:06Z",
+      "detail": "Baseline finish 2026-09-30, baseline total float 14d",
+      "influenced_outcome": false
+    }
+  ],
+  "alternatives": [
+    {
+      "option": "Flag the change as a critical path shift",
+      "rejected_because": "Forward and backward pass both return the same critical path; float on T-4419 remains 9d, above the 0d threshold.",
+      "rejection_kind": "factual"
+    }
+  ],
+  "confidence_and_failure_mode": {
+    "confidence": 0.99,
+    "failure_mode": "If the P6 network export is stale, the recalculation runs on a superseded logic set and the unchanged verdict is wrong. Detectable by comparing network version v88 against the P6 change log on the next sync at 09:00.",
+    "calibration_basis": "Deterministic. Verified against P6 native scheduler on 1,000 networks, 2026-Q2, zero disagreements.",
+    "detectable_at": "2026-08-19T09:00:00Z"
+  },
+  "reversal": {
+    "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
+    "cost_hours": 0.05,
+    "cheap_until": "2026-08-26T00:00:00Z",
+    "cheap_until_reason": "Weekly float report distribution to programme leads."
+  },
+  "owner": {
+    "person_id": "u-2291",
+    "name": "R. Okonjo",
+    "role": "portfolio_scheduler",
+    "resolved_at": "2026-08-19T08:02:11Z"
+  },
+  "review": {
+    "reviewer_id": "u-2291",
+    "opened_at": "2026-08-19T08:40:00Z",
+    "submitted_at": "2026-08-19T08:41:12Z",
+    "review_seconds": 72,
+    "idle_trimmed_seconds": 72,
+    "outcome": "approved"
+  }
+}
