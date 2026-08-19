@@ -2,10 +2,11 @@
 
 For the 27-slide deck. Roughly 35 minutes at a normal pace. Shorter cuts are listed below the running order.
 
-> **For the GSDC session you have 60 to 70 minutes plus 15 minutes of questions.**
-> Use [`SCRIPT-70MIN.md`](SCRIPT-70MIN.md) alongside this file. It adds 27 minutes of
-> depth, three polls, two live demos and the six questions to expect, keyed to the
-> slide numbers below. This file is the spine; that one is the expansion.
+> **For the GSDC session, use [`SCRIPT-45MIN.md`](SCRIPT-45MIN.md) as the running order.**
+> 45 minutes of talk plus 15 of questions, inside the 60 to 70 minute slot. It holds
+> the timing table, two polls, two live demos, the questions to expect, and seventeen
+> minutes of reserve material if you finish early. This file is the spine: what you
+> say on each slide. That file is the plan.
 
 **How to use this.** The script does not read out the slides. The audience can read, and a speaker who narrates their own bullet points is competing with the room instead of leading it. Every line below is something that is *not* on the screen: the reason behind a claim, the sentence that lands it, the thing to say while people are still reading.
 

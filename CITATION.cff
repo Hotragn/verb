@@ -20,6 +20,7 @@ url: "https://hotragn.github.io/verb"
 authors:
   - family-names: Pettugani
     given-names: Hotragn
+    affiliation: "Future Median"
 keywords:
   - verification budget
   - AI governance

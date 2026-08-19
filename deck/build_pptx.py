@@ -223,14 +223,25 @@ def title(slide, heading: str, top: float = 1.02, size: int = 33, width: float =
                 size=size, font=SERIF, colour=colour, bold=True, line_spacing=1.06)
 
 
-HOST_LOGO_CANDIDATES = ("gsdc-logo.png", "gsdc-logo.jpg", "gsdc-logo.jpeg")
+HOST_LOGO_STEM = "gsdc"
+HOST_LOGO_SUFFIXES = (".png", ".jpg", ".jpeg", ".gif")
 HOST_NAME = "GSDC Certified Learning Masterclass Series"
+SPEAKER = "Hotragn Pettugani"
+SPEAKER_TITLE = "CTO, Future Median (non-profit)"
 
 
 def host_logo_path():
-    for name in HOST_LOGO_CANDIDATES:
-        path = ASSETS / name
-        if path.exists():
+    """Any image in assets whose filename mentions the host.
+
+    Deliberately loose about case, spaces and hyphens, because the logo arrives
+    named however the host named it and renaming it is a step people forget.
+    """
+    if not ASSETS.is_dir():
+        return None
+    for path in sorted(ASSETS.iterdir()):
+        if path.suffix.lower() not in HOST_LOGO_SUFFIXES:
+            continue
+        if HOST_LOGO_STEM in path.stem.lower().replace(" ", "").replace("-", ""):
             return path
     return None
 
@@ -371,9 +382,12 @@ def build() -> Presentation:
     text(s, "An operating model for autonomous AI in project delivery\nand end to end PMO.",
          MARGIN, 4.36, 9.0, 1.0, size=19, font=SERIF, colour=ON_DARK_MUTED, line_spacing=1.3)
     hairline(s, MARGIN, 5.72, CONTENT_W, DARK_LINE, 1.2)
-    text(s, "Hotragn Pettugani", MARGIN, 5.92, 3.4, 0.3, size=13, font=SANS, colour=ON_DARK)
-    text(s, "github.com/hotragn/verb          x.com/hotragn          linkedin.com/in/hotragn-pettugani",
-         MARGIN + 3.5, 5.92, 8.5, 0.3, size=13, font=SANS, colour=ON_DARK_ACCENT)
+    rich(s, [(SPEAKER, {"bold": True, "colour": ON_DARK, "size": 13}),
+             ("   " + SPEAKER_TITLE, {"colour": ON_DARK_MUTED, "size": 13})],
+         MARGIN, 5.92, 5.2, 0.3, font=SANS)
+    text(s, "github.com/hotragn/verb     x.com/hotragn     linkedin.com/in/hotragn-pettugani",
+         MARGIN + 5.3, 5.92, 6.9, 0.3, size=12, font=SANS, colour=ON_DARK_ACCENT,
+         align=PP_ALIGN.RIGHT)
 
     # 2. Part 1 divider ---------------------------------------------------
     s = new(INK, chrome=False)
