@@ -70,6 +70,9 @@ ARTIFACT_A: Json = {
         "detectable_at": "2026-08-19T09:00:00Z",
     },
     "reversal": {
+        "blast_radius": (
+            "Two dependent tasks plan against a float figure 3 days optimistic. Internal only, no external or contractual party exposed. Authority level 1."
+        ),
         "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
         "cost_hours": 0.05,
         "cheap_until": "2026-08-26T00:00:00Z",
@@ -136,6 +139,9 @@ ARTIFACT_B: Json = {
         "detectable_at": "2026-08-26T09:00:00Z",
     },
     "reversal": {
+        "blast_radius": (
+            "Programme board receives an understated slip figure. Two dependent workstreams plan against a date 11 days optimistic. No external or contractual exposure. Authority level 2."
+        ),
         "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
         "cost_hours": 0.5,
         "cheap_until": "2026-09-02T00:00:00Z",
@@ -207,6 +213,9 @@ ARTIFACT_C: Json = {
         "detectable_at": "2026-08-29T00:00:00Z",
     },
     "reversal": {
+        "blast_radius": (
+            "Three workstreams re-plan against a cost basis that moves again next cycle. The supplier has been shown a figure that may be withdrawn, which is a commercial signal. Authority level 3."
+        ),
         "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
         "cost_hours": 2.0,
         "cheap_until": "2026-09-05T00:00:00Z",
@@ -316,6 +325,9 @@ ARTIFACT_D_PREP: Json = {
         "detectable_at": "2026-09-15T00:00:00Z",
     },
     "reversal": {
+        "blast_radius": (
+            "Ninety people re-assigned, two supplier contracts varied, the benefits case reopened. Irreversible once announced to the workstream. Authority level 5."
+        ),
         "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
         "cost_hours": 6.0,
         "cheap_until": "2026-09-26T00:00:00Z",
@@ -415,6 +427,9 @@ ARTIFACT_VERIFIER: Json = {
         "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762].",
     },
     "reversal": {
+        "blast_radius": (
+            "A bad decision reaches production carrying a green tick, so no human looks at it. Containment on this class drops to zero until the verifier is recalibrated. Authority level 1."
+        ),
         "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
         "cost_hours": 0.02,
         "cheap_until": "2026-08-22T00:00:00Z",
@@ -471,24 +486,36 @@ CONTRACT_SCHEDULE_INTEGRITY: Json = {
             {
                 "decision_type": "critical_path_recalculation",
                 "decision_class": "A",
+                "verified_by": "machine",
+                "checker_role": "pmo_analyst",
+                "authority_level": 1,
                 "authority": "decide",
                 "rate_limit_per_period": 200,
             },
             {
                 "decision_type": "dependency_cycle_flagging",
                 "decision_class": "A",
+                "verified_by": "machine",
+                "checker_role": "pmo_analyst",
+                "authority_level": 1,
                 "authority": "decide",
                 "rate_limit_per_period": 120,
             },
             {
                 "decision_type": "float_erosion_alert",
                 "decision_class": "A",
+                "verified_by": "machine",
+                "checker_role": "pmo_analyst",
+                "authority_level": 1,
                 "authority": "decide",
                 "rate_limit_per_period": 160,
             },
             {
                 "decision_type": "milestone_slip_categorisation",
                 "decision_class": "B",
+                "verified_by": "sample",
+                "checker_role": "pmo_analyst",
+                "authority_level": 2,
                 "authority": "decide",
                 "sampling_rate": 0.15,
                 "rate_limit_per_period": 160,
@@ -561,18 +588,27 @@ CONTRACT_CHANGE_IMPACT: Json = {
             {
                 "decision_type": "change_request_impact_assessment",
                 "decision_class": "C",
+                "verified_by": "expert",
+                "checker_role": "portfolio_scheduler",
+                "authority_level": 3,
                 "authority": "propose",
                 "rate_limit_per_period": 30,
             },
             {
                 "decision_type": "schedule_rebaselining_proposal",
                 "decision_class": "C",
+                "verified_by": "expert",
+                "checker_role": "portfolio_scheduler",
+                "authority_level": 3,
                 "authority": "propose",
                 "rate_limit_per_period": 12,
             },
             {
                 "decision_type": "workstream_cancellation_preparation",
                 "decision_class": "C",
+                "verified_by": "expert",
+                "checker_role": "portfolio_scheduler",
+                "authority_level": 3,
                 "authority": "prepare",
                 "rate_limit_per_period": 4,
                 "prepares_class_d": "workstream_cancellation",
@@ -674,6 +710,9 @@ CONTRACT_VERIFIER: Json = {
             {
                 "decision_type": "verification_verdict",
                 "decision_class": "A",
+                "verified_by": "machine",
+                "checker_role": "pmo_lead",
+                "authority_level": 1,
                 "authority": "decide",
                 "rate_limit_per_period": 640,
             }

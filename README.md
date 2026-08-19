@@ -241,10 +241,12 @@ This is the move that makes the rest work, and it is the one people resist, beca
 
 | Class | Name | Test | Typical c | Agent authority |
 |---|---|---|---|---|
-| **A** | Machine-checkable | A deterministic check decides correctness. Human time is exception handling only. | 0.01 to 0.05 h | Full, within contract |
-| **B** | Sample-checkable | No single test, but the population is homogeneous enough that a sample bounds the error rate for the batch. | 0.05 to 0.25 h amortised | Full, with sampling |
+| **A** | Machine-checkable | A deterministic check decides correctness. Human time is exception handling only. | 0.01 to 0.05 h | Full, within contract and authority level |
+| **B** | Sample-checkable | No single test, but the population is homogeneous enough that a sample bounds the error rate for the batch. | 0.05 to 0.25 h amortised | Full, with sampling. Capped at authority level 3 |
 | **C** | Expert-checkable | A qualified human must reconstruct the reasoning against context that is not in the artifact. | 0.5 to 3 h | Propose only |
 | **D** | Not checkable in advance | Correctness is observable only after the outcome, or the decision is irreversible, or the check costs more than the decision. | undefined | **None** |
+
+**Class is one axis and it is not enough on its own.** Class tells you what checking costs. **Blast radius** tells you who is allowed to decide, on a five-level ladder from "agent acts and logs it" to "human decides, agent supports only". A Class A decision that happens to be irreversible is still a human decision. Model confidence appears nowhere on that ladder, at any level, because confident and wrong on an irreversible decision is still a disaster. Full ladder and the interaction rules: [`spec/decision-classes.md` section 5](spec/decision-classes.md#5-class-authority-and-blast-radius).
 
 ### Class A, machine-checkable
 
@@ -328,26 +330,27 @@ The standard way to choose where to deploy an agent is to ask where the model pe
 **Deploy where checking is cheap, not where the task is easy.**
 
 ```
-                        verification cost c
-                     LOW                    HIGH
-                 +----------------------+----------------------+
-            HIGH |                      |                      |
-                 |       DEPLOY         |      THE TRAP        |
-      model      |                      |                      |
-      capability |  cheap to check,     |  works in the demo,  |
-                 |  agent does it well. |  nobody can check it |
-                 |  This is the whole   |  at volume. This is  |
-                 |  game.               |  where the overdraft |
-                 |                      |  comes from.         |
-                 +----------------------+----------------------+
-            LOW  |                      |                      |
-                 |        WAIT          |       DO NOT         |
-                 |                      |                      |
-                 |  harmless, low       |  worst of both.      |
-                 |  value. Revisit at   |  No upside path.     |
-                 |  the next model.     |                      |
-                 +----------------------+----------------------+
+                          verification cost c
+                     LOW                        HIGH
+                 +------------------------+------------------------+
+            HIGH |                        |                        |
+                 |       GO FIRST         |         HOLD           |
+      task       |                        |                        |
+      difficulty |  Easy to build and     |  Easy to build and     |
+      for the    |  cheap to check.       |  expensive to check.   |
+      model      |  Start here today.     |  This is the trap.     |
+                 |                        |                        |
+      (LOW =     +------------------------+------------------------+
+      easy for   |                        |                        |
+      the model) |       GO SECOND        |       NEVER YET        |
+            LOW  |                        |                        |
+                 |  Hard to build but     |  Hard to build and     |
+                 |  cheap to check.       |  expensive to check.   |
+                 |  Worth the effort.     |  Keep it human.        |
+                 +------------------------+------------------------+
 ```
+
+The labels are actions rather than descriptions, because a quadrant nobody acts on is a diagram. Note the consequence that surprises people: **risk analysis is the easier AI problem and it should go live later than status reporting.** Difficulty and checking cost are different axes, and only one of them is your constraint.
 
 The top-right quadrant is where nearly every impressive AI-in-PMO demo lives. Strategic dependency renegotiation. Portfolio prioritisation. Vendor dispute strategy. The model is genuinely good at these. They are also Class C or D, meaning c is between 0.5 and 3 hours, meaning your verification budget is a couple of dozen a week, meaning the deployment is capped at a couple of dozen a week no matter how good the model gets.
 
@@ -527,6 +530,7 @@ That line is the enforcement point. It is a schema check, it belongs in the pipe
   },
 
   "reversal": {
+    "blast_radius": "Programme board receives an understated slip figure. Two dependent workstreams plan against a date 11 days optimistic. No external or contractual exposure. Authority level 2.",
     "how": "Re-run categorisation with corrected cause code, re-issue slip notice to programme board.",
     "cost_hours": 0.5,
     "cheap_until": "2026-09-02T00:00:00Z",
@@ -637,7 +641,7 @@ Rising drift with O > 1 is the diagnostic signature of this whole framework: the
 ### 7.3 The other four, briefly
 
 - **Containment k** = decisions closed by the agent verifier without human involvement, divided by total decisions offered to it. Reported with the verifier's measured false-negative rate and the 95 percent CI. The budget uses the CI lower bound. k without FNR is not a metric, it is a claim.
-- **Escalation Precision** = escalations a human agreed needed escalating, divided by total escalations. Below 0.7 means the agent is spending your scarcest resource on nothing. Escalation *recall* is what you actually want and you cannot measure it directly, because you do not see the escalations that should have happened and did not. Partial proxies are in [`spec/metrics.md`](spec/metrics.md). Be honest that this is a gap.
+- **Escalation Precision** = escalations a human agreed needed escalating, divided by total escalations. Below 0.7 means the agent is spending your scarcest resource on nothing. Escalation *recall* is what you actually want, and you measure it by **injection**: build one probe per named escalation condition, inject them, and require every one to fire. That is [Gate 3 criterion 3.2](spec/eval-gates.md#gate-3-adversarial), and the bar is 100 percent because it tests whether a mechanism works rather than estimating a rate. What stays unmeasured is recall against failure modes nobody thought to build a probe for.
 - **Reversal Latency** = median hours from a wrong decision entering the system to it being reversed. This is the metric that tells you whether `reversal` in the evidence plane is real. If RL exceeds the `cheap_until` window on most artifacts, your reversal field is fiction and any class assignment that relied on reversibility needs revisiting.
 - **VB and O** as defined in section 2.
 
@@ -651,10 +655,12 @@ Four gates. Each has a stated pass criterion and a stated cadence. A gate withou
 
 | Gate | Question | Cadence |
 |---|---|---|
-| 1. Classification | Do we agree what class this is? | Before deployment, and on material model or prompt change |
-| 2. Evidence | Is every decision verifiable at the cost we assumed? | Continuous |
-| 3. Verifier calibration | Is the containment we are banking real? | Quarterly, and on any verifier change |
-| 4. Replay | Would this agent have been right on history we already know? | Before deployment, and on material change |
+| 1. Classification and cost | Do we agree what class this is, and what does checking actually cost? | Before deployment, and on material change |
+| 2. Evidence | Can every decision be checked at the cost we assumed? | Continuous |
+| 3. Adversarial | Does it fail safely on cases we already know are hard, and is banked containment real? | Before deployment, then quarterly |
+| 4. Replay | Would it have been right on history, and did it stay inside its scope? | Before deployment, and on material change |
+
+The four gates absorb seven candidates from two drafts of this framework. See [`spec/reconciliation.md`](spec/reconciliation.md).
 
 ### Gate 1: Classification
 

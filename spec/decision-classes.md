@@ -227,16 +227,53 @@ The stratification is the answer, not a compromise. This is the most common real
 
 ---
 
-## 5. Class and agent authority
+## 5. Class, authority and blast radius
+
+Class is one axis. It is not enough on its own.
+
+> **Class sets the cost of checking. Blast radius sets the authority. A decision type needs both before an agent touches it.**
+
+Class alone would let an agent take a cheap-to-check decision that happens to be irreversible, because cheapness of checking says nothing about consequence. A schedule arithmetic correction is Class A whether it moves an internal date or triggers a contractual milestone payment.
+
+### 5.1 The authority ladder
+
+Authority is set by blast radius. Five levels.
+
+| Level | Authority | Test that puts you here | PMO examples |
+|---|---|---|---|
+| **1** | Agent acts, logs only | Reversible within a day, no external party affected | Reassign a task, update a date, flag a duplicate |
+| **2** | Agent acts, human notified | Reversible within a week, internal only | Reallocate slack, reorder a backlog, redraft a summary |
+| **3** | Agent proposes, one human approves | Reversible with effort, or affects one team's plan | Move a milestone, change a resource split |
+| **4** | Agent proposes, committee approves | Hard to reverse, or touches cost, contract or compliance | Budget reallocation, vendor change, scope reduction |
+| **5** | Human decides, agent supports only | Irreversible, or legally accountable | Contract signature, termination, regulatory submission |
+
+**Notice what is absent from the test column: model confidence.** It appears nowhere, at any level. Confident and wrong on an irreversible decision is still a disaster, and a confidence threshold is not a substitute for an authority boundary. Confidence belongs in the evidence plane, where it tells a reviewer where to look. It does not belong in the authority decision.
+
+### 5.2 How the two axes interact
+
+Both constrain, and the more restrictive one wins.
+
+| Class | Authority ceiling | Why |
+|---|---|---|
+| A | none from class. Blast radius decides. | Cheap to check does not mean safe to decide alone. A Class A decision with level 4 blast radius stays at level 4. |
+| B | level 3 | Sampling means most individual decisions are unread. That is acceptable for internal, reversible work and not for anything above it. |
+| C | level 3 | A decision a human must reconstruct cannot be one an agent takes unilaterally. |
+| D | level 5, forced | No finite `c`, so no budget, so no delegation at any level. |
+
+The practical result is a grid. Most useful agent work sits at Class A or B with authority level 1 or 2, which is the same conclusion [the deployment inversion](../README.md#4-the-deployment-inversion) reaches from the cost side. The two axes agree, which is a reasonable sign that both are pointing at something real.
+
+### 5.3 What each class means for the budget
 
 | Class | Agent may decide | Human involvement | Budget line |
 |---|---|---|---|
-| A | Yes, within contract scope | Exceptions only | `VB_A`, large |
-| B | Yes, within contract scope | Sample review per batch | `VB_B`, moderate |
+| A | Yes, within contract scope and authority level | Exceptions only | `VB_A`, large |
+| B | Yes, within contract scope and authority level | Sample review per batch | `VB_B`, moderate |
 | C | No. Propose only. | Every decision reviewed | `VB_C`, small. Where overdraft lives. |
 | D | No. Prepare only. | Human makes the decision | None. Preparation consumes `VB_C`. |
 
-Every agent role contract states its scope in these terms. A contract containing a Class D decision type in scope is invalid, not risky. See [agent-role-contract.md](agent-role-contract.md).
+Every agent role contract states its scope in these terms, and every scope entry carries a `decision_class`, a `verified_by`, a `checker_role` and an `authority_level`. A contract containing a Class D decision type in scope is invalid, not risky. See [agent-role-contract.md](agent-role-contract.md).
+
+Gate 1 criterion 1.7 checks that every in-scope entry has an authority level consistent with its blast radius. A classified decision type with no authority level is half specified.
 
 ---
 

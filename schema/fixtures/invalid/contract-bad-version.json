@@ -9,24 +9,36 @@
       {
         "decision_type": "critical_path_recalculation",
         "decision_class": "A",
+        "verified_by": "machine",
+        "checker_role": "pmo_analyst",
+        "authority_level": 1,
         "authority": "decide",
         "rate_limit_per_period": 200
       },
       {
         "decision_type": "dependency_cycle_flagging",
         "decision_class": "A",
+        "verified_by": "machine",
+        "checker_role": "pmo_analyst",
+        "authority_level": 1,
         "authority": "decide",
         "rate_limit_per_period": 120
       },
       {
         "decision_type": "float_erosion_alert",
         "decision_class": "A",
+        "verified_by": "machine",
+        "checker_role": "pmo_analyst",
+        "authority_level": 1,
         "authority": "decide",
         "rate_limit_per_period": 160
       },
       {
         "decision_type": "milestone_slip_categorisation",
         "decision_class": "B",
+        "verified_by": "sample",
+        "checker_role": "pmo_analyst",
+        "authority_level": 2,
         "authority": "decide",
         "sampling_rate": 0.15,
         "rate_limit_per_period": 160

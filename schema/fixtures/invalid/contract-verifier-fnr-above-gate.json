@@ -20,6 +20,9 @@
       {
         "decision_type": "verification_verdict",
         "decision_class": "A",
+        "verified_by": "machine",
+        "checker_role": "pmo_lead",
+        "authority_level": 1,
         "authority": "decide",
         "rate_limit_per_period": 640
       }

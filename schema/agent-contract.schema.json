@@ -4,105 +4,278 @@
   "title": "VERB agent role contract",
   "description": "Four mandatory fields: scope, evidence, escalation, revocation. Four is the number a reviewer can hold in their head during an incident. See spec/agent-role-contract.md.",
   "type": "object",
-
   "$defs": {
     "decisionClassNonD": {
       "type": "string",
-      "enum": ["A", "B", "C"],
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ],
       "description": "Rule R2. Class D may never appear in scope. Class D is prepared, never decided, and the preparation is a separate Class C entry."
     },
     "scopeEntry": {
       "type": "object",
       "properties": {
-        "decision_type": { "type": "string", "minLength": 3 },
-        "decision_class": { "$ref": "#/$defs/decisionClassNonD" },
+        "decision_type": {
+          "type": "string",
+          "minLength": 3
+        },
+        "decision_class": {
+          "$ref": "#/$defs/decisionClassNonD"
+        },
         "authority": {
           "type": "string",
-          "enum": ["decide", "propose", "prepare"],
+          "enum": [
+            "decide",
+            "propose",
+            "prepare"
+          ],
           "default": "decide"
         },
-        "sampling_rate": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
-        "rate_limit_per_period": { "type": "number", "minimum": 0 },
-        "prepares_class_d": { "type": "string", "minLength": 3 }
+        "sampling_rate": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "rate_limit_per_period": {
+          "type": "number",
+          "minimum": 0
+        },
+        "prepares_class_d": {
+          "type": "string",
+          "minLength": 3
+        },
+        "verified_by": {
+          "type": "string",
+          "enum": [
+            "machine",
+            "sample",
+            "expert",
+            "committee",
+            "human_only"
+          ],
+          "description": "How this decision type is checked. Must be consistent with the class: a Class A entry verified by expert is either misclassified or wasting an expert."
+        },
+        "checker_role": {
+          "type": "string",
+          "minLength": 2,
+          "description": "Who checks it. A class states the cost of checking and says nothing about who does it."
+        },
+        "authority_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Set by blast radius, not by class and not by model confidence. 1 agent acts and logs, 2 agent acts and notifies, 3 one human approves, 4 committee approves, 5 human decides."
+        }
       },
-      "required": ["decision_type", "decision_class"],
+      "required": [
+        "decision_type",
+        "decision_class",
+        "verified_by",
+        "checker_role",
+        "authority_level"
+      ],
       "allOf": [
         {
           "$comment": "Rule R3. Agents do not decide Class C.",
           "if": {
-            "properties": { "decision_class": { "const": "C" } },
-            "required": ["decision_class"]
+            "properties": {
+              "decision_class": {
+                "const": "C"
+              }
+            },
+            "required": [
+              "decision_class"
+            ]
           },
           "then": {
-            "properties": { "authority": { "enum": ["propose", "prepare"] } },
-            "required": ["authority"]
+            "properties": {
+              "authority": {
+                "enum": [
+                  "propose",
+                  "prepare"
+                ]
+              }
+            },
+            "required": [
+              "authority"
+            ]
           }
         },
         {
           "$comment": "Rule R4. Class B without a sampling rate is not sample-checked.",
           "if": {
-            "properties": { "decision_class": { "const": "B" } },
-            "required": ["decision_class"]
+            "properties": {
+              "decision_class": {
+                "const": "B"
+              }
+            },
+            "required": [
+              "decision_class"
+            ]
           },
-          "then": { "required": ["sampling_rate"] }
+          "then": {
+            "required": [
+              "sampling_rate"
+            ]
+          }
         },
         {
           "$comment": "A prepare entry exists to serve a named Class D decision.",
           "if": {
-            "properties": { "authority": { "const": "prepare" } },
-            "required": ["authority"]
+            "properties": {
+              "authority": {
+                "const": "prepare"
+              }
+            },
+            "required": [
+              "authority"
+            ]
           },
-          "then": { "required": ["prepares_class_d"] }
+          "then": {
+            "required": [
+              "prepares_class_d"
+            ]
+          }
+        },
+        {
+          "$comment": "Class B and C cap authority at level 3. Sampling and reconstruction both mean the decision is not fully read at the time it is made.",
+          "if": {
+            "properties": {
+              "decision_class": {
+                "enum": [
+                  "B",
+                  "C"
+                ]
+              }
+            },
+            "required": [
+              "decision_class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authority_level": {
+                "maximum": 3
+              }
+            }
+          }
+        },
+        {
+          "$comment": "A Class A entry checked by a human expert is either misclassified or wasting an expert.",
+          "if": {
+            "properties": {
+              "decision_class": {
+                "const": "A"
+              }
+            },
+            "required": [
+              "decision_class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verified_by": {
+                "enum": [
+                  "machine",
+                  "sample"
+                ]
+              }
+            }
+          }
         }
       ]
     },
     "escalationCondition": {
       "type": "object",
       "properties": {
-        "id": { "type": "string", "minLength": 2 },
+        "id": {
+          "type": "string",
+          "minLength": 2
+        },
         "test": {
           "type": "string",
           "minLength": 5,
           "description": "Rule S1. Machine-evaluable. 'When uncertain' is not a condition."
         },
-        "to_role": { "type": "string", "minLength": 2 }
+        "to_role": {
+          "type": "string",
+          "minLength": 2
+        }
       },
-      "required": ["id", "test", "to_role"]
+      "required": [
+        "id",
+        "test",
+        "to_role"
+      ]
     },
     "containsConditionId": {
       "type": "array",
       "contains": {
         "type": "object",
-        "properties": { "id": { "const": "PLACEHOLDER" } },
-        "required": ["id"]
+        "properties": {
+          "id": {
+            "const": "PLACEHOLDER"
+          }
+        },
+        "required": [
+          "id"
+        ]
       }
     }
   },
-
   "properties": {
-    "agent_id": { "type": "string", "minLength": 3 },
-    "name": { "type": "string", "minLength": 3 },
+    "agent_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
     "version": {
       "type": "string",
       "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
       "description": "Semantic version. Any material change bumps it. An agent running under a contract version that does not match its deployed configuration is running without a contract."
     },
-    "owner_role": { "type": "string", "minLength": 2 },
+    "owner_role": {
+      "type": "string",
+      "minLength": 2
+    },
     "agent_kind": {
       "type": "string",
-      "enum": ["agent", "verifier"],
+      "enum": [
+        "agent",
+        "verifier"
+      ],
       "default": "agent"
     },
-
     "verifies": {
       "type": "object",
       "properties": {
-        "agent_ids": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 3 } },
-        "decision_types": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 3 } }
+        "agent_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "decision_types": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
       },
-      "required": ["agent_ids", "decision_types"]
+      "required": [
+        "agent_ids",
+        "decision_types"
+      ]
     },
-
     "scope": {
       "type": "object",
       "description": "Field 1. What may this agent decide, in the vocabulary of decision classes.",
@@ -110,17 +283,28 @@
         "in_scope": {
           "type": "array",
           "minItems": 1,
-          "items": { "$ref": "#/$defs/scopeEntry" }
+          "items": {
+            "$ref": "#/$defs/scopeEntry"
+          }
         },
         "excluded": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "decision_type": { "type": "string", "minLength": 3 },
-              "reason": { "type": "string", "minLength": 10 }
+              "decision_type": {
+                "type": "string",
+                "minLength": 3
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 10
+              }
             },
-            "required": ["decision_type", "reason"]
+            "required": [
+              "decision_type",
+              "reason"
+            ]
           }
         },
         "unlisted_types": {
@@ -128,9 +312,12 @@
           "description": "Rule R1. An unnamed decision type is out of scope. There is no other permitted value."
         }
       },
-      "required": ["in_scope", "excluded", "unlisted_types"]
+      "required": [
+        "in_scope",
+        "excluded",
+        "unlisted_types"
+      ]
     },
-
     "evidence": {
       "type": "object",
       "description": "Field 2. What must the agent emit for every decision.",
@@ -139,29 +326,80 @@
           "type": "array",
           "minItems": 6,
           "uniqueItems": true,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "allOf": [
-            { "contains": { "const": "decision" } },
-            { "contains": { "const": "basis" } },
-            { "contains": { "const": "alternatives" } },
-            { "contains": { "const": "confidence_and_failure_mode" } },
-            { "contains": { "const": "reversal" } },
-            { "contains": { "const": "owner" } }
+            {
+              "contains": {
+                "const": "decision"
+              }
+            },
+            {
+              "contains": {
+                "const": "basis"
+              }
+            },
+            {
+              "contains": {
+                "const": "alternatives"
+              }
+            },
+            {
+              "contains": {
+                "const": "confidence_and_failure_mode"
+              }
+            },
+            {
+              "contains": {
+                "const": "reversal"
+              }
+            },
+            {
+              "contains": {
+                "const": "owner"
+              }
+            }
           ]
         },
-        "artifact_schema": { "type": "string", "minLength": 5 },
+        "artifact_schema": {
+          "type": "string",
+          "minLength": 5
+        },
         "on_evidence_failure": {
           "const": "escalate",
           "description": "Rule E1. If the agent cannot produce the required evidence, it must not make the decision. There is no other permitted value."
         },
-        "retention_days": { "type": "integer", "minimum": 1 },
-        "class_c_additions": { "type": "array", "items": { "type": "string" } },
-        "class_d_preparation_additions": { "type": "array", "items": { "type": "string" } },
-        "verifier_additions": { "type": "array", "items": { "type": "string" } }
+        "retention_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "class_c_additions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "class_d_preparation_additions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verifier_additions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       },
-      "required": ["required_fields", "artifact_schema", "on_evidence_failure", "retention_days"]
+      "required": [
+        "required_fields",
+        "artifact_schema",
+        "on_evidence_failure",
+        "retention_days"
+      ]
     },
-
     "escalation": {
       "type": "object",
       "description": "Field 3. Under what named conditions does it stop, and to which named human role.",
@@ -169,30 +407,50 @@
         "conditions": {
           "type": "array",
           "minItems": 3,
-          "items": { "$ref": "#/$defs/escalationCondition" },
+          "items": {
+            "$ref": "#/$defs/escalationCondition"
+          },
           "allOf": [
             {
               "$comment": "Rule S2, mandatory condition 1 of 3.",
               "contains": {
                 "type": "object",
-                "properties": { "id": { "const": "unclassified_type" } },
-                "required": ["id"]
+                "properties": {
+                  "id": {
+                    "const": "unclassified_type"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
               }
             },
             {
               "$comment": "Rule S2, mandatory condition 2 of 3.",
               "contains": {
                 "type": "object",
-                "properties": { "id": { "const": "evidence_unavailable" } },
-                "required": ["id"]
+                "properties": {
+                  "id": {
+                    "const": "evidence_unavailable"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
               }
             },
             {
               "$comment": "Rule S2, mandatory condition 3 of 3.",
               "contains": {
                 "type": "object",
-                "properties": { "id": { "const": "class_d_detected" } },
-                "required": ["id"]
+                "properties": {
+                  "id": {
+                    "const": "class_d_detected"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
               }
             }
           ]
@@ -207,9 +465,12 @@
           "description": "Rule S5. Must be shorter than the reversal window of the decisions being escalated."
         }
       },
-      "required": ["conditions", "target_resolution", "max_response_hours"]
+      "required": [
+        "conditions",
+        "target_resolution",
+        "max_response_hours"
+      ]
     },
-
     "revocation": {
       "type": "object",
       "description": "Field 4. How is this agent's authority withdrawn. Every other field is decoration without this one.",
@@ -218,46 +479,99 @@
           "type": "array",
           "minItems": 2,
           "uniqueItems": true,
-          "items": { "type": "string", "minLength": 2 },
+          "items": {
+            "type": "string",
+            "minLength": 2
+          },
           "description": "Rule V1. At least two, so revocation does not depend on one person's availability."
         },
-        "method": { "type": "string", "minLength": 15 },
-        "max_time_to_effect_minutes": { "type": "number", "exclusiveMinimum": 0 },
+        "method": {
+          "type": "string",
+          "minLength": 15
+        },
+        "max_time_to_effect_minutes": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
         "in_flight_work": {
           "type": "string",
-          "enum": ["halt_and_mark_unverified", "complete_then_halt", "rollback"]
+          "enum": [
+            "halt_and_mark_unverified",
+            "complete_then_halt",
+            "rollback"
+          ]
         },
         "rollback": {
           "type": "string",
           "minLength": 20,
           "description": "Rule V4. Must state a window and what happens inside it. A rollback dumps a batch into the review queue, which is a budget event."
         },
-        "notify": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "notify": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
         "last_tested": {
           "type": "string",
           "format": "date",
           "description": "Rule V2. An untested revocation path is an untested revocation path."
         },
-        "last_tested_seconds": { "type": "number", "minimum": 0 }
+        "last_tested_seconds": {
+          "type": "number",
+          "minimum": 0
+        }
       },
-      "required": ["who", "method", "max_time_to_effect_minutes", "in_flight_work", "rollback", "notify"]
+      "required": [
+        "who",
+        "method",
+        "max_time_to_effect_minutes",
+        "in_flight_work",
+        "rollback",
+        "notify"
+      ]
     },
-
     "calibration": {
       "type": "object",
       "description": "Required for verifiers. Rules E3 and E4, and Gate 3.",
       "properties": {
-        "labelled_set_size": { "type": "integer", "minimum": 200 },
-        "known_bad_count": { "type": "integer", "minimum": 30 },
-        "measured_at": { "type": "string", "format": "date" },
-        "false_negative_rate": { "type": "number", "minimum": 0, "maximum": 0.05 },
-        "false_positive_rate": { "type": "number", "minimum": 0, "maximum": 1 },
-        "containment_point_estimate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "labelled_set_size": {
+          "type": "integer",
+          "minimum": 200
+        },
+        "known_bad_count": {
+          "type": "integer",
+          "minimum": 30
+        },
+        "measured_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "false_negative_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.05
+        },
+        "false_positive_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "containment_point_estimate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
         "containment_ci95": {
           "type": "array",
           "minItems": 2,
           "maxItems": 2,
-          "items": { "type": "number", "minimum": 0, "maximum": 1 }
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
         },
         "containment_used_in_budget": {
           "type": "number",
@@ -265,9 +579,21 @@
           "maximum": 1,
           "description": "The conservatism rule. This must equal containment_ci95[0], the lower bound, never the point estimate."
         },
-        "c_a_hours": { "type": "number", "minimum": 0 },
-        "gate_3_status": { "type": "string", "enum": ["pass", "fail"] },
-        "next_recalibration_due": { "type": "string", "format": "date" }
+        "c_a_hours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "gate_3_status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "next_recalibration_due": {
+          "type": "string",
+          "format": "date"
+        }
       },
       "required": [
         "labelled_set_size",
@@ -283,25 +609,45 @@
       ]
     }
   },
-
-  "required": ["agent_id", "name", "version", "owner_role", "scope", "evidence", "escalation", "revocation"],
-
+  "required": [
+    "agent_id",
+    "name",
+    "version",
+    "owner_role",
+    "scope",
+    "evidence",
+    "escalation",
+    "revocation"
+  ],
   "allOf": [
     {
       "$comment": "A verifier must carry calibration, must declare what it verifies, and its own output must be Class A. Uncalibrated verifiers contribute k = 0.",
       "if": {
-        "properties": { "agent_kind": { "const": "verifier" } },
-        "required": ["agent_kind"]
+        "properties": {
+          "agent_kind": {
+            "const": "verifier"
+          }
+        },
+        "required": [
+          "agent_kind"
+        ]
       },
       "then": {
-        "required": ["calibration", "verifies"],
+        "required": [
+          "calibration",
+          "verifies"
+        ],
         "properties": {
           "scope": {
             "properties": {
               "in_scope": {
                 "type": "array",
                 "items": {
-                  "properties": { "decision_class": { "const": "A" } }
+                  "properties": {
+                    "decision_class": {
+                      "const": "A"
+                    }
+                  }
                 }
               }
             }
@@ -311,13 +657,27 @@
               "verifier_additions": {
                 "type": "array",
                 "allOf": [
-                  { "contains": { "const": "verdict" } },
-                  { "contains": { "const": "proof_object" } },
-                  { "contains": { "const": "calibration_record_ref" } }
+                  {
+                    "contains": {
+                      "const": "verdict"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "proof_object"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "calibration_record_ref"
+                    }
+                  }
                 ]
               }
             },
-            "required": ["verifier_additions"]
+            "required": [
+              "verifier_additions"
+            ]
           }
         }
       }
@@ -327,11 +687,19 @@
       "if": {
         "properties": {
           "revocation": {
-            "properties": { "in_flight_work": { "const": "complete_then_halt" } },
-            "required": ["in_flight_work"]
+            "properties": {
+              "in_flight_work": {
+                "const": "complete_then_halt"
+              }
+            },
+            "required": [
+              "in_flight_work"
+            ]
           }
         },
-        "required": ["revocation"]
+        "required": [
+          "revocation"
+        ]
       },
       "then": {
         "properties": {
@@ -340,7 +708,11 @@
               "in_scope": {
                 "type": "array",
                 "items": {
-                  "properties": { "decision_class": { "const": "A" } }
+                  "properties": {
+                    "decision_class": {
+                      "const": "A"
+                    }
+                  }
                 }
               }
             }

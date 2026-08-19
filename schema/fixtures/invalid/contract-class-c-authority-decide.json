@@ -9,18 +9,27 @@
       {
         "decision_type": "change_request_impact_assessment",
         "decision_class": "C",
+        "verified_by": "expert",
+        "checker_role": "portfolio_scheduler",
+        "authority_level": 3,
         "authority": "decide",
         "rate_limit_per_period": 30
       },
       {
         "decision_type": "schedule_rebaselining_proposal",
         "decision_class": "C",
+        "verified_by": "expert",
+        "checker_role": "portfolio_scheduler",
+        "authority_level": 3,
         "authority": "propose",
         "rate_limit_per_period": 12
       },
       {
         "decision_type": "workstream_cancellation_preparation",
         "decision_class": "C",
+        "verified_by": "expert",
+        "checker_role": "portfolio_scheduler",
+        "authority_level": 3,
         "authority": "prepare",
         "rate_limit_per_period": 4,
         "prepares_class_d": "workstream_cancellation"

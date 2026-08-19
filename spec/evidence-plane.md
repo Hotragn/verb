@@ -148,6 +148,20 @@ A named failure mode is a search target. The reviewer stops reading the artifact
 
 **Good**
 
+**Good**
+
+```json
+{
+  "blast_radius": "Programme board receives an understated slip figure. Two dependent workstreams plan against a date 11 days optimistic. No external or contractual exposure. Authority level 2.",
+  "how": "Re-run categorisation with corrected cause code, re-issue slip notice to programme board.",
+  "cost_hours": 0.5,
+  "cheap_until": "2026-09-02T00:00:00Z",
+  "cheap_until_reason": "Programme board pack lock for the September cycle."
+}
+```
+
+_The confidence example, for contrast:_
+
 ```json
 {
   "confidence": 0.86,
@@ -172,12 +186,13 @@ Fails C1 (model self-report is not calibration), C2 (not specific, not detectabl
 
 ### 2.5 `reversal`
 
-**Type.** Object. `how`, `cost_hours`, `cheap_until`, `cheap_until_reason`.
+**Type.** Object. `blast_radius`, `how`, `cost_hours`, `cheap_until`, `cheap_until_reason`.
 
-**Definition.** How to undo the decision, what undoing costs, and the window in which undoing is still cheap.
+**Definition.** What breaks if the decision is acted on and turns out wrong, how to undo it, what undoing costs, and the window in which undoing is still cheap.
 
 **Rules**
 
+- **R0.** `blast_radius` states what is affected if this decision is acted on and is wrong. Who is downstream, what plans against it, and whether any external or contractual party is exposed. This is a different question from reversal cost: a decision can be cheap to undo and still have done damage while it stood.
 - **R1.** `how` is a procedure, not a sentiment. "Re-run categorisation with corrected cause code, re-issue slip notice to programme board" is a procedure. "Can be revisited" is not.
 - **R2.** `cost_hours` is the cost of reversal, in the same units as `c`, so the two can be compared. This comparison is what makes the field actionable.
 - **R3.** `cheap_until` is a timestamp, and `cheap_until_reason` says what changes at that moment. The reason is usually an external commitment: a board pack lock, an invoice run, a supplier notification deadline, a public announcement.
@@ -186,6 +201,10 @@ Fails C1 (model self-report is not calibration), C2 (not specific, not detectabl
 **Reduces.** "Deciding how hard to look", the other part of the 10 to 15 percent.
 
 The mechanism is proportionate review, made honest. A reviewer who can see that a decision costs half an hour to reverse and stays cheap for two weeks can consciously choose a lighter check. Without the field they either check everything at full cost, or they check lightly on an unstated assumption about reversibility. The second is what actually happens, and the evidence plane's contribution is to turn an unstated assumption into a stated fact that can be wrong and be caught.
+
+**Why blast radius lives here rather than in its own field.** Blast radius and reversal are the same question asked twice: what happens if this is wrong, and how do I get out of it. A reviewer uses both in a single judgement, which is how hard to look. Splitting them across two fields makes the reviewer assemble one picture from two places, and it pushes the plane to seven fields, which is a plane whose seventh field gets skipped.
+
+Blast radius also does a second job the rest of the plane cannot: it sets the **authority level** for the decision type. Class tells you what checking costs. Blast radius tells you who is allowed to decide. Both are needed, and the ladder is in [decision-classes.md section 5](decision-classes.md#5-class-authority-and-blast-radius).
 
 **The cross-check.** If `reversal.cost_hours` is routinely underestimated, `reversal_latency`, one of the [six metrics](metrics.md), will show it: reversals that consistently happen after `cheap_until` mean the field is fiction and any class assignment that relied on reversibility needs revisiting. This is the only field in the plane with a metric dedicated to auditing it, because it is the field most likely to be optimistic.
 

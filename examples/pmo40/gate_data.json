@@ -226,6 +226,7 @@
           "detectable_at": "2026-08-19T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Two dependent tasks plan against a float figure 3 days optimistic. Internal only, no external or contractual party exposed. Authority level 1.",
           "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
           "cost_hours": 0.05,
           "cheap_until": "2026-08-26T00:00:00Z",
@@ -287,6 +288,7 @@
           "detectable_at": "2026-08-19T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Two dependent tasks plan against a float figure 3 days optimistic. Internal only, no external or contractual party exposed. Authority level 1.",
           "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
           "cost_hours": 0.05,
           "cheap_until": "2026-08-26T00:00:00Z",
@@ -348,6 +350,7 @@
           "detectable_at": "2026-08-19T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Two dependent tasks plan against a float figure 3 days optimistic. Internal only, no external or contractual party exposed. Authority level 1.",
           "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
           "cost_hours": 0.05,
           "cheap_until": "2026-08-26T00:00:00Z",
@@ -409,6 +412,7 @@
           "detectable_at": "2026-08-19T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Two dependent tasks plan against a float figure 3 days optimistic. Internal only, no external or contractual party exposed. Authority level 1.",
           "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
           "cost_hours": 0.05,
           "cheap_until": "2026-08-26T00:00:00Z",
@@ -470,6 +474,7 @@
           "detectable_at": "2026-08-19T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Two dependent tasks plan against a float figure 3 days optimistic. Internal only, no external or contractual party exposed. Authority level 1.",
           "how": "Re-run the forward and backward pass against the corrected network export and re-issue the float report to the programme scheduler.",
           "cost_hours": 0.05,
           "cheap_until": "2026-08-26T00:00:00Z",
@@ -535,6 +540,7 @@
           "detectable_at": "2026-08-26T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Programme board receives an understated slip figure. Two dependent workstreams plan against a date 11 days optimistic. No external or contractual exposure. Authority level 2.",
           "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
           "cost_hours": 0.5,
           "cheap_until": "2026-09-02T00:00:00Z",
@@ -595,6 +601,7 @@
           "detectable_at": "2026-08-26T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Programme board receives an understated slip figure. Two dependent workstreams plan against a date 11 days optimistic. No external or contractual exposure. Authority level 2.",
           "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
           "cost_hours": 0.5,
           "cheap_until": "2026-09-02T00:00:00Z",
@@ -655,6 +662,7 @@
           "detectable_at": "2026-08-26T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Programme board receives an understated slip figure. Two dependent workstreams plan against a date 11 days optimistic. No external or contractual exposure. Authority level 2.",
           "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
           "cost_hours": 0.5,
           "cheap_until": "2026-09-02T00:00:00Z",
@@ -715,6 +723,7 @@
           "detectable_at": "2026-08-26T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Programme board receives an understated slip figure. Two dependent workstreams plan against a date 11 days optimistic. No external or contractual exposure. Authority level 2.",
           "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
           "cost_hours": 0.5,
           "cheap_until": "2026-09-02T00:00:00Z",
@@ -775,6 +784,7 @@
           "detectable_at": "2026-08-26T09:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Programme board receives an understated slip figure. Two dependent workstreams plan against a date 11 days optimistic. No external or contractual exposure. Authority level 2.",
           "how": "Re-run categorisation with the corrected cause code and re-issue the slip notice to the programme board.",
           "cost_hours": 0.5,
           "cheap_until": "2026-09-02T00:00:00Z",
@@ -845,6 +855,7 @@
           "detectable_at": "2026-08-29T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Three workstreams re-plan against a cost basis that moves again next cycle. The supplier has been shown a figure that may be withdrawn, which is a commercial signal. Authority level 3.",
           "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
           "cost_hours": 2.0,
           "cheap_until": "2026-09-05T00:00:00Z",
@@ -953,6 +964,7 @@
           "detectable_at": "2026-08-29T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Three workstreams re-plan against a cost basis that moves again next cycle. The supplier has been shown a figure that may be withdrawn, which is a commercial signal. Authority level 3.",
           "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
           "cost_hours": 2.0,
           "cheap_until": "2026-09-05T00:00:00Z",
@@ -1061,6 +1073,7 @@
           "detectable_at": "2026-08-29T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Three workstreams re-plan against a cost basis that moves again next cycle. The supplier has been shown a figure that may be withdrawn, which is a commercial signal. Authority level 3.",
           "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
           "cost_hours": 2.0,
           "cheap_until": "2026-09-05T00:00:00Z",
@@ -1169,6 +1182,7 @@
           "detectable_at": "2026-08-29T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Three workstreams re-plan against a cost basis that moves again next cycle. The supplier has been shown a figure that may be withdrawn, which is a commercial signal. Authority level 3.",
           "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
           "cost_hours": 2.0,
           "cheap_until": "2026-09-05T00:00:00Z",
@@ -1277,6 +1291,7 @@
           "detectable_at": "2026-08-29T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Three workstreams re-plan against a cost basis that moves again next cycle. The supplier has been shown a figure that may be withdrawn, which is a commercial signal. Authority level 3.",
           "how": "Withdraw the assessment from the change queue, re-run with the corrected cost basis, and re-notify the change authority chair.",
           "cost_hours": 2.0,
           "cheap_until": "2026-09-05T00:00:00Z",
@@ -1385,6 +1400,7 @@
           "detectable_at": "2026-09-15T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Ninety people re-assigned, two supplier contracts varied, the benefits case reopened. Irreversible once announced to the workstream. Authority level 5.",
           "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
           "cost_hours": 6.0,
           "cheap_until": "2026-09-26T00:00:00Z",
@@ -1473,6 +1489,7 @@
           "detectable_at": "2026-09-15T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Ninety people re-assigned, two supplier contracts varied, the benefits case reopened. Irreversible once announced to the workstream. Authority level 5.",
           "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
           "cost_hours": 6.0,
           "cheap_until": "2026-09-26T00:00:00Z",
@@ -1561,6 +1578,7 @@
           "detectable_at": "2026-09-15T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Ninety people re-assigned, two supplier contracts varied, the benefits case reopened. Irreversible once announced to the workstream. Authority level 5.",
           "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
           "cost_hours": 6.0,
           "cheap_until": "2026-09-26T00:00:00Z",
@@ -1649,6 +1667,7 @@
           "detectable_at": "2026-09-15T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Ninety people re-assigned, two supplier contracts varied, the benefits case reopened. Irreversible once announced to the workstream. Authority level 5.",
           "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
           "cost_hours": 6.0,
           "cheap_until": "2026-09-26T00:00:00Z",
@@ -1737,6 +1756,7 @@
           "detectable_at": "2026-09-15T00:00:00Z"
         },
         "reversal": {
+          "blast_radius": "Ninety people re-assigned, two supplier contracts varied, the benefits case reopened. Irreversible once announced to the workstream. Authority level 5.",
           "how": "Withdraw the pack from the change authority agenda and re-issue with the revised regulatory position.",
           "cost_hours": 6.0,
           "cheap_until": "2026-09-26T00:00:00Z",
@@ -1835,6 +1855,7 @@
           "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
         },
         "reversal": {
+          "blast_radius": "A bad decision reaches production carrying a green tick, so no human looks at it. Containment on this class drops to zero until the verifier is recalibrated. Authority level 1.",
           "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
           "cost_hours": 0.02,
           "cheap_until": "2026-08-22T00:00:00Z",
@@ -1912,6 +1933,7 @@
           "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
         },
         "reversal": {
+          "blast_radius": "A bad decision reaches production carrying a green tick, so no human looks at it. Containment on this class drops to zero until the verifier is recalibrated. Authority level 1.",
           "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
           "cost_hours": 0.02,
           "cheap_until": "2026-08-22T00:00:00Z",
@@ -1989,6 +2011,7 @@
           "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
         },
         "reversal": {
+          "blast_radius": "A bad decision reaches production carrying a green tick, so no human looks at it. Containment on this class drops to zero until the verifier is recalibrated. Authority level 1.",
           "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
           "cost_hours": 0.02,
           "cheap_until": "2026-08-22T00:00:00Z",
@@ -2066,6 +2089,7 @@
           "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
         },
         "reversal": {
+          "blast_radius": "A bad decision reaches production carrying a green tick, so no human looks at it. Containment on this class drops to zero until the verifier is recalibrated. Authority level 1.",
           "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
           "cost_hours": 0.02,
           "cheap_until": "2026-08-22T00:00:00Z",
@@ -2143,6 +2167,7 @@
           "calibration_basis": "Gate 3 run 2026-07-30 on 240 labelled decisions, 38 known-bad. FNR 0.021, containment CI95 [0.652, 0.762]."
         },
         "reversal": {
+          "blast_radius": "A bad decision reaches production carrying a green tick, so no human looks at it. Containment on this class drops to zero until the verifier is recalibrated. Authority level 1.",
           "how": "Withdraw the pass verdict, return the artifact to the human review queue, and re-run the assertions against the current contract register.",
           "cost_hours": 0.02,
           "cheap_until": "2026-08-22T00:00:00Z",

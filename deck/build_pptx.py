@@ -223,6 +223,35 @@ def title(slide, heading: str, top: float = 1.02, size: int = 33, width: float =
                 size=size, font=SERIF, colour=colour, bold=True, line_spacing=1.06)
 
 
+HOST_LOGO_CANDIDATES = ("gsdc-logo.png", "gsdc-logo.jpg", "gsdc-logo.jpeg")
+HOST_NAME = "GSDC Certified Learning Masterclass Series"
+
+
+def host_logo_path():
+    for name in HOST_LOGO_CANDIDATES:
+        path = ASSETS / name
+        if path.exists():
+            return path
+    return None
+
+
+def host_logo(slide, top: float = 0.34, height: float = 0.40) -> None:
+    """Top right, on light slides only. Height fixed, width follows the aspect."""
+    path = host_logo_path()
+    if path is None:
+        return
+    from PIL import Image  # optional; fall back to a fixed box without it
+
+    try:
+        with Image.open(path) as im:
+            ratio = im.width / im.height
+    except Exception:
+        ratio = 3.2
+    width = height * ratio
+    slide.shapes.add_picture(str(path), Inches(W - MARGIN - width),
+                             Inches(top), Inches(width), Inches(height))
+
+
 def footer(slide, number: int, total: int):
     hairline(slide, MARGIN, H - 0.72, CONTENT_W)
     text(slide, "github.com/hotragn/verb     x.com/hotragn     linkedin.com/in/hotragn-pettugani",
@@ -328,11 +357,14 @@ def build() -> Presentation:
             hairline(slide, MARGIN, 0.86, CONTENT_W)
         if chrome:
             footer(slide, n, TOTAL)
+            host_logo(slide)
         attach_notes(slide, notes[n - 1] if n - 1 < len(notes) else "")
         return slide
 
     # 1. Title -----------------------------------------------------------
     s = new(INK, chrome=False)
+    text(s, HOST_NAME.upper(), MARGIN, 1.42, 8.0, 0.3, size=11, font=SANS,
+         colour=ON_DARK_ACCENT, bold=True)
     hairline(s, MARGIN, 2.05, 1.0, ON_DARK, 2.6)
     text(s, "The Verification Budget", MARGIN, 2.42, 10.0, 2.0,
          size=54, font=SERIF, colour=ON_DARK, bold=True, line_spacing=1.05)
@@ -1035,6 +1067,10 @@ def build() -> Presentation:
 
 
 def main() -> int:
+    if host_logo_path() is None:
+        print("  NOTE: no host logo found. Drop the GSDC logo at "
+              "deck/assets/gsdc-logo.png and rebuild to place it on every "
+              "content slide. The deck is complete without it.")
     missing = [name for name in ("qr-repo.png", "qr-x.png") if not (ASSETS / name).exists()]
     if missing:
         print("QR images missing. Run: python deck/build.py", file=sys.stderr)
