@@ -1,4 +1,5 @@
 layout: default
+dense: true
 section: What to do
 ---
 ## Four things you can do on Monday.

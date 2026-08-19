@@ -10,7 +10,29 @@ bump as a change to the arithmetic that implements it.
 
 ## [Unreleased]
 
-Nothing yet.
+### Added
+- The deck grows to 27 slides in a three-part arc. Part 2 is the operating model
+  in five layers: which decisions go autonomous and in what order, who owns an
+  agent and who owns checking it, where authority stops, what the system must
+  emit, and how you know supervision is still real.
+- Authority set by blast radius rather than by model confidence. A five-level
+  ladder from log-only through to human-decides, with the test that puts a
+  decision on each rung.
+- What happens to the people: three existing PMO roles inverted, and two new
+  ones, agent steward and verification lead.
+- A reference architecture with the governance boundary on the write path rather
+  than at the model.
+- The dashboard contrast: four headline metrics all improving while supervision
+  stops existing.
+- The calculator now says plainly that it is the manual on-ramp, shows the path
+  to computing the budget from an event log and then to throttling automatically,
+  and will read a bundle `config.json` dropped onto the page rather than making
+  you retype numbers you already have.
+
+### Changed
+- Deck type scale reduced a step and slide chrome tightened, so denser slides
+  stop clipping. A `dense: true` front matter flag drops a further step for the
+  few slides that need it.
 
 ## [0.1.0] - 2026-08-19
 

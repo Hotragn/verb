@@ -46,7 +46,13 @@ from tools.qr import encode, to_png, to_svg  # noqa: E402
 
 REPO_URL = "https://github.com/hotragn/verb"
 PAGES_URL = "https://hotragn.github.io/verb"
-LINKEDIN_URL = "https://www.linkedin.com/in/hotragn"
+LINKEDIN_URL = "https://www.linkedin.com/in/hotragn-pettugani/"
+
+# The QR payload is the same destination without the www or the trailing slash.
+# tools/qr.py stops at version 3, which is 42 bytes, and the canonical URL is 46.
+# LinkedIn resolves the short form to the same page, so nothing is lost and the
+# alternative would be implementing multi-block interleaving for four characters.
+LINKEDIN_QR = "https://linkedin.com/in/hotragn-pettugani"
 X_URL = "https://x.com/hotragn"
 
 AUTHOR = "Hotragn Pettugani"
@@ -55,7 +61,7 @@ TITLE = "The Verification Budget"
 QR_CODES = {
     "qr-repo": (REPO_URL, "Repository: github.com/hotragn/verb"),
     "qr-calculator": (PAGES_URL, "Calculator: hotragn.github.io/verb"),
-    "qr-linkedin": (LINKEDIN_URL, "LinkedIn: Hotragn Pettugani"),
+    "qr-linkedin": (LINKEDIN_QR, "LinkedIn: Hotragn Pettugani"),
     "qr-x": (X_URL, "X: x.com/hotragn"),
 }
 
@@ -66,7 +72,7 @@ TOKENS = {
     "X_URL": X_URL,
     "REPO_SHORT": REPO_URL.replace("https://", ""),
     "PAGES_SHORT": PAGES_URL.replace("https://", ""),
-    "LINKEDIN_SHORT": "linkedin.com/in/hotragn",
+    "LINKEDIN_SHORT": "linkedin.com/in/hotragn-pettugani",
     "X_SHORT": "x.com/hotragn",
     "AUTHOR": AUTHOR,
 }
@@ -260,18 +266,20 @@ def parse_slide(path: Path) -> dict[str, str]:
 
 def render_slide(meta: dict[str, str], index: int, total: int) -> str:
     classes = ["slide", f"layout-{meta['layout']}"]
+    if str(meta.get("dense", "")).lower() in ("true", "yes", "1"):
+        classes.append("dense")
     attrs = f' data-index="{index}"'
     if meta.get("section"):
         attrs += f' data-section="{html.escape(meta["section"], quote=True)}"'
 
     parts = [f'<section class="{" ".join(classes)}"{attrs}>']
-    if meta.get("section") and meta["layout"] not in ("title", "closing"):
+    if meta.get("section") and meta["layout"] not in ("title", "closing", "part"):
         parts.append(f'<div class="eyebrow">{inline(meta["section"])}</div>')
     parts.append('<div class="content">')
     parts.append(render_markdown(meta["body"]))
     parts.append("</div>")
 
-    if meta["layout"] not in ("title", "closing"):
+    if meta["layout"] not in ("title", "closing", "part"):
         parts.append(
             '<footer class="slide-foot">'
             f'<span class="foot-links"><a href="{REPO_URL}">{TOKENS["REPO_SHORT"]}</a>'
@@ -371,23 +379,23 @@ body{
 }
 
 .slide{
-  position:absolute; inset:0; padding:64px 88px 56px;
+  position:absolute; inset:0; padding:46px 80px 40px;
   display:none; flex-direction:column;
 }
 .slide.active{display:flex}
 .slide .content{flex:1; min-height:0; display:flex; flex-direction:column;
-  justify-content:center; gap:20px}
+  justify-content:center; gap:16px}
 
 /* Type ------------------------------------------------------------------- */
 h1{font-size:62px; line-height:1.04; letter-spacing:-.018em; font-weight:600}
-h2{font-size:41px; line-height:1.12; letter-spacing:-.012em; font-weight:600;
-   max-width:22ch}
-h3{font-size:24px; line-height:1.2; font-weight:600; color:var(--slate)}
+h2{font-size:36px; line-height:1.10; letter-spacing:-.012em; font-weight:600;
+   max-width:24ch}
+h3{font-size:21px; line-height:1.2; font-weight:600; color:var(--slate)}
 h4{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.09em;
    text-transform:uppercase; color:var(--mist)}
-p{font-size:23px; line-height:1.45; max-width:44ch; color:var(--slate)}
-p.lead{font-size:29px; line-height:1.34; color:var(--ink); max-width:34ch}
-p.small{font-size:18px; max-width:60ch}
+p{font-size:20px; line-height:1.42; max-width:48ch; color:var(--slate)}
+p.lead{font-size:25px; line-height:1.32; color:var(--ink); max-width:38ch}
+p.small{font-size:16px; max-width:66ch; line-height:1.44}
 strong{font-weight:650; color:var(--ink)}
 em{font-style:italic}
 code{font-family:var(--mono); font-size:.88em; background:var(--shell);
@@ -395,32 +403,32 @@ code{font-family:var(--mono); font-size:.88em; background:var(--shell);
 a{color:var(--brand); text-decoration:none; border-bottom:1px solid var(--line)}
 
 ul,ol{margin-left:0; list-style:none; max-width:46ch}
-ul li,ol li{font-size:22px; line-height:1.4; color:var(--slate);
-  padding:9px 0 9px 26px; position:relative; border-bottom:1px solid var(--line)}
+ul li,ol li{font-size:19px; line-height:1.38; color:var(--slate);
+  padding:7px 0 7px 24px; position:relative; border-bottom:1px solid var(--line)}
 ul li:last-child,ol li:last-child{border-bottom:none}
-ul li:before{content:""; position:absolute; left:0; top:19px;
+ul li:before{content:""; position:absolute; left:0; top:16px;
   width:9px; height:1px; background:var(--mist)}
 ol{counter-reset:n}
 ol li{counter-increment:n}
-ol li:before{content:counter(n); position:absolute; left:0; top:9px;
+ol li:before{content:counter(n); position:absolute; left:0; top:7px;
   font-family:var(--mono); font-size:14px; color:var(--mist)}
 
-blockquote{font-size:31px; line-height:1.32; color:var(--ink); max-width:32ch;
+blockquote{font-size:26px; line-height:1.30; color:var(--ink); max-width:34ch;
   border-left:3px solid var(--bright); padding-left:24px; font-style:italic}
 
-pre{font-family:var(--mono); font-size:19px; line-height:1.55; color:var(--ink);
+pre{font-family:var(--mono); font-size:17px; line-height:1.5; color:var(--ink);
   background:transparent; white-space:pre; overflow:visible}
-pre.lang-formula{font-size:30px; line-height:1.5}
-pre.lang-small{font-size:15px; line-height:1.5}
+pre.lang-formula{font-size:27px; line-height:1.45}
+pre.lang-small{font-size:13.5px; line-height:1.48}
 
 hr{border:none; border-top:1px solid var(--line); margin:6px 0}
 
 /* Tables: hairlines only, numbers in mono and right-aligned. Tufte's rule. */
-table{border-collapse:collapse; font-family:var(--sans); font-size:17px; width:100%}
+table{border-collapse:collapse; font-family:var(--sans); font-size:15.5px; width:100%}
 th{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
   color:var(--mist); font-weight:600; text-align:left; padding:6px 16px 6px 0;
   border-bottom:1px solid var(--ink)}
-td{padding:8px 16px 8px 0; border-bottom:1px solid var(--line); color:var(--slate);
+td{padding:6px 14px 6px 0; border-bottom:1px solid var(--line); color:var(--slate);
   vertical-align:top}
 td.num{font-family:var(--mono); text-align:right; padding-right:24px; white-space:nowrap;
   color:var(--ink)}
@@ -428,7 +436,7 @@ th:last-child,td:last-child{padding-right:0}
 tr:last-child td{border-bottom:none}
 
 /* Margin note, the second voice. */
-.margin{position:absolute; right:88px; top:120px; width:210px;
+.margin{position:absolute; right:80px; top:104px; width:200px;
   font-family:var(--sans); font-size:14px; line-height:1.45; color:var(--mist);
   border-top:1px solid var(--line); padding-top:10px}
 .margin b{color:var(--slate); font-weight:600}
@@ -450,17 +458,17 @@ tr:last-child td{border-bottom:none}
 .stat{border-top:1px solid var(--ink); padding-top:12px}
 .stat .k{font-family:var(--mono); font-size:11px; letter-spacing:.08em;
   text-transform:uppercase; color:var(--mist)}
-.stat .v{font-family:var(--mono); font-size:36px; line-height:1.1; margin-top:4px}
+.stat .v{font-family:var(--mono); font-size:32px; line-height:1.1; margin-top:4px}
 .stat .n{font-family:var(--sans); font-size:15px; color:var(--mist); margin-top:6px;
   line-height:1.4}
 
 /* Eyebrow and footer ------------------------------------------------------ */
 .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.11em;
-  text-transform:uppercase; color:var(--mist); padding-bottom:14px;
-  border-bottom:1px solid var(--line); margin-bottom:26px}
+  text-transform:uppercase; color:var(--mist); padding-bottom:10px;
+  border-bottom:1px solid var(--line); margin-bottom:16px}
 .slide-foot{display:flex; justify-content:space-between; align-items:center;
   font-family:var(--mono); font-size:11px; color:var(--mist);
-  border-top:1px solid var(--line); padding-top:12px; margin-top:20px}
+  border-top:1px solid var(--line); padding-top:9px; margin-top:14px}
 .foot-links a{color:var(--mist); border:none; margin-right:22px}
 .foot-links a:hover{color:var(--brand)}
 .pageno .of{opacity:.55}
@@ -487,9 +495,37 @@ tr:last-child td{border-bottom:none}
   line-height:1.45}
 .qr .cap b{color:var(--paper); display:block; font-size:13px}
 
+/* Density step, for slides that carry more than the default scale allows.
+   Set `dense: true` in a slide's front matter. */
+.slide.dense p{font-size:18px}
+.slide.dense p.lead{font-size:22px}
+.slide.dense p.small{font-size:15px}
+.slide.dense ul li,.slide.dense ol li{font-size:17px; padding:5px 0 5px 22px}
+.slide.dense ul li:before{top:14px}
+.slide.dense ol li:before{top:5px}
+.slide.dense h2{font-size:32px}
+.slide.dense h4{font-size:12px}
+.slide.dense pre.lang-formula{font-size:24px}
+.slide.dense .quad{min-height:200px}
+.slide.dense .quad .qd{font-size:14px}
+.slide.dense .content{gap:12px}
+
+/* Part dividers ----------------------------------------------------------- */
+.layout-part{background:var(--ink); color:var(--paper)}
+.layout-part .content{justify-content:center; gap:22px}
+.layout-part h1{color:var(--paper); font-size:60px; max-width:18ch}
+.layout-part p.lead{color:#C9C6BF; max-width:38ch}
+.part-num{font-family:var(--mono); font-size:13px; letter-spacing:.16em;
+  text-transform:uppercase; color:#7FD8C2; padding-bottom:18px;
+  border-bottom:1px solid #2B3238; width:190px; margin-bottom:8px}
+
+/* Four across, for the dashboard contrast --------------------------------- */
+.cols-4{display:grid; grid-template-columns:repeat(4,1fr); gap:30px; align-items:start}
+.cols-4 .stat .v{font-size:42px}
+
 /* Quadrant figure --------------------------------------------------------- */
-.quad{display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr);
-  border:1px solid var(--ink); width:560px; height:290px; font-family:var(--sans)}
+.quad{display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:auto auto;
+  border:1px solid var(--ink); width:600px; min-height:240px; font-family:var(--sans)}
 .quad div{padding:16px 18px; border-right:1px solid var(--line);
   border-bottom:1px solid var(--line)}
 .quad div:nth-child(2n){border-right:none}

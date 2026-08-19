@@ -52,23 +52,23 @@ body{
 }
 
 .slide{
-  position:absolute; inset:0; padding:64px 88px 56px;
+  position:absolute; inset:0; padding:46px 80px 40px;
   display:none; flex-direction:column;
 }
 .slide.active{display:flex}
 .slide .content{flex:1; min-height:0; display:flex; flex-direction:column;
-  justify-content:center; gap:20px}
+  justify-content:center; gap:16px}
 
 /* Type ------------------------------------------------------------------- */
 h1{font-size:62px; line-height:1.04; letter-spacing:-.018em; font-weight:600}
-h2{font-size:41px; line-height:1.12; letter-spacing:-.012em; font-weight:600;
-   max-width:22ch}
-h3{font-size:24px; line-height:1.2; font-weight:600; color:var(--slate)}
+h2{font-size:36px; line-height:1.10; letter-spacing:-.012em; font-weight:600;
+   max-width:24ch}
+h3{font-size:21px; line-height:1.2; font-weight:600; color:var(--slate)}
 h4{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.09em;
    text-transform:uppercase; color:var(--mist)}
-p{font-size:23px; line-height:1.45; max-width:44ch; color:var(--slate)}
-p.lead{font-size:29px; line-height:1.34; color:var(--ink); max-width:34ch}
-p.small{font-size:18px; max-width:60ch}
+p{font-size:20px; line-height:1.42; max-width:48ch; color:var(--slate)}
+p.lead{font-size:25px; line-height:1.32; color:var(--ink); max-width:38ch}
+p.small{font-size:16px; max-width:66ch; line-height:1.44}
 strong{font-weight:650; color:var(--ink)}
 em{font-style:italic}
 code{font-family:var(--mono); font-size:.88em; background:var(--shell);
@@ -76,32 +76,32 @@ code{font-family:var(--mono); font-size:.88em; background:var(--shell);
 a{color:var(--brand); text-decoration:none; border-bottom:1px solid var(--line)}
 
 ul,ol{margin-left:0; list-style:none; max-width:46ch}
-ul li,ol li{font-size:22px; line-height:1.4; color:var(--slate);
-  padding:9px 0 9px 26px; position:relative; border-bottom:1px solid var(--line)}
+ul li,ol li{font-size:19px; line-height:1.38; color:var(--slate);
+  padding:7px 0 7px 24px; position:relative; border-bottom:1px solid var(--line)}
 ul li:last-child,ol li:last-child{border-bottom:none}
-ul li:before{content:""; position:absolute; left:0; top:19px;
+ul li:before{content:""; position:absolute; left:0; top:16px;
   width:9px; height:1px; background:var(--mist)}
 ol{counter-reset:n}
 ol li{counter-increment:n}
-ol li:before{content:counter(n); position:absolute; left:0; top:9px;
+ol li:before{content:counter(n); position:absolute; left:0; top:7px;
   font-family:var(--mono); font-size:14px; color:var(--mist)}
 
-blockquote{font-size:31px; line-height:1.32; color:var(--ink); max-width:32ch;
+blockquote{font-size:26px; line-height:1.30; color:var(--ink); max-width:34ch;
   border-left:3px solid var(--bright); padding-left:24px; font-style:italic}
 
-pre{font-family:var(--mono); font-size:19px; line-height:1.55; color:var(--ink);
+pre{font-family:var(--mono); font-size:17px; line-height:1.5; color:var(--ink);
   background:transparent; white-space:pre; overflow:visible}
-pre.lang-formula{font-size:30px; line-height:1.5}
-pre.lang-small{font-size:15px; line-height:1.5}
+pre.lang-formula{font-size:27px; line-height:1.45}
+pre.lang-small{font-size:13.5px; line-height:1.48}
 
 hr{border:none; border-top:1px solid var(--line); margin:6px 0}
 
 /* Tables: hairlines only, numbers in mono and right-aligned. Tufte's rule. */
-table{border-collapse:collapse; font-family:var(--sans); font-size:17px; width:100%}
+table{border-collapse:collapse; font-family:var(--sans); font-size:15.5px; width:100%}
 th{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
   color:var(--mist); font-weight:600; text-align:left; padding:6px 16px 6px 0;
   border-bottom:1px solid var(--ink)}
-td{padding:8px 16px 8px 0; border-bottom:1px solid var(--line); color:var(--slate);
+td{padding:6px 14px 6px 0; border-bottom:1px solid var(--line); color:var(--slate);
   vertical-align:top}
 td.num{font-family:var(--mono); text-align:right; padding-right:24px; white-space:nowrap;
   color:var(--ink)}
@@ -109,7 +109,7 @@ th:last-child,td:last-child{padding-right:0}
 tr:last-child td{border-bottom:none}
 
 /* Margin note, the second voice. */
-.margin{position:absolute; right:88px; top:120px; width:210px;
+.margin{position:absolute; right:80px; top:104px; width:200px;
   font-family:var(--sans); font-size:14px; line-height:1.45; color:var(--mist);
   border-top:1px solid var(--line); padding-top:10px}
 .margin b{color:var(--slate); font-weight:600}
@@ -131,17 +131,17 @@ tr:last-child td{border-bottom:none}
 .stat{border-top:1px solid var(--ink); padding-top:12px}
 .stat .k{font-family:var(--mono); font-size:11px; letter-spacing:.08em;
   text-transform:uppercase; color:var(--mist)}
-.stat .v{font-family:var(--mono); font-size:36px; line-height:1.1; margin-top:4px}
+.stat .v{font-family:var(--mono); font-size:32px; line-height:1.1; margin-top:4px}
 .stat .n{font-family:var(--sans); font-size:15px; color:var(--mist); margin-top:6px;
   line-height:1.4}
 
 /* Eyebrow and footer ------------------------------------------------------ */
 .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.11em;
-  text-transform:uppercase; color:var(--mist); padding-bottom:14px;
-  border-bottom:1px solid var(--line); margin-bottom:26px}
+  text-transform:uppercase; color:var(--mist); padding-bottom:10px;
+  border-bottom:1px solid var(--line); margin-bottom:16px}
 .slide-foot{display:flex; justify-content:space-between; align-items:center;
   font-family:var(--mono); font-size:11px; color:var(--mist);
-  border-top:1px solid var(--line); padding-top:12px; margin-top:20px}
+  border-top:1px solid var(--line); padding-top:9px; margin-top:14px}
 .foot-links a{color:var(--mist); border:none; margin-right:22px}
 .foot-links a:hover{color:var(--brand)}
 .pageno .of{opacity:.55}
@@ -168,9 +168,37 @@ tr:last-child td{border-bottom:none}
   line-height:1.45}
 .qr .cap b{color:var(--paper); display:block; font-size:13px}
 
+/* Density step, for slides that carry more than the default scale allows.
+   Set `dense: true` in a slide's front matter. */
+.slide.dense p{font-size:18px}
+.slide.dense p.lead{font-size:22px}
+.slide.dense p.small{font-size:15px}
+.slide.dense ul li,.slide.dense ol li{font-size:17px; padding:5px 0 5px 22px}
+.slide.dense ul li:before{top:14px}
+.slide.dense ol li:before{top:5px}
+.slide.dense h2{font-size:32px}
+.slide.dense h4{font-size:12px}
+.slide.dense pre.lang-formula{font-size:24px}
+.slide.dense .quad{min-height:200px}
+.slide.dense .quad .qd{font-size:14px}
+.slide.dense .content{gap:12px}
+
+/* Part dividers ----------------------------------------------------------- */
+.layout-part{background:var(--ink); color:var(--paper)}
+.layout-part .content{justify-content:center; gap:22px}
+.layout-part h1{color:var(--paper); font-size:60px; max-width:18ch}
+.layout-part p.lead{color:#C9C6BF; max-width:38ch}
+.part-num{font-family:var(--mono); font-size:13px; letter-spacing:.16em;
+  text-transform:uppercase; color:#7FD8C2; padding-bottom:18px;
+  border-bottom:1px solid #2B3238; width:190px; margin-bottom:8px}
+
+/* Four across, for the dashboard contrast --------------------------------- */
+.cols-4{display:grid; grid-template-columns:repeat(4,1fr); gap:30px; align-items:start}
+.cols-4 .stat .v{font-size:42px}
+
 /* Quadrant figure --------------------------------------------------------- */
-.quad{display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,1fr);
-  border:1px solid var(--ink); width:560px; height:290px; font-family:var(--sans)}
+.quad{display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:auto auto;
+  border:1px solid var(--ink); width:600px; min-height:240px; font-family:var(--sans)}
 .quad div{padding:16px 18px; border-right:1px solid var(--line);
   border-bottom:1px solid var(--line)}
 .quad div:nth-child(2n){border-right:none}
@@ -235,7 +263,7 @@ tr:last-child td{border-bottom:none}
   <span>Hotragn Pettugani</span>
   <a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a>
   <a href="https://x.com/hotragn">x.com/hotragn</a>
-  <a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a>
+  <a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a>
 </div>
 </div>
 <aside class="notes"><p>Open by putting the room at ease. Most people here are not engineers and they have sat through a lot of AI slides this year.</p>
@@ -243,7 +271,17 @@ tr:last-child td{border-bottom:none}
 <p>Tell them the whole thing is free and on GitHub, so they can stop taking photographs of slides and listen instead. Point at the QR at the end.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="2" data-section="The constraint">
+<section class="slide layout-part" data-index="2" data-section="Part 1">
+<div class="content">
+<div class="part-num">Part 1</div>
+<h1>Why the constraint moved</h1>
+<p class="lead">Production stopped being scarce. Review did not.</p>
+</div>
+<aside class="notes"><p>A short breath before the argument starts.</p>
+<p>Say what the three parts are so people know where they are: why the constraint moved, what the operating model looks like once you accept it, and what to do on Monday. Then get straight into it.</p></aside>
+</section>
+
+<section class="slide layout-default" data-index="3" data-section="The constraint">
 <div class="eyebrow">The constraint</div>
 <div class="content">
 <h2>For thirty years, the scarce thing was getting the work done.</h2>
@@ -256,13 +294,13 @@ forty projects in the time it takes you to open the file.</p>
 Not a prediction. This is what teams running agents in delivery are reporting
 right now.</div>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">2<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">3<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Ask for a show of hands: who has an AI tool writing something that used to take a person an afternoon. Most hands go up. Leave the hands up for a beat.</p>
 <p>Then the turn: everyone measured the win in hours saved on production. Nobody measured what happened next.</p>
 <p>Do not rush this slide. It is the only one where the audience is entirely comfortable, and the rest of the talk depends on them agreeing with it.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="3" data-section="The constraint">
+<section class="slide layout-default" data-index="4" data-section="The constraint">
 <div class="eyebrow">The constraint</div>
 <div class="content">
 <h2>The number that did not move is review.</h2>
@@ -287,13 +325,13 @@ right now.</div>
 <p class="lead">When production runs past review capacity, the extra work does not
 stop. It gets approved anyway.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">3<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">4<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>The right-hand column is the point. None of those three improved when the models improved, and two of them got worse.</p>
 <p>Worse how: the artifacts now arrive fluent. A confident, well-written, wrong document is harder to check than a rough one, because there is nothing to snag on.</p>
 <p>If the room is senior, this is where you will see the first nod of genuine recognition. Wait for it before moving on.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="4" data-section="The constraint">
+<section class="slide layout-default" data-index="5" data-section="The constraint">
 <div class="eyebrow">The constraint</div>
 <div class="content">
 <h2>Nobody decides to rubber-stamp.</h2>
@@ -307,14 +345,14 @@ checked what.</p>
 <p class="small"><strong>Silent drift.</strong> The gap between approvals recorded
 and reviews genuinely done. Silent because the system records it as success.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">4<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">5<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Slow right down here. This is the emotional centre of the talk and it needs space.</p>
 <p>Say plainly that this is not a discipline problem and you are not blaming reviewers. The reviewer is behaving rationally under a constraint somebody else handed them. If you get this wrong the room gets defensive and you lose them.</p>
 <p>The line to land: rubber-stamping is not a behaviour, it is what running out of review capacity looks like from the inside. Then pause and let it sit.</p>
 <p>If you want a story here, use one from your own experience rather than a hypothetical. It has to be real to work.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="5" data-section="The verification budget">
+<section class="slide layout-default" data-index="6" data-section="The verification budget">
 <div class="eyebrow">The verification budget</div>
 <div class="content">
 <h2>So put a number on it.</h2>
@@ -338,14 +376,14 @@ and reviews genuinely done. Silent because the system records it as success.</p>
 <p class="small"><strong>VB</strong> is how many decisions of one kind you can
 genuinely review per week. Compare it against how many you are producing.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">5<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">6<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Four inputs, and you can get three of them from a spreadsheet this afternoon.</p>
 <p>Be honest about R: it is not everyone with the approve button, it is the people whose sign-off you would defend afterwards. That distinction usually cuts the number by half and it is the first uncomfortable moment.</p>
 <p>The fourth input, c, is the one nobody has. Flag it now and come back to it, because it is the whole talk in one letter.</p>
 <p>Do not derive anything. It is a division. If somebody wants the derivation they can read the repo.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="6" data-section="The verification budget">
+<section class="slide layout-default" data-index="7" data-section="The verification budget">
 <div class="eyebrow">The verification budget</div>
 <div class="content">
 <h2>Six people. Twenty-one decisions.</h2>
@@ -362,14 +400,14 @@ genuinely review per week. Compare it against how many you are producing.</p>
 review hours each, of which 55 percent survives the calendar, and an honest check
 takes an hour and a quarter.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">6<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">7<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Walk the arithmetic out loud once, slowly. Six times eight is forty-eight, times 0.55 is twenty-six hours, divided by an hour and a quarter is twenty-one.</p>
 <p>Then the number that matters: forty-nine. Say it as a sentence, not a figure. Forty-nine times a week, somebody signs their name to a decision they did not have the capacity to check.</p>
 <p>Nobody in that team is doing anything wrong. That is worth repeating.</p>
 <p>If asked whether these numbers are real: no, they are illustrative and the repo says so on the same page it prints them. Do not oversell.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="7" data-section="The four decision classes">
+<section class="slide layout-default" data-index="8" data-section="The four decision classes">
 <div class="eyebrow">The four decision classes</div>
 <div class="content">
 <h2>Sort work by how expensive it is to check.</h2>
@@ -385,13 +423,13 @@ takes an hour and a quarter.</p>
 This tells you <em>what checking costs</em>. You need both, and most governance
 frameworks only have the first.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">7<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">8<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>This is the move people push back on, so say the distinction twice.</p>
 <p>A worked pair, said out loud: reconciling a forty million pound budget rollup is high risk and takes a machine nine seconds. Deciding whether to renegotiate a minor dependency with a partner team is low risk and needs somebody who remembers what happened in March. Risk and cost of checking are different axes.</p>
 <p>Class D is where you will get a question. Answer it briefly here and properly on the maturity slide: a Class D decision has no finite cost of checking, so there is no amount of it you can afford. That is arithmetic, not caution.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="8" data-section="The deployment inversion">
+<section class="slide layout-default dense" data-index="9" data-section="The deployment inversion">
 <div class="eyebrow">The deployment inversion</div>
 <div class="content">
 <h2>Deploy where checking is cheap, not where the task is easy.</h2>
@@ -411,36 +449,85 @@ frameworks only have the first.</p>
 <div class="margin"><b>Horizontal</b><br>cost of checking, cheap on the left.<br><br>
 <b>Vertical</b><br>how good the model is, better at the top.</div>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">8<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">9<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Point at the top right and name three things that live there. Portfolio prioritisation. Vendor dispute strategy. Strategic dependency renegotiation.</p>
 <p>Say the awkward part: the model is genuinely good at all three. That is not the problem. The problem is that your review capacity for them is a couple of dozen a week, so the deployment is capped at a couple of dozen a week no matter how good the model gets.</p>
 <p>You do not fix the top right by deploying harder. You fix it by moving work to the left, which means making the decision cheaper to check. That is engineering work, not a renaming exercise.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="9" data-section="Agentic verification">
-<div class="eyebrow">Agentic verification</div>
+<section class="slide layout-part" data-index="10" data-section="Part 2">
 <div class="content">
-<h2>Agents can supply review capacity, not just consume it.</h2>
-<pre class="lang-formula"><code>  c_eff = c_a + (1 - k) x c</code></pre>
-<p>Put a second agent in front of the human. It closes some decisions on its own,
-with a machine-checkable reason. <strong>k</strong> is the share it closes. The
-budget goes up without hiring anybody.</p>
-<h4>Three rules, or this becomes wishful thinking</h4>
-<ol>
-<li><strong>The verifier's own output has to be machine-checkable.</strong> If a
-human has to read its reasoning, you moved the cost, you did not remove it.</li>
-<li><strong>Measure how often it misses a bad decision.</strong> Unmeasured means
-it counts as zero. Not an estimate. Zero.</li>
-<li><strong>Bank the bottom of the confidence range, never the headline.</strong></li>
-</ol>
+<div class="part-num">Part 2</div>
+<h1>The operating model</h1>
+<p class="lead">Processes, roles, governance, technology and metrics, redesigned
+around one constraint.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">9<span class="of"> / 18</span></span></footer>
-<aside class="notes"><p>This is the part that is genuinely new, so give it room. It is also the part that is easiest to sell badly, so lead with the rules rather than the upside.</p>
-<p>Rule two is the one to press on. An agent checking an agent is a lovely diagram and a risk transfer unless somebody has measured its miss rate against decisions known to be bad. Until then it is an opinion with a confident tone.</p>
-<p>There is a sting worth mentioning if the room is technical: the verifier closes the easy ones first, so the queue that reaches the human gets harder, so c goes up as k goes up. Re-measure after every change. The repo says the framework has no clean correction for this, which is the honest position.</p></aside>
+<aside class="notes"><p>This is the half of the talk people came for, so mark the transition clearly.</p>
+<p>Part 1 was an argument. Part 2 is a design. If they only remember one thing from here it should be that the five layers are not a maturity model to buy, they are five questions that each have one right answer once you accept the constraint.</p>
+<p>Say the running time. There are five layers and you have about twelve minutes, so nobody should settle in.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="10" data-section="The agent role contract">
+<section class="slide layout-default" data-index="11" data-section="Part 2, overview">
+<div class="eyebrow">Part 2, overview</div>
+<div class="content">
+<h2>Five layers. Each answers a different question.</h2>
+<table>
+<thead><tr><th></th><th>layer</th><th>the question it answers</th><th>the design rule</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>Processes</td><td>Which decisions go autonomous, and in what order?</td><td>Sort by verification cost, not difficulty</td></tr>
+<tr><td class="num">2</td><td>Roles</td><td>Who owns an agent, and who owns checking it?</td><td>An agent role contract, four mandatory fields</td></tr>
+<tr><td class="num">3</td><td>Governance</td><td>Where does authority stop and escalation start?</td><td>Decision rights tied to blast radius</td></tr>
+<tr><td class="num">4</td><td>Technology</td><td>What must the system emit to make checking cheap?</td><td>The evidence plane</td></tr>
+<tr><td class="num">5</td><td>Metrics</td><td>How do we know supervision is still real?</td><td>Six measures, one of them uncomfortable</td></tr>
+</tbody></table>
+<p class="small">Nothing here is a new department. Four of the five are things
+you already have, redesigned around a constraint you did not previously have a
+number for.</p>
+</div>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">11<span class="of"> / 27</span></span></footer>
+<aside class="notes"><p>Do not read the table. Give them the shape and move.</p>
+<p>The line worth saying: every one of these layers already exists in your organisation. You have processes, roles, governance, technology and metrics today. None of them were designed around review capacity, because until about two years ago review capacity was not the binding constraint.</p>
+<p>Flag layer three as the one that will be new to most of the room, and layer five as the one that will be uncomfortable.</p></aside>
+</section>
+
+<section class="slide layout-default dense" data-index="12" data-section="Layer 1, processes">
+<div class="eyebrow">Layer 1, processes</div>
+<div class="content">
+<h2>The deployment order most PMOs use is backwards.</h2>
+<div class="quad">
+  <div class="go"><div class="qt">go first</div>
+    <div class="qd">Easy to build, cheap to check. Start here today. Less
+    glamorous than the box to its right, and the only box that scales.</div></div>
+  <div class="hot"><div class="qt">hold</div>
+    <div class="qd">Easy to build, expensive to check. This is the trap, and it
+    is where every impressive demo lives.</div></div>
+  <div><div class="qt">go second</div>
+    <div class="qd">Hard to build but cheap to check. Worth the engineering.</div></div>
+  <div><div class="qt">never yet</div>
+    <div class="qd">Hard and expensive to check. Keep it human for now.</div></div>
+</div>
+<div class="margin"><b>Horizontal</b><br>task difficulty for the model, easier on
+the left.<br><br><b>Vertical</b><br>verification cost, cheaper at the top.</div>
+<hr>
+<div class="cols">
+<div><h4>What most teams do</h4>
+<p class="small">Deploy along the difficulty axis. Easiest first, hardest last.
+It feels rational and it is how every roadmap gets drawn.</p></div>
+<div><h4>What actually governs you</h4>
+<p class="small">Deploy along the verification axis. You can only run as much
+autonomy as you can check, so cheap-to-check work is the only work that
+scales.</p></div>
+</div>
+</div>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">12<span class="of"> / 27</span></span></footer>
+<aside class="notes"><p>This is the same idea as the quadrant in Part 1, turned into a sequencing rule rather than a warning. If you are short on time, say that and move faster here.</p>
+<p>The sentence that makes it concrete, and it is worth memorising:</p>
+<p>Risk analysis is the easier AI problem. It should go live later than status reporting.</p>
+<p>That inverts what everybody in the room has on their roadmap, and it inverts it for a reason they can check. Status reporting is checkable against the source systems in minutes. A risk analysis needs somebody who knows the programme.</p>
+<p>Expect pushback on the grounds that risk analysis is more valuable. Agree. Value is not the axis. Value tells you what you want; verification cost tells you what you can run.</p></aside>
+</section>
+
+<section class="slide layout-default" data-index="13" data-section="The agent role contract">
 <div class="eyebrow">The agent role contract</div>
 <div class="content">
 <h2>Every agent gets four fields. Not nine.</h2>
@@ -466,13 +553,60 @@ happens to work in flight.</li>
 Friday when the thing is misbehaving and a call has to be made. That is the only
 moment the contract has to work.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">10<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">13<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Say why the number is four rather than a longer, safer-looking list. A contract gets read twice: once at approval when everyone is calm, and once during an incident. Only the second reading matters, and a fifteen-field contract fails it.</p>
 <p>Revocation is the one people leave out, and the one to press on. Ask the room: who here could turn off their AI tooling this afternoon without a meeting. It usually goes quiet.</p>
 <p>If somebody says four is too few, the answer is that rate limits go in scope, retention goes in evidence, on-call goes in escalation, and the kill switch goes in revocation. Nothing genuine has needed a fifth.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="11" data-section="The evidence plane">
+<section class="slide layout-default" data-index="14" data-section="Layer 2, roles">
+<div class="eyebrow">Layer 2, roles</div>
+<div class="content">
+<h2>What happens to the people.</h2>
+<table>
+<thead><tr><th>role</th><th>before</th><th>after</th></tr></thead>
+<tbody>
+<tr><td>Project manager</td><td>Coordinator and chaser</td><td>Verifier and exception handler</td></tr>
+<tr><td>PMO analyst</td><td>Report producer</td><td>Owner of the evidence plane</td></tr>
+<tr><td>PMO lead</td><td>Process owner</td><td>Owner of decision rights</td></tr>
+<tr><td><strong>Agent steward</strong></td><td><em>does not exist</em></td><td>Owns agent contracts, tracks reversals, retires agents</td></tr>
+<tr><td><strong>Verification lead</strong></td><td><em>does not exist</em></td><td>Owns the budget, allocates review capacity</td></tr>
+</tbody></table>
+<p class="small">Two new roles. Neither is a data scientist. Both are
+accountability roles, which is exactly why they get skipped.</p>
+</div>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">14<span class="of"> / 27</span></span></footer>
+<aside class="notes"><p>This is the slide people photograph, so leave it up a beat longer than feels comfortable.</p>
+<p>The three existing roles do not disappear, they invert. The project manager stops chasing and starts checking. That is a real change to somebody's job and worth saying plainly rather than dressing up.</p>
+<p>The two new roles are the point. Say why they get skipped: they are not technical, so no budget line obviously owns them, and they are accountability rather than delivery, so nobody volunteers.</p>
+<p>If asked whether these are full-time: at forty projects, the verification lead is a day a week and the agent steward is two. They are not headcount, they are named responsibility. But they have to be named, because a budget nobody owns is a budget nobody defends.</p></aside>
+</section>
+
+<section class="slide layout-default" data-index="15" data-section="Layer 3, governance">
+<div class="eyebrow">Layer 3, governance</div>
+<div class="content">
+<h2>Authority is set by blast radius, not by confidence.</h2>
+<table>
+<thead><tr><th>authority level</th><th>the test that puts you here</th><th>examples</th></tr></thead>
+<tbody>
+<tr><td>Agent acts, logs only</td><td>Reversible within a day, nobody outside affected</td><td>Reassign a task, update a date, flag a duplicate</td></tr>
+<tr><td>Agent acts, human notified</td><td>Reversible within a week, internal only</td><td>Reallocate slack, reorder a backlog, redraft a summary</td></tr>
+<tr><td>Agent proposes, one human approves</td><td>Reversible with effort, or affects one team's plan</td><td>Move a milestone, change a resource split</td></tr>
+<tr><td>Agent proposes, a committee approves</td><td>Hard to reverse, or touches cost, contract or compliance</td><td>Budget reallocation, vendor change, scope reduction</td></tr>
+<tr><td>Human decides, agent supports only</td><td>Irreversible, or legally accountable</td><td>Contract signature, termination, regulatory submission</td></tr>
+</tbody></table>
+<p class="small"><strong>Notice what is absent.</strong> Model confidence appears
+nowhere on this table. Confident and wrong on an irreversible decision is still a
+disaster, and a confidence score is the agent marking its own work.</p>
+</div>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">15<span class="of"> / 27</span></span></footer>
+<aside class="notes"><p>The ladder is easy to follow, so spend your time on the last line instead.</p>
+<p>Almost every governance framework people have seen gates on confidence: high confidence gets more autonomy. Say why that is backwards. Confidence is the agent's opinion of itself, and it is exactly as trustworthy as the thing you were trying to check. Blast radius is a property of the decision, and it is knowable before the agent runs.</p>
+<p>If somebody asks how this relates to the four classes: classes tell you what checking costs, blast radius tells you what happens if you get it wrong. Class sizes the budget, blast radius sets the authority. You need both, and they are not the same axis.</p>
+<p>The practical version: you can build this table in an afternoon with your existing delegated authority matrix. Most organisations already have one for spend. This is the same idea pointed at reversibility.</p></aside>
+</section>
+
+<section class="slide layout-default" data-index="16" data-section="The evidence plane">
 <div class="eyebrow">The evidence plane</div>
 <div class="content">
 <h2>Six things every decision has to carry.</h2>
@@ -498,13 +632,61 @@ Outputs do not get actioned.</blockquote>
 Every field exists to make the next review faster. Field two alone is most of the
 saving, because it is the reviewer not re-gathering what the agent already had.</div>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">11<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">16<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>The point people miss: this is not an audit trail. An audit trail is built for reconstructing the past months later. This is built for making the next review fast this afternoon. Those two goals produce different documents and only one of them changes the budget.</p>
 <p>The evidence for field two: ask any reviewer where the time goes on a hard review. It is not the judgement, it is re-finding the inputs. Typically half.</p>
 <p>Field three has a subtle mechanism worth explaining if you have time. Without it, the reviewer's question is "is this right", which is unbounded. With it, the question becomes "is one of these rejection reasons wrong", which is a list you can get to the end of.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="12" data-section="The six operating metrics">
+<section class="slide layout-default" data-index="17" data-section="Layer 4, technology">
+<div class="eyebrow">Layer 4, technology</div>
+<div class="content">
+<h2>Reference shape, end to end.</h2>
+<pre class="lang-small"><code>   SOURCES              AGENTS                EVIDENCE PLANE          VERIFICATION
+   ------------         ------------------    -------------------     ------------------
+   Work tracker    --&gt;  Class A checkers  --&gt; Decision artifacts  --&gt;  Rule engine (auto)
+   Code and CI     --&gt;  Summarisers       --&gt; Source links        --&gt;  Sampling queue
+   Finance ledger  --&gt;  Analysts          --&gt; Counter-case        --&gt;  Expert review queue
+   Comms and docs       (propose only)    --&gt; Reversal path       --&gt;  Committee record
+                        Escalation router
+        ^                                                                     |
+        |                                                                     |
+        +---------------------  write path, only after  ----------------------+
+                                verification clears</code></pre>
+<p class="lead">Nothing writes back to the source systems until it has cleared
+verification. The write path is the governance boundary.</p>
+</div>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">17<span class="of"> / 27</span></span></footer>
+<aside class="notes"><p>Trace the arrows left to right with your hand once, then stop and talk about the line at the bottom, because that is the whole slide.</p>
+<p>Most teams put the governance boundary at the model: what may the agent see, what may it be asked. That is the wrong boundary, because reading is not where the risk is. The boundary belongs on the write path. An agent that reads everything and writes nothing until a check clears is a safe agent, whatever else it is doing.</p>
+<p>This also gives you a cheap architectural test that anybody can apply. Ask of any proposed integration: can this agent write to a source system without a verification step in between? If yes, the boundary is in the wrong place, and no amount of prompt engineering fixes that.</p>
+<p>Note the analysts are marked propose only. That is Class C from Part 1 showing up in the architecture rather than in a policy document.</p></aside>
+</section>
+
+<section class="slide layout-default dense" data-index="18" data-section="Agentic verification">
+<div class="eyebrow">Agentic verification</div>
+<div class="content">
+<h2>Agents can supply review capacity, not just consume it.</h2>
+<pre class="lang-formula"><code>  c_eff = c_a + (1 - k) x c</code></pre>
+<p>Put a second agent in front of the human. It closes some decisions on its own,
+with a machine-checkable reason. <strong>k</strong> is the share it closes. The
+budget goes up without hiring anybody.</p>
+<h4>Three rules, or this becomes wishful thinking</h4>
+<ol>
+<li><strong>The verifier's own output has to be machine-checkable.</strong> If a
+human has to read its reasoning, you moved the cost, you did not remove it.</li>
+<li><strong>Measure how often it misses a bad decision.</strong> Unmeasured means
+it counts as zero. Not an estimate. Zero.</li>
+<li><strong>Bank the bottom of the confidence range, never the headline.</strong></li>
+</ol>
+</div>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">18<span class="of"> / 27</span></span></footer>
+<aside class="notes"><p>This is the part that is genuinely new, so give it room. It is also the part that is easiest to sell badly, so lead with the rules rather than the upside.</p>
+<p>Rule two is the one to press on. An agent checking an agent is a lovely diagram and a risk transfer unless somebody has measured its miss rate against decisions known to be bad. Until then it is an opinion with a confident tone.</p>
+<p>There is a sting worth mentioning if the room is technical: the verifier closes the easy ones first, so the queue that reaches the human gets harder, so c goes up as k goes up. Re-measure after every change. The repo says the framework has no clean correction for this, which is the honest position.</p></aside>
+</section>
+
+<section class="slide layout-default" data-index="19" data-section="The six operating metrics">
 <div class="eyebrow">The six operating metrics</div>
 <div class="content">
 <h2>Six numbers. Always per class, never averaged.</h2>
@@ -522,13 +704,13 @@ saving, because it is the reviewer not re-gathering what the agent already had.<
 a drowning Class C. In the worked example the portfolio number is 0.2 and looks
 excellent.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">12<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">19<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Do not read the table. Point at row three and say that is the one that matters, and the next slide is entirely about it.</p>
 <p>The averaging warning is worth ten seconds because it is the mistake everyone makes on their first dashboard. One healthy class covers a failing one and the board sees a green light.</p>
 <p>If somebody asks why only six: because a PMO director has to be able to hold them, and because every one of them changes a decision. A metric that does not change a decision is a chart.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="13" data-section="The six operating metrics">
+<section class="slide layout-default" data-index="20" data-section="The six operating metrics">
 <div class="eyebrow">The six operating metrics</div>
 <div class="content">
 <h2>How to measure the thing nobody measures.</h2>
@@ -556,13 +738,52 @@ physically have happened.</p>
 an individual. The moment you do, review time becomes a thing people manage
 rather than a thing you measure, and the metric is dead inside one cycle.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">13<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">20<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Say the last line twice and mean it. If your organisation cannot resist using this against people, do not collect it at all. A corrupted metric is worse than a missing one, because a missing one does not tell you everything is fine.</p>
 <p>The tenth percentile rather than the average, because you are not trying to catch fast reviewers. Fast reviewers are good. You are trying to catch reviews that could not have happened.</p>
 <p>There is a lag worth mentioning: the overdraft turns into backlog first, then late nights, then drift. It usually takes about six weeks to show, which is why people conclude the overdraft was harmless. It was not. It was queued.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="14" data-section="The four eval gates">
+<section class="slide layout-default" data-index="21" data-section="Layer 5, metrics">
+<div class="eyebrow">Layer 5, metrics</div>
+<div class="content">
+<h2>Every headline number improved while supervision stopped existing.</h2>
+<div class="cols-4">
+  <div class="stat"><div class="k">approval rate</div><div class="v">97%</div>
+    <div class="n">up</div></div>
+  <div class="stat"><div class="k">reversal rate</div><div class="v">2%</div>
+    <div class="n">down</div></div>
+  <div class="stat"><div class="k">cycle time</div><div class="v">-41%</div>
+    <div class="n">down</div></div>
+  <div class="stat"><div class="k">escalations</div><div class="v">steady</div>
+    <div class="n">no change</div></div>
+</div>
+<hr>
+<div class="cols">
+<div>
+<h4>What the dashboard showed</h4>
+<p class="small">Four green numbers. A programme that looks like it is working,
+reported to a board that has no reason to doubt it.</p>
+</div>
+<div>
+<h4>What was actually happening</h4>
+<p class="small">Silent drift climbing every week. The approval rate went up
+because approving got faster, and approving got faster because checking
+stopped.</p>
+</div>
+</div>
+<p class="small"><strong>Put drift on the same page as the good news.</strong>
+On its own page nobody looks at it, and the four green numbers win.</p>
+</div>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">21<span class="of"> / 27</span></span></footer>
+<aside class="notes"><p>This is the most useful slide in Part 2 and it is worth slowing down for.</p>
+<p>Every one of those four numbers is a metric a real PMO reports today. Not one of them can see the failure. Worse, three of them move in the direction that looks like success while the failure gets worse: approvals rise because approving got faster, cycle time falls for the same reason, and reversals fall because nobody is looking hard enough to find the errors.</p>
+<p>The reversal rate is the cruellest one. It falls, and it looks like quality improving. It is falling because detection stopped.</p>
+<p>Then the instruction, which is a governance decision rather than a technical one: put drift on the same page as the four green numbers. Not in an appendix, not on a separate dashboard. On the same page, where a board has to look at it in the same glance.</p>
+<p>The figures here are illustrative. Say so.</p></aside>
+</section>
+
+<section class="slide layout-default" data-index="22" data-section="The four eval gates">
 <div class="eyebrow">The four eval gates</div>
 <div class="content">
 <h2>Four gates, each with a number attached.</h2>
@@ -588,13 +809,24 @@ be bad.</li>
 </div>
 <p class="small">A gate without a number attached to it is a meeting.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">14<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">22<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>That last line usually gets a laugh. Let it, then make the serious point: every one of these has a threshold in the repo, and the runners are there too, so this is not a slide of good intentions.</p>
 <p>Gate one fails more often than teams expect, and that failure is the most useful thing it produces. If two qualified people cannot agree what class something is, every number downstream is decoration.</p>
 <p>The replay gate has a criterion people find strange and it is worth the thirty seconds: if the agent disagrees with history and turns out to be right, it still fails unless a reviewer could adjudicate that disagreement inside the budgeted time. A right answer nobody can check is not usable.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="15" data-section="Maturity stages">
+<section class="slide layout-part" data-index="23" data-section="Part 3">
+<div class="content">
+<div class="part-num">Part 3</div>
+<h1>What to do about it</h1>
+<p class="lead">Where you are, what is missing, and the smallest useful thing you
+can do on Monday.</p>
+</div>
+<aside class="notes"><p>Short transition. Signal that the design half is over and the ask is coming, so anybody who has been taking notes knows to stop and listen.</p>
+<p>You have about six minutes left at this point. Say it, so people know questions are close.</p></aside>
+</section>
+
+<section class="slide layout-default" data-index="24" data-section="Maturity stages">
 <div class="eyebrow">Maturity stages</div>
 <div class="content">
 <h2>Five stages, and the test for which one you are on.</h2>
@@ -611,14 +843,14 @@ expert decision, and when did you last measure it?</p>
 <p class="small">If there is no number and no date, you are at S0. Most
 organisations that describe themselves as S2 are at S0 with better paperwork.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">15<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">24<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Do not walk all five. Give them the one-question test and let them place themselves privately. That lands harder than a description.</p>
 <p>The hard step is S1 to S2, and it is not technical. It is being willing to say no to a deployment that is over budget. Everything before that is measurement and everything after is engineering.</p>
 <p>Then why there is no S5, which is the part people remember. S5 would be a system that sets its own risk appetite and audits its own drift: no human in the loop at all. That is not more mature, it is the removal of the thing the model exists to manage.</p>
 <p>The line: such a system might still be right. It just could not be known to be right by the people running it, and an organisation that cannot know is not governing, it is hoping.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="16" data-section="Known limitations">
+<section class="slide layout-default dense" data-index="25" data-section="Known limitations">
 <div class="eyebrow">Known limitations</div>
 <div class="content">
 <h2>What I do not know.</h2>
@@ -636,13 +868,13 @@ how often two people disagree.</li>
 illustrative. The repository says so on the same page it prints them.</li>
 </ul>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">16<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">25<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>Do not apologise your way through this slide. Deliver it flat and fast. It buys more credibility than anything else in the talk, and a framework that hides its weak points gets adopted and then quietly dropped.</p>
 <p>The bursts one is a real invitation. If anybody in the room knows queueing theory you want them to find you afterwards, so say that out loud.</p>
 <p>On the last point: be blunt that the numbers are illustrative. Somebody will screenshot a figure and repost it, and you want to have said this clearly enough that it is on record.</p></aside>
 </section>
 
-<section class="slide layout-default" data-index="17" data-section="What to do">
+<section class="slide layout-default dense" data-index="26" data-section="What to do">
 <div class="eyebrow">What to do</div>
 <div class="content">
 <h2>Four things you can do on Monday.</h2>
@@ -661,13 +893,13 @@ number, one conversation.</li>
 If it is over, you now know something you did not know this morning, and that is
 the entire first stage.</p>
 </div>
-<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn">linkedin.com/in/hotragn</a></span><span class="pageno">17<span class="of"> / 18</span></span></footer>
+<footer class="slide-foot"><span class="foot-links"><a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a><a href="https://x.com/hotragn">x.com/hotragn</a><a href="https://www.linkedin.com/in/hotragn-pettugani/">linkedin.com/in/hotragn-pettugani</a></span><span class="pageno">26<span class="of"> / 27</span></span></footer>
 <aside class="notes"><p>This is what they leave with, so make it feel small. Everything before this was the argument; this is the ask, and the ask has to be doable by one person without permission.</p>
 <p>Step two is the one that gets skipped and it is the one that makes the number mean anything. Without that question you are measuring how long approvals take, not how long checking takes, and under overdraft those are different quantities.</p>
 <p>End on the last line rather than on an exhortation. Knowing the gap is genuinely the whole of stage one, and saying so lowers the barrier.</p></aside>
 </section>
 
-<section class="slide layout-closing" data-index="18" data-section="Take it and use it">
+<section class="slide layout-closing" data-index="27" data-section="Take it and use it">
 <div class="content">
 <h1>Take it and use it</h1>
 <div class="qr-row">
@@ -680,8 +912,8 @@ the entire first stage.</p>
     <div class="cap"><b>Calculator</b>hotragn.github.io/verb</div>
   </div>
   <div class="qr">
-    <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22296%22%20height%3D%22296%22%20viewBox%3D%220%200%2037%2037%22%20shape-rendering%3D%22crispEdges%22%20role%3D%22img%22%20aria-label%3D%22LinkedIn%3A%20Hotragn%20Pettugani%22%3E%0A%20%20%3Ctitle%3ELinkedIn%3A%20Hotragn%20Pettugani%3C%2Ftitle%3E%0A%20%20%3Crect%20width%3D%2237%22%20height%3D%2237%22%20fill%3D%22%23F6F5F2%22%2F%3E%0A%20%20%3Cg%20fill%3D%22%23101418%22%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%224%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%224%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%224%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%225%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%228%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%228%22%20width%3D%228%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%228%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%228%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%229%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%229%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2210%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2210%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2211%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2211%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2211%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2212%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2212%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2212%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2212%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2213%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%228%22%20y%3D%2213%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2211%22%20y%3D%2213%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2213%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2213%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2213%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2213%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2214%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2214%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2214%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2214%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2214%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2215%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%229%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2211%22%20y%3D%2215%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2215%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2231%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%229%22%20y%3D%2216%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2216%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2216%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%225%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2211%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2217%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2217%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%225%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2218%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2218%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2218%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2218%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2218%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2219%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2219%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2219%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2219%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2231%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2220%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2220%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2220%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2220%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2220%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2221%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2221%22%20width%3D%229%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2223%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2223%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2223%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2223%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2231%22%20y%3D%2223%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2224%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2224%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2224%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2224%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2225%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2225%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2226%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2226%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2227%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2227%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2227%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2228%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2228%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2228%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2228%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2228%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2229%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2229%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2229%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2229%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2230%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2230%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2230%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2230%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2230%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2230%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2230%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2231%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2231%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2231%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2232%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2232%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2232%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2232%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2232%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2232%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A" alt="QR code for LinkedIn">
-    <div class="cap"><b>LinkedIn</b>linkedin.com/in/hotragn</div>
+    <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22296%22%20height%3D%22296%22%20viewBox%3D%220%200%2037%2037%22%20shape-rendering%3D%22crispEdges%22%20role%3D%22img%22%20aria-label%3D%22LinkedIn%3A%20Hotragn%20Pettugani%22%3E%0A%20%20%3Ctitle%3ELinkedIn%3A%20Hotragn%20Pettugani%3C%2Ftitle%3E%0A%20%20%3Crect%20width%3D%2237%22%20height%3D%2237%22%20fill%3D%22%23F6F5F2%22%2F%3E%0A%20%20%3Cg%20fill%3D%22%23101418%22%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%224%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%226%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%226%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%227%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%227%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%227%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%228%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%228%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%228%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%228%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%229%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2210%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2210%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2211%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2211%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2211%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2212%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%228%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2212%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2212%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2212%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%225%22%20y%3D%2213%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2211%22%20y%3D%2213%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2213%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2213%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2213%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2213%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2213%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2214%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2214%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2214%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2214%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2214%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2215%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%229%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2211%22%20y%3D%2215%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2215%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2215%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2216%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%229%22%20y%3D%2216%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2216%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2216%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2216%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2217%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2217%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2217%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2217%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%225%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%229%22%20y%3D%2218%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2218%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2218%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2218%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2219%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%228%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2219%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2219%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%225%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%228%22%20y%3D%2220%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2220%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2220%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%228%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2221%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2222%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2222%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2223%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2223%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2223%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2223%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2224%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%229%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2224%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2224%22%20width%3D%229%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2225%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2225%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2226%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2226%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2227%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2231%22%20y%3D%2227%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2228%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2228%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2228%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2231%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2229%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2229%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2229%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2230%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2230%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2230%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2230%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2230%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2230%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2230%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2230%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2230%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2230%22%20y%3D%2230%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2231%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2231%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2232%22%20y%3D%2231%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2232%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2232%22%20width%3D%228%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2232%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A" alt="QR code for LinkedIn">
+    <div class="cap"><b>LinkedIn</b>linkedin.com/in/hotragn-pettugani</div>
   </div>
   <div class="qr">
     <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22264%22%20height%3D%22264%22%20viewBox%3D%220%200%2033%2033%22%20shape-rendering%3D%22crispEdges%22%20role%3D%22img%22%20aria-label%3D%22X%3A%20x.com%2Fhotragn%22%3E%0A%20%20%3Ctitle%3EX%3A%20x.com%2Fhotragn%3C%2Ftitle%3E%0A%20%20%3Crect%20width%3D%2233%22%20height%3D%2233%22%20fill%3D%22%23F6F5F2%22%2F%3E%0A%20%20%3Cg%20fill%3D%22%23101418%22%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%224%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%224%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%226%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%226%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%227%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%228%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%228%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%229%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%229%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%229%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2210%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2210%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2210%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2211%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2211%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2211%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2212%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2212%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2212%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2212%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%229%22%20y%3D%2213%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2213%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2213%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2214%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%228%22%20y%3D%2214%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2214%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2214%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2214%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2214%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2214%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2214%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%225%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2215%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2215%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2215%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%225%22%20y%3D%2216%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2216%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2216%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2216%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2216%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2217%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2214%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2217%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2218%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2218%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2218%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2218%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2218%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%229%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2211%22%20y%3D%2219%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2219%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2219%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2219%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%227%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2220%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2220%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2220%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2221%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2222%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2217%22%20y%3D%2222%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2222%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2222%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2223%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2223%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2219%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2227%22%20y%3D%2223%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2224%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2224%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2226%22%20y%3D%2224%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2225%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2225%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2225%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2225%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2224%22%20y%3D%2225%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2226%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2212%22%20y%3D%2226%22%20width%3D%225%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2225%22%20y%3D%2226%22%20width%3D%222%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2226%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2210%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2218%22%20y%3D%2227%22%20width%3D%224%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2227%22%20width%3D%223%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2227%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%2228%22%20width%3D%227%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2215%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2221%22%20y%3D%2228%22%20width%3D%221%22%20height%3D%221%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2223%22%20y%3D%2228%22%20width%3D%226%22%20height%3D%221%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A" alt="QR code for x.com/hotragn">

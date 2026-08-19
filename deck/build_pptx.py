@@ -225,10 +225,44 @@ def title(slide, heading: str, top: float = 1.02, size: int = 33, width: float =
 
 def footer(slide, number: int, total: int):
     hairline(slide, MARGIN, H - 0.72, CONTENT_W)
-    text(slide, "github.com/hotragn/verb     x.com/hotragn     linkedin.com/in/hotragn",
+    text(slide, "github.com/hotragn/verb     x.com/hotragn     linkedin.com/in/hotragn-pettugani",
          MARGIN, H - 0.60, 8.4, 0.26, size=9, font=SANS, colour=MIST)
     text(slide, f"{number} / {total}", W - MARGIN - 1.2, H - 0.60, 1.2, 0.26,
          size=9, font=SANS, colour=MIST, align=PP_ALIGN.RIGHT)
+
+
+def part_divider(slide, part: str, heading: str, lead: str) -> None:
+    """Dark full-bleed divider. No footer, like the title and the closing."""
+    text(slide, part.upper(), MARGIN, 2.30, 3.0, 0.3, size=12, font=SANS,
+         colour=ON_DARK_ACCENT, bold=True)
+    hairline(slide, MARGIN, 2.72, 2.0, DARK_LINE, 1.2)
+    text(slide, heading, MARGIN, 3.02, 9.5, 1.1, size=44, font=SERIF,
+         colour=ON_DARK, bold=True, line_spacing=1.06)
+    text(slide, lead, MARGIN, 4.34, 7.6, 1.1, size=18, font=SERIF,
+         colour=ON_DARK_MUTED, line_spacing=1.32)
+
+
+def table(slide, top: float, cols: list[tuple[float, float, str]],
+          rows: list[list[str]], pitch: float = 0.56, size: float = 13.5,
+          bold_first: bool = False, row_colours: list = None):
+    """Hairline table. Header underlined heavily, rows lightly, nothing boxed."""
+    for left, width, head in cols:
+        text(slide, head.upper(), left, top, width, 0.26, size=9.5, font=SANS,
+             colour=MIST, bold=True)
+    hairline(slide, cols[0][0], top + 0.28, sum(w for _, w, _ in cols)
+             + (cols[-1][0] - cols[0][0] - sum(w for _, w, _ in cols[:-1])), INK, 1.4)
+    y = top + 0.46
+    for index, row in enumerate(rows):
+        colour = (row_colours[index] if row_colours else None) or SLATE
+        for (left, width, _), cell in zip(cols, row):
+            first = cell is row[0]
+            text(slide, cell, left, y, width, pitch - 0.08, size=size, font=SANS,
+                 colour=INK if (first and bold_first) else colour,
+                 bold=first and bold_first, line_spacing=1.16)
+        y += pitch
+        hairline(slide, cols[0][0], y - 0.10,
+                 cols[-1][0] + cols[-1][1] - cols[0][0])
+    return y
 
 
 def stat(slide, left: float, top: float, width: float, label: str, value: str,
@@ -275,7 +309,7 @@ def attach_notes(slide, body: str) -> None:
 # The slides
 # ---------------------------------------------------------------------------
 
-TOTAL = 18
+TOTAL = 27
 
 
 def build() -> Presentation:
@@ -306,10 +340,15 @@ def build() -> Presentation:
          MARGIN, 4.36, 9.0, 1.0, size=19, font=SERIF, colour=ON_DARK_MUTED, line_spacing=1.3)
     hairline(s, MARGIN, 5.72, CONTENT_W, DARK_LINE, 1.2)
     text(s, "Hotragn Pettugani", MARGIN, 5.92, 3.4, 0.3, size=13, font=SANS, colour=ON_DARK)
-    text(s, "github.com/hotragn/verb          x.com/hotragn          linkedin.com/in/hotragn",
+    text(s, "github.com/hotragn/verb          x.com/hotragn          linkedin.com/in/hotragn-pettugani",
          MARGIN + 3.5, 5.92, 8.5, 0.3, size=13, font=SANS, colour=ON_DARK_ACCENT)
 
-    # 2. Thirty years ----------------------------------------------------
+    # 2. Part 1 divider ---------------------------------------------------
+    s = new(INK, chrome=False)
+    part_divider(s, "Part 1", "Why the constraint moved",
+                 "Production stopped being scarce. Review did not.")
+
+    # 3. Thirty years ----------------------------------------------------
     s = new(section="The constraint")
     title(s, "For thirty years, the scarce thing\nwas getting the work done.")
     text(s, "Somebody had to write the status report, chase the risk owners, rebuild the "
@@ -493,7 +532,229 @@ def build() -> Presentation:
             "dozen a week.",
          8.94, 4.06, 3.2, 2.2, size=11.5, font=SANS, colour=SLATE, line_spacing=1.30)
 
-    # 9. Agentic ------------------------------------------------------------
+    # 10. Part 2 divider ------------------------------------------------------
+    s = new(INK, chrome=False)
+    part_divider(s, "Part 2", "The operating model",
+                 "Processes, roles, governance, technology and metrics, "
+                 "redesigned around one constraint.")
+
+    # 11. Five layers -----------------------------------------------------------
+    s = new(section="Part 2, overview")
+    title(s, "Five layers. Each answers a different question.", size=31)
+    table(
+        s, 2.44,
+        [(MARGIN, 0.4, ""), (MARGIN + 0.45, 2.1, "layer"),
+         (3.5, 4.6, "the question it answers"), (8.4, 4.07, "the design rule")],
+        [
+            ["1", "Processes", "Which decisions go autonomous, and in what order?",
+             "Sort by verification cost, not difficulty"],
+            ["2", "Roles", "Who owns an agent, and who owns checking it?",
+             "An agent role contract, four mandatory fields"],
+            ["3", "Governance", "Where does authority stop and escalation start?",
+             "Decision rights tied to blast radius"],
+            ["4", "Technology", "What must the system emit to make checking cheap?",
+             "The evidence plane"],
+            ["5", "Metrics", "How do we know supervision is still real?",
+             "Six measures, one of them uncomfortable"],
+        ],
+        pitch=0.62, bold_first=False,
+    )
+    text(s, "Nothing here is a new department. Four of the five are things you already "
+            "have, redesigned around a constraint you did not previously have a number for.",
+         MARGIN, 6.02, 11.4, 0.62, size=13, font=SANS, colour=MIST, italic=True,
+         line_spacing=1.30)
+
+    # 12. Layer 1, the deployment order ------------------------------------------
+    s = new(section="Layer 1, processes")
+    title(s, "The deployment order most PMOs use is backwards.", size=31)
+    qx, qy, qw, qh = MARGIN, 2.68, 6.9, 2.32
+    for label, blurb, colour, cx, cy in [
+        ("GO FIRST", "Easy to build, cheap to check. Start here today, and it is the "
+                     "only box that scales.", OK, 0, 0),
+        ("HOLD", "Easy to build, expensive to check. The trap, and where every "
+                 "impressive demo lives.", OVER, 1, 0),
+        ("GO SECOND", "Hard to build but cheap to check. Worth the engineering.", MIST, 0, 1),
+        ("NEVER YET", "Hard and expensive to check. Keep it human for now.", MIST, 1, 1),
+    ]:
+        left, top = qx + cx * (qw / 2), qy + cy * (qh / 2)
+        text(s, label, left + 0.26, top + 0.22, qw / 2 - 0.52, 0.28, size=11.5,
+             font=SANS, colour=colour, bold=True)
+        text(s, blurb, left + 0.26, top + 0.56, qw / 2 - 0.52, 0.7, size=12,
+             font=SANS, colour=SLATE, line_spacing=1.28)
+    hairline(s, qx, qy, qw, INK, 1.4)
+    hairline(s, qx, qy + qh / 2, qw)
+    hairline(s, qx, qy + qh, qw, INK, 1.4)
+    for i in range(3):
+        v = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(qx + i * (qw / 2)),
+                               Inches(qy), Emu(int(0.9 * 9525)), Inches(qh))
+        v.fill.solid()
+        v.fill.fore_color.rgb = INK if i in (0, 2) else LINE
+        v.line.fill.background()
+        v.shadow.inherit = False
+    text(s, "TASK DIFFICULTY FOR THE MODEL, EASIER ON THE LEFT", qx, qy - 0.32, qw, 0.26,
+         size=9, font=SANS, colour=MIST, bold=True)
+    text(s, "VERIFICATION COST, CHEAPER AT THE TOP", qx, qy + qh + 0.14, qw, 0.26,
+         size=9, font=SANS, colour=MIST, bold=True)
+
+    card(s, 8.1, 2.68, 4.37, 2.32, SHELL)
+    text(s, "WHAT MOST TEAMS DO", 8.42, 2.90, 3.8, 0.26, size=9.5, font=SANS,
+         colour=MIST, bold=True)
+    text(s, "Deploy along the difficulty axis. Easiest first, hardest last. It feels "
+            "rational and it is how every roadmap gets drawn.",
+         8.42, 3.18, 3.8, 0.8, size=12, font=SANS, colour=SLATE, line_spacing=1.28)
+    text(s, "WHAT ACTUALLY GOVERNS YOU", 8.42, 4.02, 3.8, 0.26, size=9.5, font=SANS,
+         colour=MIST, bold=True)
+    text(s, "Deploy along the verification axis. You can only run as much autonomy as "
+            "you can check.",
+         8.42, 4.32, 3.8, 0.7, size=12, font=SANS, colour=SLATE, line_spacing=1.28)
+    text(s, "Risk analysis is the easier AI problem. It should go live later than status "
+            "reporting.",
+         MARGIN, 5.56, 11.4, 0.5, size=17, font=SERIF, colour=INK, bold=True)
+
+    # 13. Four fields --------------------------------------------------------
+    s = new(section="The agent role contract")
+    title(s, "Every agent gets four fields. Not nine.")
+    fields = [
+        ("Scope", "Which decisions it may make, named one by one. Anything unnamed is out, "
+                  "and running into one is a stop."),
+        ("Evidence", "What it must show for every decision. If it cannot produce the "
+                     "evidence, it does not make the decision."),
+        ("Escalation", "The named conditions where it stops, and the named human it "
+                       "stops to."),
+        ("Revocation", "How you turn it off, who can, how fast, and what happens to work "
+                       "in flight."),
+    ]
+    fw = (CONTENT_W - 0.6) / 2
+    for i, (head, body) in enumerate(fields):
+        left = MARGIN + (i % 2) * (fw + 0.6)
+        top = 2.46 + (i // 2) * 1.66
+        card(s, left, top, fw, 1.36, SHELL)
+        text(s, head, left + 0.34, top + 0.24, fw - 0.68, 0.36, size=17, font=SERIF,
+             colour=INK, bold=True)
+        text(s, body, left + 0.34, top + 0.66, fw - 0.68, 0.66, size=13, font=SANS,
+             colour=SLATE, line_spacing=1.3)
+    text(s, "Four is the number somebody can hold in their head at six on a Friday when the "
+            "thing is misbehaving and a call has to be made. That is the only moment the "
+            "contract has to work.",
+         MARGIN, 5.96, 11.0, 0.8, size=14.5, font=SANS, colour=MIST, italic=True,
+         line_spacing=1.34)
+
+    # 14. Layer 2, what happens to the people ----------------------------------
+    s = new(section="Layer 2, roles")
+    title(s, "What happens to the people.")
+    end_y = table(
+        s, 2.46,
+        [(MARGIN, 2.7, "role"), (3.75, 3.1, "before"), (7.15, 5.32, "after")],
+        [
+            ["Project manager", "Coordinator and chaser", "Verifier and exception handler"],
+            ["PMO analyst", "Report producer", "Owner of the evidence plane"],
+            ["PMO lead", "Process owner", "Owner of decision rights"],
+            ["Agent steward", "does not exist",
+             "Owns agent contracts, tracks reversals, retires agents"],
+            ["Verification lead", "does not exist",
+             "Owns the budget, allocates review capacity"],
+        ],
+        pitch=0.62, size=14, bold_first=True,
+    )
+    text(s, "Two new roles. Neither is a data scientist. Both are accountability roles, "
+            "which is exactly why they get skipped.",
+         MARGIN, end_y + 0.24, 11.4, 0.5, size=15, font=SANS, colour=MIST, italic=True)
+
+    # 15. Layer 3, authority by blast radius -------------------------------------
+    s = new(section="Layer 3, governance")
+    title(s, "Authority is set by blast radius, not by confidence.", size=31)
+    end_y = table(
+        s, 2.40,
+        [(MARGIN, 3.5, "authority level"), (4.55, 4.0, "the test that puts you here"),
+         (8.75, 3.72, "examples")],
+        [
+            ["Agent acts, logs only", "Reversible within a day, nobody outside affected",
+             "Reassign a task, update a date"],
+            ["Agent acts, human notified", "Reversible within a week, internal only",
+             "Reallocate slack, reorder a backlog"],
+            ["Agent proposes, one human approves",
+             "Reversible with effort, or affects one team plan",
+             "Move a milestone, change a resource split"],
+            ["Agent proposes, a committee approves",
+             "Hard to reverse, or touches cost, contract or compliance",
+             "Budget reallocation, vendor change"],
+            ["Human decides, agent supports only", "Irreversible, or legally accountable",
+             "Contract signature, termination"],
+        ],
+        pitch=0.58, size=13, bold_first=True,
+    )
+    rich(s, [("Notice what is absent. ", {"bold": True, "colour": INK, "size": 14}),
+             ("Model confidence appears nowhere on this table. Confident and wrong on an "
+              "irreversible decision is still a disaster, and a confidence score is the "
+              "agent marking its own work.", {"size": 14, "colour": SLATE})],
+         MARGIN, end_y + 0.22, 11.4, 0.8, line_spacing=1.30)
+
+    # 16. Six fields ---------------------------------------------------------
+    s = new(section="The evidence plane")
+    title(s, "Six things every decision has to carry.")
+    items = [
+        ("1", "What was decided.", "One sentence, naming the thing."),
+        ("2", "What it rested on.", "The actual sources, not a summary."),
+        ("3", "What was rejected, and why.", "At least one real alternative."),
+        ("4", "How confident, and how it would be wrong.", "Named, not hedged."),
+        ("5", "How to undo it.", "What that costs, and how long it stays cheap."),
+        ("6", "Who is accountable.", "A person, not a team."),
+    ]
+    iw = (7.9 - 0.6) / 2
+    for i, (num, head, body) in enumerate(items):
+        left = MARGIN + (i % 2) * (iw + 0.6)
+        top = 2.44 + (i // 2) * 1.18
+        text(s, num, left, top + 0.02, 0.3, 0.3, size=12, font=SERIF, colour=MIST, bold=True)
+        text(s, head, left + 0.34, top, iw - 0.34, 0.58, size=14, font=SANS, colour=INK,
+             bold=True, line_spacing=1.18)
+        text(s, body, left + 0.34, top + 0.60, iw - 0.34, 0.4, size=12.5, font=SANS,
+             colour=MIST, line_spacing=1.26)
+        hairline(s, left, top + 1.04, iw)
+    card(s, 9.0, 2.44, 3.47, 3.44, INK)
+    text(s, "A decision missing any of the six is not a decision.\n\nIt is an output. "
+            "Outputs do not get actioned.",
+         9.34, 2.86, 2.8, 2.0, size=16, font=SERIF, colour=ON_DARK, line_spacing=1.32)
+    text(s, "Every field exists to make the next review faster. The second one alone is "
+            "most of the saving.",
+         9.34, 4.94, 2.8, 0.9, size=11.5, font=SANS, colour=ON_DARK_MUTED, line_spacing=1.3)
+
+    # 17. Layer 4, reference shape ----------------------------------------------
+    s = new(section="Layer 4, technology")
+    title(s, "Reference shape, end to end.")
+    stages = [
+        ("SOURCES", ["Work tracker", "Code and CI", "Finance ledger", "Comms and docs"]),
+        ("AGENTS", ["Class A checkers", "Summarisers", "Analysts (propose only)",
+                    "Escalation router"]),
+        ("EVIDENCE PLANE", ["Decision artifacts", "Source links", "Counter-case",
+                            "Reversal path"]),
+        ("VERIFICATION", ["Rule engine (auto)", "Sampling queue", "Expert review queue",
+                          "Committee record"]),
+    ]
+    colw = (CONTENT_W - 1.5) / 4
+    for i, (head, items) in enumerate(stages):
+        left = MARGIN + i * (colw + 0.5)
+        text(s, head, left, 2.44, colw, 0.26, size=9.5, font=SANS, colour=MIST, bold=True)
+        hairline(s, left, 2.72, colw, INK, 1.4)
+        for j, item in enumerate(items):
+            text(s, item, left, 2.90 + j * 0.44, colw, 0.36, size=13, font=SANS,
+                 colour=SLATE)
+        if i < 3:
+            arrow = s.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW,
+                                       Inches(left + colw + 0.10), Inches(3.30),
+                                       Inches(0.30), Inches(0.20))
+            arrow.fill.solid()
+            arrow.fill.fore_color.rgb = LINE
+            arrow.line.fill.background()
+            arrow.shadow.inherit = False
+    hairline(s, MARGIN, 4.90, CONTENT_W)
+    text(s, "The write path back to the source systems runs through verification, never "
+            "around it.",
+         MARGIN, 5.06, 11.4, 0.4, size=12.5, font=SANS, colour=MIST)
+    text(s, "Nothing writes back to the source systems until it has cleared "
+            "verification. The write path is the governance boundary.",
+         MARGIN, 5.62, 9.6, 0.9, size=19, font=SERIF, colour=INK, line_spacing=1.30)
+
+    # 18. Agentic ------------------------------------------------------------
     s = new(section="Agentic verification")
     title(s, "Agents can supply review capacity,\nnot just consume it.", size=30)
     card(s, MARGIN, 2.86, 5.5, 1.06, SHELL)
@@ -523,64 +784,7 @@ def build() -> Presentation:
         if i < 2:
             hairline(s, 6.9, top + 0.98, 5.57)
 
-    # 10. Four fields --------------------------------------------------------
-    s = new(section="The agent role contract")
-    title(s, "Every agent gets four fields. Not nine.")
-    fields = [
-        ("Scope", "Which decisions it may make, named one by one. Anything unnamed is out, "
-                  "and running into one is a stop."),
-        ("Evidence", "What it must show for every decision. If it cannot produce the "
-                     "evidence, it does not make the decision."),
-        ("Escalation", "The named conditions where it stops, and the named human it "
-                       "stops to."),
-        ("Revocation", "How you turn it off, who can, how fast, and what happens to work "
-                       "in flight."),
-    ]
-    fw = (CONTENT_W - 0.6) / 2
-    for i, (head, body) in enumerate(fields):
-        left = MARGIN + (i % 2) * (fw + 0.6)
-        top = 2.46 + (i // 2) * 1.66
-        card(s, left, top, fw, 1.36, SHELL)
-        text(s, head, left + 0.34, top + 0.24, fw - 0.68, 0.36, size=17, font=SERIF,
-             colour=INK, bold=True)
-        text(s, body, left + 0.34, top + 0.66, fw - 0.68, 0.66, size=13, font=SANS,
-             colour=SLATE, line_spacing=1.3)
-    text(s, "Four is the number somebody can hold in their head at six on a Friday when the "
-            "thing is misbehaving and a call has to be made. That is the only moment the "
-            "contract has to work.",
-         MARGIN, 5.96, 11.0, 0.8, size=14.5, font=SANS, colour=MIST, italic=True,
-         line_spacing=1.34)
-
-    # 11. Six fields ---------------------------------------------------------
-    s = new(section="The evidence plane")
-    title(s, "Six things every decision has to carry.")
-    items = [
-        ("1", "What was decided.", "One sentence, naming the thing."),
-        ("2", "What it rested on.", "The actual sources, not a summary."),
-        ("3", "What was rejected, and why.", "At least one real alternative."),
-        ("4", "How confident, and how it would be wrong.", "Named, not hedged."),
-        ("5", "How to undo it.", "What that costs, and how long it stays cheap."),
-        ("6", "Who is accountable.", "A person, not a team."),
-    ]
-    iw = (7.9 - 0.6) / 2
-    for i, (num, head, body) in enumerate(items):
-        left = MARGIN + (i % 2) * (iw + 0.6)
-        top = 2.44 + (i // 2) * 1.18
-        text(s, num, left, top + 0.02, 0.3, 0.3, size=12, font=SERIF, colour=MIST, bold=True)
-        text(s, head, left + 0.34, top, iw - 0.34, 0.58, size=14, font=SANS, colour=INK,
-             bold=True, line_spacing=1.18)
-        text(s, body, left + 0.34, top + 0.60, iw - 0.34, 0.4, size=12.5, font=SANS,
-             colour=MIST, line_spacing=1.26)
-        hairline(s, left, top + 1.04, iw)
-    card(s, 9.0, 2.44, 3.47, 3.44, INK)
-    text(s, "A decision missing any of the six is not a decision.\n\nIt is an output. "
-            "Outputs do not get actioned.",
-         9.34, 2.86, 2.8, 2.0, size=16, font=SERIF, colour=ON_DARK, line_spacing=1.32)
-    text(s, "Every field exists to make the next review faster. The second one alone is "
-            "most of the saving.",
-         9.34, 4.94, 2.8, 0.9, size=11.5, font=SANS, colour=ON_DARK_MUTED, line_spacing=1.3)
-
-    # 12. Six numbers ---------------------------------------------------------
+    # 19. Six numbers ---------------------------------------------------------
     s = new(section="The six operating metrics")
     title(s, "Six numbers. Always per class, never averaged.", size=31)
     metrics = [
@@ -642,7 +846,40 @@ def build() -> Presentation:
             "metric is worse than a missing one.",
          9.24, 3.70, 2.9, 2.58, size=11, font=SANS, colour=ON_DARK_MUTED, line_spacing=1.32)
 
-    # 14. Four gates ------------------------------------------------------------
+    # 21. Layer 5, what the dashboard showed --------------------------------------
+    s = new(section="Layer 5, metrics")
+    title(s, "Every headline number improved while supervision stopped existing.",
+          size=29)
+    dw = (CONTENT_W - 1.2) / 4
+    for i, (label, value, note) in enumerate([
+        ("approval rate", "97%", "up"),
+        ("reversal rate", "2%", "down"),
+        ("cycle time", "-41%", "down"),
+        ("escalations", "steady", "no change"),
+    ]):
+        stat(s, MARGIN + i * (dw + 0.4), 2.62, dw, label, value, note,
+             OK if i < 3 else MIST, 36)
+    hairline(s, MARGIN, 4.44, CONTENT_W)
+    hw = (CONTENT_W - 0.8) / 2
+    for i, (head, body) in enumerate([
+        ("WHAT THE DASHBOARD SHOWED",
+         "Four green numbers. A programme that looks like it is working, reported to a "
+         "board with no reason to doubt it."),
+        ("WHAT WAS ACTUALLY HAPPENING",
+         "Silent drift climbing every week. The approval rate went up because approving "
+         "got faster, and approving got faster because checking stopped."),
+    ]):
+        left = MARGIN + i * (hw + 0.8)
+        text(s, head, left, 4.64, hw, 0.26, size=9.5, font=SANS, colour=MIST, bold=True)
+        text(s, body, left, 4.96, hw, 0.9, size=13, font=SANS, colour=SLATE,
+             line_spacing=1.30)
+    rich(s, [("Put drift on the same page as the good news. ",
+              {"bold": True, "colour": INK, "size": 14}),
+             ("On its own page nobody looks at it, and the four green numbers win.",
+              {"size": 14, "colour": MIST})],
+         MARGIN, 6.16, 11.4, 0.5, line_spacing=1.28)
+
+    # 22. Four gates ------------------------------------------------------------
     s = new(section="The four eval gates")
     title(s, "Four gates, each with a number attached.")
     groups = [
@@ -677,7 +914,13 @@ def build() -> Presentation:
     text(s, "A gate without a number attached to it is a meeting.",
          MARGIN, 6.10, 11.0, 0.5, size=20, font=SERIF, colour=INK, bold=True)
 
-    # 15. Maturity ---------------------------------------------------------------
+    # 23. Part 3 divider ----------------------------------------------------------
+    s = new(INK, chrome=False)
+    part_divider(s, "Part 3", "What to do about it",
+                 "Where you are, what is missing, and the smallest useful thing you can "
+                 "do on Monday.")
+
+    # 24. Maturity ---------------------------------------------------------------
     s = new(section="Maturity stages")
     title(s, "Five stages, and the test for which one you are on.", size=30)
     stages = [
@@ -765,7 +1008,7 @@ def build() -> Presentation:
     codes = [
         ("qr-repo.png", "Repository", "github.com/hotragn/verb"),
         ("qr-calculator.png", "Calculator", "hotragn.github.io/verb"),
-        ("qr-linkedin.png", "LinkedIn", "linkedin.com/in/hotragn"),
+        ("qr-linkedin.png", "LinkedIn", "linkedin.com/in/hotragn-pettugani"),
         ("qr-x.png", "X", "x.com/hotragn"),
     ]
     size = 1.85

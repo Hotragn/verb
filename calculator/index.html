@@ -162,6 +162,24 @@ h2:first-of-type{margin-top:0}
 .slider input[type=range]{width:100%; margin-top:calc(var(--u)*3); accent-color:var(--bright)}
 .slider .out{margin-top:calc(var(--u)*3); font-family:var(--mono); font-size:15px}
 
+/* Autonomy ladder ---------------------------------------------------------- */
+.ladder{display:grid; grid-template-columns:repeat(3,1fr); gap:calc(var(--u)*5)}
+.rung{border-top:2px solid var(--ink); padding-top:calc(var(--u)*3)}
+.rung .stage{font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--mist)}
+.rung h3{font-size:17px; margin:calc(var(--u)*1.5) 0 calc(var(--u)*2)}
+.rung p{margin:0 0 calc(var(--u)*3); font-size:14px; color:var(--slate)}
+.rung code{font-family:var(--mono); font-size:12.5px; background:var(--shell);
+  padding:calc(var(--u)*1) calc(var(--u)*2); border-radius:4px; display:inline-block}
+.rung.here{border-top-color:var(--over)}
+.rung.here .stage{color:var(--over); font-weight:700}
+.drop{margin-top:calc(var(--u)*5); border:1px dashed var(--line); border-radius:8px;
+  padding:calc(var(--u)*5); text-align:center; color:var(--mist); font-size:14px}
+.drop.over{border-color:var(--bright); background:var(--shell); color:var(--ink)}
+.drop b{color:var(--ink)}
+.drop input{display:none}
+.drop label{color:var(--bright); text-decoration:underline; cursor:pointer}
+
 /* Toolbar ------------------------------------------------------------------ */
 .tools{display:flex; gap:calc(var(--u)*2.5); flex-wrap:wrap; margin:calc(var(--u)*4) 0 0}
 button{
@@ -206,7 +224,7 @@ footer .foot-links{display:flex; gap:calc(var(--u)*4); flex-wrap:wrap;
   <nav class="links">
     <a href="https://github.com/hotragn/verb">Repository</a>
     <a href="https://github.com/hotragn/verb#readme">Specification</a>
-    <a href="https://www.linkedin.com/in/hotragn">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/hotragn-pettugani/">LinkedIn</a>
     <a href="https://x.com/hotragn">x.com/hotragn</a>
   </nav>
 </header>
@@ -277,7 +295,50 @@ footer .foot-links{display:flex; gap:calc(var(--u)*4); flex-wrap:wrap;
 
 <div id="fix-wrap"></div>
 
+<h2>This page is the manual on-ramp, not the destination</h2>
+
+<div class="ladder">
+  <div class="rung here">
+    <div class="stage">you are here</div>
+    <h3>Type it in</h3>
+    <p>Four numbers you estimated or measured once. Useful because it makes the
+    gap visible, and because you cannot automate a measurement you have not
+    taken yet.</p>
+    <code>this page</code>
+  </div>
+  <div class="rung">
+    <div class="stage">next</div>
+    <h3>Compute it from your log</h3>
+    <p>Once decisions carry evidence and reviews are timed, nothing needs typing.
+    The same arithmetic reads demand, cost and drift straight out of the event
+    log, per class, every period.</p>
+    <code>vb budget --input your-bundle</code>
+  </div>
+  <div class="rung">
+    <div class="stage">the destination</div>
+    <h3>Let it throttle itself</h3>
+    <p>The system re-measures its own verification cost, recomputes the budget
+    each period, and slows agent demand as the ratio approaches 1. Humans set the
+    floors and the risk appetite. Nothing else is manual.</p>
+    <code>maturity stage S4</code>
+  </div>
+</div>
+
+<div class="drop" id="drop">
+  <b>Already have a bundle?</b> Drop a <code>config.json</code> here, or
+  <label for="file">choose a file<input type="file" id="file" accept=".json"></label>.
+  Nothing is uploaded; the file is read in your browser.
+</div>
+
 <footer>
+  <p><strong>Why a hand-typed page is part of a framework about autonomy.</strong>
+  Because the framework is about autonomous agents bounded by human verification,
+  and the binding number is a human cost that somebody has to measure before any
+  of it can run on its own. An organisation with no measured verification cost
+  cannot skip to the automatic version; it would be automating an assumption.
+  This page is deliberately the least autonomous thing in the repository, because
+  it serves the stage where there is no data yet.</p>
+
   <p><strong>What to do with this.</strong> If any row comes back as an overdraft, that class is
   the one to act on, and the table above it tells you which of the four levers could close the gap.
   Two of them have real range: making the check cheaper, and sending less work for review. Hiring
@@ -296,7 +357,7 @@ footer .foot-links{display:flex; gap:calc(var(--u)*4); flex-wrap:wrap;
   <div class="foot-links">
     <a href="https://github.com/hotragn/verb">github.com/hotragn/verb</a>
     <a href="https://hotragn.github.io/verb">hotragn.github.io/verb</a>
-    <a href="https://www.linkedin.com/in/hotragn">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/hotragn-pettugani/">LinkedIn</a>
     <a href="https://x.com/hotragn">x.com/hotragn</a>
   </div>
   <p style="margin-top:16px">VERB by Hotragn Pettugani. Apache 2.0. Issues and measured
@@ -755,6 +816,70 @@ document.getElementById("copy").addEventListener("click", function(){
     window.prompt("Copy:", text);
   }
 });
+
+/* --------------------------------------------------------------------------
+   Reading a bundle. The same config.json the command line takes, so a team that
+   has moved past typing does not have to type. Read locally; nothing is sent.
+   -------------------------------------------------------------------------- */
+function applyConfig(text, label){
+  var drop = document.getElementById("drop");
+  try {
+    var parsed = JSON.parse(text);
+    var classes = parsed.classes || parsed;
+    var loaded = 0;
+    CLASSES.forEach(function(m){
+      var entry = classes[m.id];
+      if (!entry) return;
+      var v = state[m.id];
+      if (entry.reviewers !== undefined) v.R = Number(entry.reviewers);
+      if (entry.hours_per_period !== undefined) v.H = Number(entry.hours_per_period);
+      if (entry.utilisation !== undefined) v.u = Number(entry.utilisation);
+      if (entry.cost_per_decision !== undefined && entry.cost_per_decision !== null)
+        v.c = Number(entry.cost_per_decision);
+      if (entry.agent_check_cost !== undefined) v.ca = Number(entry.agent_check_cost);
+      loaded++;
+    });
+    if (!loaded) throw new Error("no class entries found");
+    save(); render();
+    drop.classList.remove("over");
+    drop.innerHTML = "<b>Loaded " + loaded + " classes from " + label + ".</b> "
+      + "Demand is not in config.json, so fill D in above, or run "
+      + "<code>vb budget --input</code> against the whole bundle to have it counted "
+      + "from your decision log.";
+  } catch (err) {
+    drop.classList.remove("over");
+    drop.innerHTML = "<b>Could not read that file.</b> " + err.message
+      + " Expected the config.json from a VERB bundle. See examples/pmo40/config.json.";
+  }
+}
+
+(function(){
+  var drop = document.getElementById("drop");
+  var input = document.getElementById("file");
+  function read(file){
+    var reader = new FileReader();
+    reader.onload = function(){ applyConfig(reader.result, file.name); };
+    reader.readAsText(file);
+  }
+  input.addEventListener("change", function(){
+    if (input.files && input.files[0]) read(input.files[0]);
+  });
+  ["dragenter", "dragover"].forEach(function(name){
+    drop.addEventListener(name, function(e){
+      e.preventDefault(); drop.classList.add("over");
+    });
+  });
+  ["dragleave", "drop"].forEach(function(name){
+    drop.addEventListener(name, function(e){
+      e.preventDefault();
+      if (name === "dragleave") drop.classList.remove("over");
+    });
+  });
+  drop.addEventListener("drop", function(e){
+    var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (file) read(file);
+  });
+})();
 
 render();
 </script>

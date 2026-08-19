@@ -1,4 +1,5 @@
 layout: default
+dense: true
 section: The deployment inversion
 ---
 ## Deploy where checking is cheap, not where the task is easy.

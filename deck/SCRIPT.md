@@ -1,6 +1,6 @@
 # Speaking script
 
-For the 18-slide deck. Roughly 22 minutes at a normal pace, which leaves room in a 30-minute slot for questions.
+For the 27-slide deck. Roughly 35 minutes at a normal pace. Shorter cuts are listed below the running order.
 
 **How to use this.** The script does not read out the slides. The audience can read, and a speaker who narrates their own bullet points is competing with the room instead of leading it. Every line below is something that is *not* on the screen: the reason behind a claim, the sentence that lands it, the thing to say while people are still reading.
 
@@ -15,32 +15,51 @@ Lines in *[brackets and italics]* are stage directions, not words to say.
 | # | Cue | Minutes | Running |
 |---|---|---|---|
 | 1 | Title | 1:00 | 1:00 |
-| 2 | Thirty years | 1:15 | 2:15 |
-| 3 | What did not move | 1:30 | 3:45 |
-| 4 | Nobody decides to | 2:00 | 5:45 |
-| 5 | The formula | 1:45 | 7:30 |
-| 6 | Six people, twenty-one | 2:00 | 9:30 |
-| 7 | Four classes | 2:00 | 11:30 |
-| 8 | The quadrant | 1:45 | 13:15 |
-| 9 | Agents supplying capacity | 2:00 | 15:15 |
-| 10 | Four fields | 1:15 | 16:30 |
-| 11 | Six fields | 1:15 | 17:45 |
-| 12 | Six numbers | 0:45 | 18:30 |
-| 13 | Measuring drift | 1:30 | 20:00 |
-| 14 | Four gates | 1:00 | 21:00 |
-| 15 | S0 to S4 | 1:30 | 22:30 |
-| 16 | What I do not know | 1:00 | 23:30 |
-| 17 | Monday | 1:00 | 24:30 |
-| 18 | Take it and use it | until questions end | |
+| 2 | Part 1 divider | 0:20 | 1:20 |
+| 3 | Thirty years | 1:15 | 2:35 |
+| 4 | What did not move | 1:30 | 4:05 |
+| 5 | Nobody decides to | 2:00 | 6:05 |
+| 6 | The formula | 1:45 | 7:50 |
+| 7 | Six people, twenty-one | 2:00 | 9:50 |
+| 8 | Four classes | 2:00 | 11:50 |
+| 9 | The quadrant | 1:30 | 13:20 |
+| 10 | Part 2 divider | 0:30 | 13:50 |
+| 11 | Five layers | 1:00 | 14:50 |
+| 12 | Layer 1, deployment order | 1:30 | 16:20 |
+| 13 | Layer 2, four fields | 1:15 | 17:35 |
+| 14 | Layer 2, the people | 1:30 | 19:05 |
+| 15 | Layer 3, blast radius | 2:00 | 21:05 |
+| 16 | Layer 4, six fields | 1:15 | 22:20 |
+| 17 | Layer 4, reference shape | 1:30 | 23:50 |
+| 18 | Layer 4, agents supplying capacity | 2:00 | 25:50 |
+| 19 | Layer 5, six numbers | 0:45 | 26:35 |
+| 20 | Layer 5, measuring drift | 1:30 | 28:05 |
+| 21 | Layer 5, the dashboard | 1:45 | 29:50 |
+| 22 | Four gates | 1:00 | 30:50 |
+| 23 | Part 3 divider | 0:20 | 31:10 |
+| 24 | S0 to S4 | 1:30 | 32:40 |
+| 25 | What I do not know | 1:00 | 33:40 |
+| 26 | Monday | 1:00 | 34:40 |
+| 27 | Take it and use it | until questions end | |
 
-If you are running short, cut slides 10 and 11 to one sentence each and point at the repository. They are the most reference-like part of the talk and the least dependent on you being in the room.
+**Thirty-five minutes at a normal pace.** That fits a 45-minute slot with time for
+questions. Two shorter cuts, both tested against the argument rather than against
+the clock:
 
-If you are running long, cut slide 14 entirely.
+**25 minutes.** Drop 12, 17 and 22. You lose the sequencing rule, the
+architecture and the gates. The argument survives because Part 1 carries it and
+Part 2 still has roles, authority and metrics.
+
+**15 minutes.** Keep 1, 3, 5, 6, 7, 8, 15, 21, 26, 27. That is the constraint,
+the number, the classes, the authority ladder, the dashboard contrast and the
+ask. It is a different talk, a sharper one, and it works.
+
+If you are running long mid-talk, cut 22 first. It is the most reference-like
+part and the least dependent on you being in the room.
 
 ---
 
 ## 1. Title
-
 *[Get the closing slide URL up on a second screen if you have one. Otherwise mention early that everything is free and online, so people stop photographing and start listening.]*
 
 Good morning. My name is Hotragn.
@@ -55,8 +74,22 @@ One more thing. I am going to be quite blunt in the middle of this talk about a 
 
 ---
 
-## 2. Thirty years
+---
 
+## 2. Part 1 divider
+*[Two beats, no more. This is a signpost, not a slide.]*
+
+Three parts. Why the constraint moved. What the operating model looks like once
+you accept it. And what you can do about it on Monday.
+
+The first part is an argument, so push back on it while I am making it. The
+second part is a design, and it is the half most of you came for.
+
+---
+
+---
+
+## 3. Thirty years
 Quick show of hands. Who has an AI tool in their delivery organisation right now that writes something a person used to spend an afternoon on?
 
 *[Wait. Let the hands stay up for a beat.]*
@@ -73,8 +106,9 @@ Nobody measured what happened on the other side.
 
 ---
 
-## 3. What did not move
+---
 
+## 4. What did not move
 *[Point at the right-hand column and stay there. This is the whole slide.]*
 
 Three things on the right. Not one of them improved when the models improved.
@@ -89,8 +123,9 @@ The second is not obvious and it is the more interesting one. The output got flu
 
 ---
 
-## 4. Nobody decides to
+---
 
+## 5. Nobody decides to
 *[Slow down here. This is the centre of the talk. Do not rush and do not fill the pauses.]*
 
 So what actually happens when more arrives than can be checked?
@@ -115,8 +150,9 @@ Rubber-stamping is not a behaviour you can train out of people. It is what runni
 
 ---
 
-## 5. The formula
+---
 
+## 6. The formula
 So let us put a number on it, because I think this is a capacity problem wearing a culture problem's clothing, and capacity problems have arithmetic.
 
 **The formula.** It is a division. That is genuinely all it is, and I am not going to derive it.
@@ -129,8 +165,9 @@ The fourth one, the cost of checking, is the one nobody has. Hold that thought, 
 
 ---
 
-## 6. Six people, twenty-one
+---
 
+## 7. Six people, twenty-one
 Let me make it concrete.
 
 **Twenty-one.** Six people, eight hours each on paper, of which just over half survives contact with the calendar, and an honest check on a schedule re-baseline takes about an hour and a quarter. Twenty-six hours of real capacity, so twenty-one decisions.
@@ -151,8 +188,9 @@ These figures are illustrative, by the way. They are in the repository and the r
 
 ---
 
-## 7. Four classes
+---
 
+## 8. Four classes
 So what do you do. You cannot hire twenty more qualified people and I am not going to pretend you can.
 
 The first move is to stop treating all decisions as one pile.
@@ -175,8 +213,9 @@ Class D is the one people push on, so let me get ahead of it. It is not that the
 
 ---
 
-## 8. The quadrant
+---
 
+## 9. The quadrant
 Which leads to the thing I would most like you to leave with, if you leave with one thing.
 
 **The quadrant.** Top right. Let me name three things that live there.
@@ -195,28 +234,62 @@ I want to be clear that this is not a rule against ambition. It is a sequencing 
 
 ---
 
-## 9. Agents supplying capacity
+---
 
-Now the part that I think is actually new, and the part I am least certain about, so I am going to give you the caveats first.
+## 10. Part 2 divider
+*[Mark this clearly. Half the room has been waiting for it.]*
 
-**The second formula.** An agent checking another agent. It closes some of the work, the humans see the rest, capacity goes up without hiring.
+That was the argument. This is the design.
 
-If I stopped there, you would be right to be suspicious. So, three rules.
+Five layers. None of them is a new department, and none of them needs a data
+scientist. Four of the five are things you already have, redesigned around a
+constraint you did not previously have a number for.
 
-One. The checker's own output has to be machine-checkable. If a human has to read its reasoning to decide whether to trust it, you have not removed the cost, you have moved it one step to the left and made it somebody else's problem.
-
-Two, and this is the one that matters. Somebody has to have measured how often that checker waves through a decision that was actually bad. Not how often it agrees with humans. How often it misses. If nobody has measured that, the number you put in the formula is zero. Not a guess, not a conservative estimate. Zero.
-
-Three. Use the bottom of the confidence range, never the headline number. You are sizing a safety margin, not writing a press release.
-
-*[If the room is technical, add:]*
-
-There is a sting in this and it is in the repository as a known limitation. The checker closes the easy ones first. So the queue that reaches your human gets harder over time, which means your cost of checking goes up as your containment goes up. The framework does not have a clean correction for that. The honest guidance is to re-measure after every change, and I would rather tell you that than pretend.
+You have about twelve minutes of this, so nobody should get comfortable.
 
 ---
 
-## 10. Four fields
+---
 
+## 11. Five layers
+*[Do not read the table. Give the shape and move.]*
+
+The reason I am showing you the whole thing before any of the parts is that each
+layer only makes sense as an answer to a question, and the questions are what
+you will actually take back.
+
+Layer three will be new to most people here. Layer five will be uncomfortable.
+Everything else you already do, just sorted by a different axis.
+
+---
+
+---
+
+## 12. Layer 1, deployment order
+This is the quadrant from Part 1, turned from a warning into a sequencing rule.
+
+Here is the sentence that makes it real, and it is the one I would like you to
+argue with over coffee.
+
+*[Slowly:]* Risk analysis is the easier AI problem. It should go live later than
+status reporting.
+
+That inverts what is on almost every roadmap in this room. And it inverts it for
+a reason you can check rather than a reason you have to believe. Status reporting
+can be checked against the source systems in minutes. A risk analysis needs
+somebody who knows the programme, and there are four of those people.
+
+*[Expect the objection that risk analysis is more valuable. Take it seriously:]*
+
+Yes, and value is not the axis. Value tells you what you want. Verification cost
+tells you what you can actually run. You need both numbers and most roadmaps only
+have the first.
+
+---
+
+---
+
+## 13. Layer 2, four fields
 Two quick reference slides, then back to the interesting part.
 
 **Four fields.** Every agent gets a contract with these four, and the number four is doing real work.
@@ -235,8 +308,60 @@ That is the field people leave out.
 
 ---
 
-## 11. Six fields
+---
 
+## 14. Layer 2, the people
+*[This is the slide people photograph. Leave it up longer than feels comfortable.]*
+
+Three jobs invert and two jobs appear.
+
+The inversion is the part that will land in the room. The project manager stops
+chasing and starts checking. That is a genuine change to somebody's working week
+and I would rather say it plainly than dress it up as an opportunity.
+
+The two new roles are the point, so let me say why they never get created.
+Neither of them is technical, so no budget line obviously owns them. And both of
+them are accountability rather than delivery, so nobody volunteers.
+
+*[If asked whether these are full-time, and somebody always does:]*
+
+At forty projects, the verification lead is about a day a week and the agent
+steward about two. They are not headcount. They are named responsibility. But
+they do have to be named, because a budget nobody owns is a budget nobody
+defends when somebody senior wants to ship.
+
+---
+
+---
+
+## 15. Layer 3, blast radius
+The ladder itself is easy to follow, so I want to spend the time on what is
+missing from it.
+
+Almost every AI governance framework any of you have seen gates on confidence.
+High confidence, more autonomy. It is intuitive and it is backwards.
+
+Confidence is the agent's opinion of its own work. It is exactly as trustworthy
+as the thing you were trying to check in the first place. Blast radius is a
+property of the decision, not of the agent, and you know it before the agent
+runs.
+
+*[If somebody asks how this relates to the four classes:]*
+
+Different axes, and you need both. Class tells you what checking costs, so it
+sizes the budget. Blast radius tells you what happens if you are wrong, so it
+sets the authority. A decision can be cheap to check and catastrophic to get
+wrong.
+
+The practical note: you can build this table in an afternoon. Most organisations
+already have a delegated authority matrix for spend. This is the same idea
+pointed at reversibility instead of money.
+
+---
+
+---
+
+## 16. Layer 4, six fields
 **Six fields.** These travel with every decision.
 
 The single most useful thing I can tell you about this list is what it is not. It is not an audit trail.
@@ -251,8 +376,54 @@ The third one has a subtle effect worth thirty seconds. Without it, the reviewer
 
 ---
 
-## 12. Six numbers
+---
 
+## 17. Layer 4, reference shape
+*[Trace it left to right with your hand once, then stop and talk about the line at
+the bottom. That line is the slide.]*
+
+Most teams put the governance boundary at the model. What may it see, what may it
+be asked, which prompts are allowed. That is the wrong boundary, because reading
+is not where the risk lives.
+
+The boundary belongs on the write path. An agent that reads everything and writes
+nothing until a check has cleared is a safe agent, whatever else it is doing.
+
+Which gives you a test anybody in your organisation can apply to any proposed
+integration, without understanding a single thing about models. Ask: can this
+agent write to a source system without a verification step in between? If the
+answer is yes, the boundary is in the wrong place, and no amount of prompt
+engineering moves it.
+
+Notice the analysts are marked propose only. That is Class C from Part 1 showing
+up in the architecture rather than in a policy document nobody reads.
+
+---
+
+---
+
+## 18. Layer 4, agents supplying capacity
+Now the part that I think is actually new, and the part I am least certain about, so I am going to give you the caveats first.
+
+**The second formula.** An agent checking another agent. It closes some of the work, the humans see the rest, capacity goes up without hiring.
+
+If I stopped there, you would be right to be suspicious. So, three rules.
+
+One. The checker's own output has to be machine-checkable. If a human has to read its reasoning to decide whether to trust it, you have not removed the cost, you have moved it one step to the left and made it somebody else's problem.
+
+Two, and this is the one that matters. Somebody has to have measured how often that checker waves through a decision that was actually bad. Not how often it agrees with humans. How often it misses. If nobody has measured that, the number you put in the formula is zero. Not a guess, not a conservative estimate. Zero.
+
+Three. Use the bottom of the confidence range, never the headline number. You are sizing a safety margin, not writing a press release.
+
+*[If the room is technical, add:]*
+
+There is a sting in this and it is in the repository as a known limitation. The checker closes the easy ones first. So the queue that reaches your human gets harder over time, which means your cost of checking goes up as your containment goes up. The framework does not have a clean correction for that. The honest guidance is to re-measure after every change, and I would rather tell you that than pretend.
+
+---
+
+---
+
+## 19. Layer 5, six numbers
 **Six numbers.** I am not going to read these.
 
 One thing only. Never average them across your portfolio. Your healthy classes will cover your failing one and the board will see a green light. In the example in the repository the portfolio figure is about 0.2, which looks excellent, and one class inside it is at 3.3.
@@ -261,8 +432,9 @@ The third row is the one that matters, and it gets its own slide.
 
 ---
 
-## 13. Measuring drift
+---
 
+## 20. Layer 5, measuring drift
 How do you measure whether an approval was real. It sounds impossible. It is not, but it is delicate.
 
 **The floor.** The idea is a line below which a review could not physically have happened. Not a target, not a standard. A physical impossibility line.
@@ -287,8 +459,37 @@ One pattern from the example data. The overdraft is constant from week one. The 
 
 ---
 
-## 14. Four gates
+---
 
+## 21. Layer 5, the dashboard
+*[Slow down. This is the most useful slide in Part 2.]*
+
+Every one of those four numbers is a metric a real PMO reports today. Not one of
+them can see the failure.
+
+It is worse than that. Three of them move in the direction that looks like
+success while the failure gets worse. Approvals rise, because approving got
+faster. Cycle time falls, for the same reason.
+
+And the cruellest one is the reversal rate. It falls, and on a board pack that
+reads as quality improving. It is falling because detection stopped.
+
+*[Pause.]*
+
+So here is the instruction, and it is a governance decision rather than a
+technical one. Put drift on the same page as those four numbers. Not in an
+appendix. Not on a separate dashboard that somebody opens quarterly. On the same
+page, so that a board has to look at both in one glance.
+
+On its own page nobody looks at it, and four green numbers win every time.
+
+These figures are illustrative. Say so.
+
+---
+
+---
+
+## 22. Four gates
 **Four gates.** Two before it runs, two while it runs, every one with a number attached.
 
 A gate without a number attached to it is a meeting.
@@ -305,8 +506,21 @@ There is one criterion in the replay gate that people argue with, and I will def
 
 ---
 
-## 15. S0 to S4
+---
 
+## 23. Part 3 divider
+Right. That was the design. This is what to do about it.
+
+Where you are, what I have got wrong, and the smallest useful thing you can do on
+Monday.
+
+About six minutes, then questions.
+
+---
+
+---
+
+## 24. S0 to S4
 **Five stages.** I am not going to walk you through these, because you will place yourself more honestly if I do not.
 
 Instead, one question. Answer it privately.
@@ -331,8 +545,9 @@ Such a system might well be right. It just could not be *known* to be right by t
 
 ---
 
-## 16. What I do not know
+---
 
+## 25. What I do not know
 *[Deliver this flat and quickly. Do not apologise your way through it. It buys more credibility than anything else in the talk.]*
 
 Before I finish, the parts I have got wrong or have not solved.
@@ -347,8 +562,9 @@ Which is why the thing I want most is on the next slide.
 
 ---
 
-## 17. Monday
+---
 
+## 26. Monday
 So, four things, and they are deliberately small.
 
 **Monday.** Not a programme. Not a policy. One person, one afternoon, no permission needed.
@@ -363,8 +579,9 @@ If it comes back over, you now know something you did not know on Friday. And kn
 
 ---
 
-## 18. Take it and use it
+---
 
+## 27. Take it and use it
 *[Get this up early and leave it up through the whole question session.]*
 
 That is everything. It is all here.
@@ -380,6 +597,8 @@ Third: the queueing thing.
 The codes are the repository, the calculator, and me. Thank you.
 
 *[Stop talking. Do not summarise. Take questions.]*
+
+---
 
 ---
 

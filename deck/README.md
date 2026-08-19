@@ -16,6 +16,8 @@ Then open `deck/index.html`. No install, no server, no network requests. It work
 | `f` | fullscreen |
 | a number | jump to that slide |
 
+The deck runs to 27 slides in three parts: why the constraint moved, the operating model in five layers, and what to do about it. `deck/SCRIPT.md` carries the running order with timings and two shorter cuts.
+
 Add `?print` to the URL and use the browser print dialogue to export a PDF, one slide per page.
 
 ## What is where

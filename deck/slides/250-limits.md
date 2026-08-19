@@ -1,4 +1,5 @@
 layout: default
+dense: true
 section: Known limitations
 ---
 ## What I do not know.

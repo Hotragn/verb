@@ -1,4 +1,5 @@
 layout: default
+dense: true
 section: Agentic verification
 ---
 ## Agents can supply review capacity, not just consume it.
