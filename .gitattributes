@@ -1,0 +1,9 @@
+# Normalise to LF in the repository. CI regenerates the deck, the fixtures and
+# the synthetic example on Linux and compares with git diff --exit-code, so a
+# CRLF round trip would look like a change.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.pdf binary
+*.pptx binary
