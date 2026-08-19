@@ -1,308 +1,674 @@
-# Script, 45 minutes
+# Speaker script, 45 minutes
 
-For the GSDC session. 45 minutes of talk, then 15 minutes of questions, inside a 60 to 70 minute slot. That leaves you real slack, which you want on a virtual session where the first four minutes go on somebody's audio.
+GSDC Certified Learning Masterclass Series. 28 slides, 45 minutes talking, 15 minutes questions.
 
-`SCRIPT.md` is the spine: what you say on each of the 27 slides, in order. This file does two things. It sets the 45-minute running order, and it holds the eight additions that turn the 35-minute version into 45. Nothing here repeats what is on a slide.
+**How to use this.** Each slide gets a block. The bold line at the top of a block is the one sentence that has to land; everything under it is support you can cut live. Nothing here reads the slide out loud. The slide holds the numbers and the tables, you hold the argument.
 
-**Reserve material** is at the bottom. Twelve more blocks, roughly seventeen minutes. If you finish at 38 you have somewhere to go.
+**Paste this straight into Notion.** Headings become toggles you can collapse, so you can keep the whole talk on one page and open only the slide you are on.
+
+**Two markers to watch for:**
+
+- `[ASK]` is an audience prompt. Every one has a `[ROLLBACK]` immediately after it. If nobody types in chat within about five seconds, say the rollback line and move on. Do not wait. A silent Zoom audience is normal and the rollback is written so the silence costs you nothing.
+- `[DEMO, OPTIONAL]` is a live demo you are not planning to run. Skipped by default. The script is there in case you decide to, and the block tells you what to say instead when you skip it, which is the default.
+
+**The through-line.** Part 1 says your limit is not the model. Part 2 says how to build the thing anyway. Part 3 says what it buys you and what to do first. If you only get one idea across, it is that this is a permission structure: it tells you where you can go faster.
 
 ---
 
 ## Running order
 
-| | Slide | Time | Cumulative |
+| # | Slide | Minutes | Running |
 |---|---|---|---|
-| **Open** | before slide 1 | 0:45 | 0:45 |
-| | 1 Title | 1:00 | 1:45 |
-| | 2 Part 1 divider | 0:20 | 2:05 |
-| **Part 1** | 3 Thirty years | 1:30 | 3:35 |
-| | 4 What did not move | 1:30 + **POLL 1** 1:30 | 6:35 |
-| | 5 Nobody decides to | 2:00 + `[A]` 1:00 | 9:35 |
-| | 6 The formula | 2:00 | 11:35 |
-| | 7 Six people, twenty-one | 2:00 + **DEMO 1** 2:00 | 15:35 |
-| | 8 Four classes | 2:00 | 17:35 |
-| | 9 The quadrant | 1:30 | 19:05 |
-| | 10 Part 2 divider | 0:20 | 19:25 |
-| **Part 2** | 11 Five layers | 1:00 | 20:25 |
-| | 12 Layer 1, order | 1:30 | 21:55 |
-| | 13 Four fields | 1:30 | 23:25 |
-| | 14 The people | 1:30 | 24:55 |
-| | 15 Blast radius | 2:00 + `[B]` 1:00 | 27:55 |
-| | 16 Six fields | 1:30 | 29:25 |
-| | 17 Reference shape | 1:30 | 30:55 |
-| | 18 Agents supplying | 1:30 + `[C]` 1:00 | 33:25 |
-| | 19 Six numbers | 1:00 | 34:25 |
-| | 20 Measuring drift | 2:00 + `[D]` 0:45 | 37:10 |
-| | 21 The dashboard | 1:30 + **POLL 2** 1:15 | 39:55 |
-| | 22 Four gates | 1:30 | 41:25 |
-| | 23 Part 3 divider | 0:20 | 41:45 |
-| **Part 3** | 24 S0 to S4 | 1:30 | 43:15 |
-| | 25 What I do not know | 1:30 + `[E]` 0:45 | 45:30 |
-| | 26 Monday | 1:30 + **DEMO 2** 1:00 | 48:00 |
-| | 27 Take it and use it | 1:00 | 49:00 |
+| 1 | Title | 1:30 | 1:30 |
+| 2 | Part 1 divider | 0:25 | 1:55 |
+| 3 | Thirty years | 1:40 | 3:35 |
+| 4 | What did not move | 1:40 | 5:15 |
+| 5 | Nobody decides to | 2:00 | 7:15 |
+| 6 | The formula | 2:10 | 9:25 |
+| 7 | Six people, twenty-one | 2:00 | 11:25 |
+| 8 | Four classes | 2:10 | 13:35 |
+| 9 | The quadrant | 1:55 | 15:30 |
+| 10 | Part 2 divider | 0:25 | 15:55 |
+| 11 | Five layers | 1:10 | 17:05 |
+| 12 | Deployment order | 1:55 | 19:00 |
+| 13 | The contract | 1:55 | 20:55 |
+| 14 | The people | 1:40 | 22:35 |
+| 15 | Blast radius | 1:55 | 24:30 |
+| 16 | The evidence plane | 1:55 | 26:25 |
+| 17 | Reference shape | 1:40 | 28:05 |
+| 18 | Agentic verification | 2:10 | 30:15 |
+| 19 | Six numbers | 1:10 | 31:25 |
+| 20 | Measuring drift | 1:40 | 33:05 |
+| 21 | The dashboard | 1:55 | 35:00 |
+| 22 | Four gates | 1:55 | 36:55 |
+| 23 | Part 3 divider | 0:20 | 37:15 |
+| 24 | S0 to S4 | 1:30 | 38:45 |
+| 25 | What I do not know | 1:25 | 40:10 |
+| 26 | What this buys you | 1:45 | 41:55 |
+| 27 | Monday | 1:25 | 43:20 |
+| 28 | Take it and use it | 1:00 | 44:20 |
 
-That lands at **49 minutes**, which is four over. Two ways to take them back, pick one on the day:
+**44:20 talking.** Leaves about forty seconds of slack per ten minutes, which is roughly what you lose to breathing and to one person unmuting by accident.
 
-- **If Part 1 ran long,** drop slide 12 and slide 17. You lose the sequencing rule and the write-path diagram. Both are in the repo and neither is a headline. Saves 3:00.
-- **If you are still long at slide 19,** cut `[D]` and shorten slide 22 to the one paragraph about the gate that gets skipped. Saves 1:45.
+**If you are running long at slide 22**, cut 14 and 17. You lose the roles table and the architecture picture, and the argument still holds.
 
-**Do not cut:** 5, 7, 15, 21, 26. Those are what people remember, and 21 is the one that changes behaviour.
-
-**Two hard checkpoints.** You should be leaving slide 9 at **19 minutes** and leaving slide 21 at **40 minutes**. If you are more than three minutes past either, take the cuts above rather than speeding up. Talking faster on a webinar loses people; dropping a slide does not.
+**If you are running short at slide 22**, the reserve blocks at the bottom add up to about six minutes.
 
 ---
 
-## Open, before slide 1
+## 1. Title
 
-Wait for Pritam to finish, then camera on, no share yet.
+**Set the promise: they leave knowing how to build this and what it costs to check it.**
 
-> Thanks Pritam, and thanks to everyone who has joined at what I know is an odd hour for about half of you.
+Thank Pritam and the GSDC team for the invitation.
 
-Then one sentence about what this is not. It saves you twenty minutes of the wrong questions later:
+One line about you: CTO at Future Median, a non-profit, and you spend your time on how autonomous systems get supervised rather than on how they get built.
 
-> Quick framing so nobody is waiting for something that is not coming. This is not a tools talk. I am not comparing platforms, I am not demoing a vendor, and I am not selling anything. This is one number, where it comes from, and what changes once you have it. All of it is open source and the link is on the last slide.
+Then the promise, and make it specific because a vague promise makes people open their email:
 
-**Stay on camera for the full 45 seconds before you share.** People decide whether to keep the tab open in that window, and they decide about a face, not a slide.
+> In forty-five minutes I want to give you one number, four categories, and a way to decide which of your work an agent should touch first. All of it is on GitHub under Apache 2.0. The formula, the schemas, a calculator, and the code that produces every figure I am about to show you.
 
----
+Point at the QR code on the last slide now, not at the end. It stops people photographing slides for the next forty minutes.
 
-## POLL 1, on slide 4
-
-Launch it before you explain the slide. You want their number before you tell them what it means.
-
-> How many people in your organisation are genuinely qualified to review the most consequential kind of decision your agents produce?
->
-> 1 to 2  /  3 to 5  /  6 to 10  /  more than 10  /  we do not have agents producing decisions yet
-
-Leave it open 45 seconds. Read the result out loud. The modal answer is almost always the second option.
-
-> Right. Most of the room is at three to five people. Hold that number, because in about five minutes I am going to divide something by something else, and that number is going to be on top.
-
-Then the substance, which is the bit the slide does not say:
-
-> Here is what took me a while to see. When the models got better, two of the three things in that fraction got worse.
->
-> The number of qualified reviewers did not change. But the artifacts got harder to check, because a well-written wrong answer takes longer to catch than a badly-written one. And the queue got longer, because production went up. Same people, harder things, more often.
+Say what this is not: not a tool demo, not a vendor pitch, nothing to buy. You will mention one repository, it is yours, and it is free.
 
 ---
 
-## `[A]` Slide 5, the eleven minutes
+## 2. Part 1 divider
 
-One minute. Slow down here. This is the emotional centre of Part 1 and rushing it wastes the best material in the talk.
+**Three parts. Say the shape so people know when to pay attention.**
 
-> I want to describe somebody, and I would like you to tell me in the chat whether you recognise them.
->
-> It is Thursday. The pack goes out tomorrow. Nineteen items in the review queue, eleven minutes before the next call. This person is not lazy and they are not careless. They are the most conscientious person on the team. That is usually why they are the reviewer.
->
-> And they approve nineteen items in eleven minutes. Not because they decided to wave them through. Because there was no version of that eleven minutes in which nineteen items got checked, and the queue has no button that says "I did not have time for this."
+Part one is why your constraint moved and most roadmaps have not noticed. Part two is the operating model, five layers, and it is the longest part because it is the part you can act on. Part three is where you are today and the smallest useful thing to do about it.
 
-Pause. Then:
-
-> All nineteen approvals are now in your governance record as reviews. If somebody audits you in March, the record is clean. Named reviewer, timestamped, complete.
-
-Two beats of silence, then the line:
-
-> Nobody chose that. And there was no error message.
-
-**Chat prompt:** ask for a one-word yes if they recognise the person. You will get a wall of them. Acknowledge it and move: *"That is a lot of yes. Let us go and do the arithmetic on it."*
+About fifteen minutes on part one.
 
 ---
 
-## DEMO 1, on slide 7
+## 3. Thirty years
 
-Two minutes, live. **Have the calculator tab open and font-scaled before the session starts.** If the share fails, read the numbers off the slide and carry on; do not debug on air.
+**For thirty years the scarce thing was producing the work. That is over.**
 
-> Rather than have you take my word for the arithmetic, let me do it in front of you.
+Tell it as a memory, not a claim. Anyone who has run a PMO recognises the Thursday: chasing seven risk owners for updates, rebuilding a forecast because a change request landed on Tuesday, writing the same status narrative forty times with different names in it.
 
-Share. Type the numbers.
+Capacity planning meant counting the people who could produce those artifacts. Every tool we bought for twenty years was aimed at that bottleneck.
 
-> Six people. Eight hours each. Utilisation point five five. Cost per decision, one and a quarter hours.
->
-> Twenty-one. That is how many of these a week this organisation can genuinely review.
->
-> Now demand. They are producing seventy.
+Land the change plainly:
 
-Let the overdraft appear.
+> A competent agent now produces a defensible status pack for forty projects in about the time it takes you to open the file.
 
-> Three point three. And the number I want you to look at is not that one, it is the row underneath. About forty-nine decisions a week with nobody's genuine review on them. Not at risk of it. The arithmetic does not leave anywhere else for them to go.
+Then the point, which is not that this is impressive:
 
-Then the move that makes it useful rather than depressing:
-
-> Now watch what happens when I change the cost of checking.
-
-Halve `c` on screen.
-
-> Halve it and the budget doubles. I did not hire anybody. That is the whole strategy of this framework in one interaction, and Part 2 is how you actually do it.
-
-Then hand it over:
-
-> Link is on the last slide. It runs entirely in your browser, makes no network calls, and nothing you type leaves your machine. Put your own four numbers in during the Q&A and tell me what you get.
+Production is no longer the scarce thing. And if you are still planning capacity around production, you are planning around a number that stopped mattering.
 
 ---
 
-## `[B]` Slide 15, why not confidence
+## 4. What did not move
 
-One minute, and it is the sharpest point in Part 2.
+**Review capacity did not improve when the models improved. Two parts of it got worse.**
 
-> Look at the middle column and tell me what is missing.
->
-> Model confidence. Not there. Not at any level.
->
-> That is deliberate, and it is the most useful thing on this slide. Every governance design I have seen tries to use confidence as the gate. Above ninety percent it acts, below ninety it asks. It is seductive because the number is right there in the response and it feels like it means something.
->
-> It does not work, for a reason that is easy to say and hard to accept. Confident and wrong on an irreversible decision is still a disaster. The confidence did not make the decision reversible. Blast radius is a property of the world; confidence is a property of the model. You cannot govern the first with the second.
+Three things set how much you can review: how many people are genuinely qualified to judge this kind of decision, how many hours they actually have, and how long one honest judgement takes.
+
+Go through why none of the three moved.
+
+Qualified people: the model getting better does not qualify anybody new. Hours: still a working week. Time per judgement: unchanged at best.
+
+Then the part people have not thought about, and slow down here:
+
+> Two of the three got worse. Agents generate decisions faster than the queue drains. And the artifacts arrive fluent, which makes them harder to check, not easier.
+
+Give them the fluency point with a concrete image. A junior analyst's draft with an obvious hole in it takes four minutes to reject. A well-written artifact with the same hole takes forty, because you have to work out whether it is wrong before you can say why.
+
+---
+
+## 5. Nobody decides to
+
+**Rubber-stamping is not a discipline problem. It is arithmetic.**
+
+This is the emotional centre of part one. Do not rush it.
+
+Set the scene concretely. It is quarter past five. Nineteen items in the queue. Eleven minutes before the next call. Every one needs about forty minutes of honest checking.
 
 Then:
 
-> Confidence still belongs in the system, and it is one of the six fields two slides from now. Its job is to tell a reviewer where to look. Its job is not to decide who gets to decide.
+> Nineteen approvals go in. Every one is recorded as a review.
+
+Pause after that.
+
+Now make sure nobody in the audience feels accused, because half of them are doing this and they will stop listening if they think you are blaming them:
+
+Nobody chose this. That reviewer is behaving rationally under the constraint they were handed. There is no error message. The dashboard turns green. The governance record is complete. And it looks exactly like a working PMO right up to the day something goes wrong and nobody can reconstruct who checked what.
+
+`[ASK]` Drop a number in the chat: how many agent-generated items land in your review queue in a week? Rough is fine.
+
+`[ROLLBACK]` If nothing comes in within five seconds: "Nobody wants to say it out loud, which is fair, and it is usually higher than people expect. Hold your own number in your head for the next slide, because you are going to need it."
+
+If numbers do come in, read two or three out and say you will come back to them at slide 7. Then actually do it.
 
 ---
 
-## `[C]` Slide 18, the two rules
+## 6. The formula
 
-One minute. Without this, slide 18 is the most dangerous one in the deck, because it sounds like free capacity.
+**One number. Qualified people, times their hours, times the share that survives the calendar, divided by what one honest check costs.**
 
-> Two rules keep this honest.
->
-> First. An agent can check another agent only if checking the checker is free. In practice that means the verifier emits assertions, not prose. If your verifier writes a paragraph explaining why the decision looks fine, you have created a second thing a human has to read. You moved the cost, you did not remove it.
->
-> Second, and I would put this one on a wall. You only count the capacity if you have measured how often the verifier passes something bad. A verifier that passes everything looks magnificent on this slide. It closes a hundred percent of decisions and catches nothing, and every bad decision now reaches production wearing a green tick, which is worse than having no verifier, because at least without it somebody might have looked.
->
-> So measure the false negatives, report an interval, and put the bottom of the interval in your budget rather than the middle. If you have not measured it, the answer is zero. Not "probably about half". Zero.
+Walk the four inputs, and spend your time on the two that people get wrong.
 
-If you have thirty spare seconds, add the catch, because somebody will think of it:
+R is not headcount and not people with the approve button. It is people whose approval would survive being examined if the decision went wrong. That is a much smaller number and everybody in the room knows which of their colleagues are in it.
 
-> And there is a catch I was slow to notice. The verifier closes the easy ones first, so the queue reaching your humans is harder than the average was, which means your cost per decision goes up as containment goes up. I have no clean correction for that. What I have is a rule: re-measure the cost every time containment moves.
+u is the share of nominal review hours that survives meetings, holidays and escalations. Measured, not chosen. Between 0.4 and 0.7 in real organisations. Above 0.7 somebody is not counting something.
 
----
+Then the one that matters:
 
-## `[D]` Slide 20, the rule that keeps the metric alive
+> c is what it costs one qualified person to genuinely check one decision. It is the only input with orders of magnitude in it, and it is the one almost nobody has measured.
 
-45 seconds. This is the part that gets implemented wrong, and getting it wrong destroys the measurement.
+Say the units out loud, because it makes the whole thing concrete: decisions per week. It is a rate, and you compare it against another rate, which is how many decisions your agents produce.
 
-> One rule about this, and it matters more than the maths.
->
-> Never use this against an individual. Never put it in a performance review. Never send somebody a chart of their own review times.
->
-> Because the moment you do, people manage the number instead of you measuring it. They leave the artifact open while they get a coffee. Times go up, drift goes to zero, and you have lost the only instrument that sees this failure mode. Report it by class, not by person. If your organisation cannot resist doing it by person, do not collect it at all. A corrupted metric is worse than a missing one, because a missing metric does not tell you everything is fine.
+If the ratio is over one, the difference is not at risk of being unverified. It is unverified. The arithmetic does not leave anywhere else for it to go.
 
 ---
 
-## POLL 2, on slide 21
+## 7. Six people, twenty-one
 
-Rhetorical rather than diagnostic. Launch, 30 seconds, then reveal.
+**Six qualified reviewers produce twenty-one genuine reviews a week. Not two hundred.**
 
-> Look at these four numbers. Approval rate ninety-seven percent. Reversal rate two percent. Cycle time down forty-one. Escalations steady. Would you take that to a steering committee?
->
-> Yes, happily  /  Yes, with caveats  /  No  /  I would want a fifth number
+Do the arithmetic slowly and out loud. Six people, eight nominal hours each, fifty-five percent survives the calendar, one honest re-baseline check takes an hour and a quarter.
 
-Most will say yes. That is the point.
+Let the number sit:
 
-> Most of you said yes, and you would be right to. Those are good numbers and every one of them improved.
->
-> They are also all four consistent with supervision having completely stopped. Approval rate goes up when people stop checking. Cycle time goes down when people stop checking. Reversals stay low because you only reverse what you notice, and you do not notice what you did not check. Escalations stay steady because the agent's thresholds did not change.
->
-> There is no number on that dashboard that goes red when verification stops. Not that the metrics are wrong. That they are all blind in the same direction, and it is the direction that matters.
+> Twenty-one a week. That is the whole capacity.
 
-Then the practical ask, which is the single most useful sentence in the talk:
+Now bring back the chat numbers from slide 5 if you got them. If you did not, use the example: the agents in this scenario produce seventy.
 
-> So if you take one thing from the whole hour: put drift on the same page as the good news. Not in an appendix. The same page. Because the good news is real, and it is also not the whole picture, and those two facts have to arrive together or the second one never arrives at all.
+Seventy against twenty-one. Three point three times over.
 
----
+Then the sentence to land:
 
-## `[E]` Slide 25, the honest 45 seconds
+> Roughly forty-nine decisions a week carry an approval that nobody had the capacity to make.
 
-Do not undersell this. Naming your own gaps is what makes everything else credible, and this audience contains people who will test you.
+Add the credibility line before anyone else raises it, because volunteering it buys you the rest of the talk:
 
-> The queueing one is the one I would most like help with. The formula gives you a rate, twenty-one a week. But decisions do not arrive at a constant rate, they arrive in a lump the week before the board pack. So you can be comfortably inside budget averaged over a quarter and still drop reviews in week three, and the average tells you nothing was wrong. The right treatment is a proper queueing model with class-based priority. I have not built one. If somebody here knows queueing theory, that is issue one in the repo.
+These numbers are synthetic. There is a seeded script in the repository that generates the whole example, and I would rather show you arithmetic that reproduces than a case study you cannot check. What I do not have is measured data from real organisations, and that is the main thing I am asking this audience for.
 
-Then the one that matters most:
+`[DEMO, OPTIONAL]` Open the calculator, type your own four numbers, show the ratio change live. Two minutes.
 
-> And the number I showed you earlier. Three point three. That is synthetic. It comes from a generated example with a fixed seed, and it exists to show the arithmetic works and the tooling reproduces. It is not evidence, it is not a benchmark, and please do not put it in a slide as though it were a finding about the industry.
->
-> What I want from this talk is the real version of that number, from you. There is an issue template called "Report a measured verification cost". Anonymised is fine. One measured cost with its method attached is worth more than everything I have said in the last forty minutes.
+`[DEMO SCRIPT]` "This is a single HTML file, no server, no network calls. Four inputs. I put six, eight, point five five, one and a quarter. Twenty-one. Now watch what happens if checking gets cheaper: I halve c, the budget doubles. That is the only lever in the formula with that behaviour."
+
+`[SKIP BY DEFAULT]` Say instead: "There is a calculator in the repository, one HTML file, no install, no network. Put your own four numbers in it tonight and you will have your own version of this slide in about two minutes."
 
 ---
 
-## DEMO 2 and the ask, on slide 26
+## 8. Four classes
 
-One minute. **Terminal open, in the right directory, font already large.**
+**Sort work by what checking costs, not by risk and not by how hard it is for the model.**
 
-> The whole thing is one command, so let me show you rather than describe it.
+This is the move the rest of the talk depends on. Make sure it lands.
 
-```
-vb budget --input examples/pmo40
-```
+Everybody in the room already classifies by risk. Risk tells you whether you must check something. It says nothing about what checking costs. You need both and most operating models only have one.
 
-> Four classes, four budgets, four demands, one of them in red. That is the synthetic example. Point it at your own config and it is your numbers.
+Go through the four quickly, one example each, and give the tell rather than the definition:
 
-Then the ask. Make it small enough that somebody actually does it:
+Class A, machine-checkable. A deterministic check decides it. Schedule arithmetic, dependency cycles, budget rollups. The tell: you could write it as a test, and the test passing means the decision is right.
 
-> I am not going to ask you to adopt a framework. Nobody adopts a framework on a Tuesday.
->
-> I am going to ask for one number. Pick your most consequential decision type, the one where you would be uncomfortable if it went wrong. Time three of those reviews this week. Ask the reviewer afterwards whether they genuinely checked. Write the number down.
->
-> That is about forty minutes of work, and it is stage one for one decision type. Most of you will not like what the number says, which is exactly why it is worth having.
+Class B, sample-checkable. Check twenty, draw a conclusion about two hundred. Status narratives, action extraction. The tell: if that sentence makes you uncomfortable, it is not Class B.
 
----
+Class C, expert-checkable. Somebody qualified has to reconstruct the reasoning against context that is not in the artifact. Re-baselining, change impact. The tell: two qualified people could reasonably disagree, and settling it needs something neither of them wrote down.
 
-## Closing, slide 27
+Class D, not checkable in advance. Cancelling a workstream. Terminating a contract. Going to a regulator.
 
-Let the QR codes sit on screen for a full fifteen seconds without talking over them. People need time to find a phone.
+Then the rule, and say it as a rule:
 
-> Everything is there. Formula, schemas, calculator, eval harness, and the code that generates every number I showed you. Apache 2.0, so take it, change it, put your own name on the front if that gets it adopted where you work. I would rather it was used than credited.
->
-> Three codes: the repository, the calculator, and me, if you want to argue about any of this, which I would enjoy.
->
-> And the thing I am actually asking for is on that middle line. If one person here sends me a real cost figure from a real organisation, this was worth more than a hundred of you agreeing with me.
+> Class D never goes to an agent. Not because it is dangerous. Because it has no finite checking cost, so it has no budget, so there is no amount of it you can afford.
 
-> Thanks very much. Happy to take questions.
+And immediately the thing that saves it from sounding restrictive, because this is where you get most of the value back:
+
+You still get the throughput. The agent prepares the decision. Options, impacts, precedent, what it costs to reverse, a named recommendation. That pack is Class C, a human can check it in bounded time, and the decision itself stays with a person. You get most of the speed without delegating the call.
 
 ---
 
-## Q&A, 15 minutes
+## 9. The quadrant
 
-Pritam's moderator reads from chat. Six to expect, with the short answer. Longer versions are at the end of `SCRIPT.md`.
+**Deploy where checking is cheap, not where the task is easy.**
 
-| Question | Short answer |
-|---|---|
-| "Is this not human-in-the-loop with extra steps?" | Human-in-the-loop says a human should be there. This says how many humans, for how many decisions, and what happens when you run out. It is the capacity model underneath the slogan. |
-| "Our reviewers are fast, our cost is low." | Good. Measure it and tell me the number. If it is genuinely low you have more headroom than most, and you would be the first person I have asked who had the number ready. |
-| "Does agents checking agents not solve this?" | It helps, on two conditions, and it was slide 18. Checking the checker has to be free, and you have to have measured how often it passes something bad. Otherwise it is a risk transfer that looks like a saving. |
-| "Which tools do you recommend?" | Deliberately not answering, and not to be coy. None of this depends on a platform. It is arithmetic and four contract fields, and you could do it in a spreadsheet this week. |
-| "How do I sell this to a CFO who wants headcount out?" | Do not fight it. Verification capacity is what caps how much of the automation actually counts. This gives you the ceiling as a number instead of a worry, and then you argue about where to spend against it. |
-| "Is silent drift not a trust problem?" | It is a capacity problem wearing a trust problem's clothes. Your reviewer is behaving rationally given the constraint you handed them. You cannot train it away or policy it away. You can only budget it. |
+Two axes. How hard the work is for the model, and what it costs you to check.
 
-**If one stumps you.** Say so plainly: *"I do not know. That is a better question than most of the ones on my limitations slide. Would you put it in the repo as an issue so I do not lose it?"* That costs you nothing with this audience and it is consistent with the last forty-five minutes.
+The four boxes are labelled as actions rather than descriptions, because a quadrant nobody acts on is just a diagram.
 
-**If it goes quiet.** Use the poll: *"Nearly all of you said yes to that dashboard. I would like to hear from anyone who said they would want a fifth number, and what the fifth number would have been."*
+Spend your time on the top right. That is where nearly every impressive AI-in-PMO demo lives. Portfolio prioritisation. Vendor dispute strategy. The model is genuinely good at these, and they are all Class C or D, so your capacity is a couple of dozen a week no matter how good the model gets.
+
+Then the line that usually gets a reaction:
+
+> Risk analysis is the easier AI problem. It should go live later than status reporting.
+
+Let that sit for a second, because it sounds wrong. Then resolve it: risk analysis is easier for the model and far more expensive for you to check. Status reporting is duller and checkable against the source systems in minutes. Difficulty and checking cost are different axes and only one of them is your constraint.
+
+You do not fix the top right box by deploying harder. You fix it by making the work cheaper to check, and then deploying. Reclassify, then deploy. That order.
 
 ---
 
-# Reserve
+## 10. Part 2 divider
 
-Twelve blocks, about seventeen minutes. Use these if you are running short. Ordered by what I would reach for first.
+**Twenty minutes on how to actually build it. Five layers.**
 
-**R1. Slide 3, the pre-agent PMO (90s).** Shared memory, and it earns the room because everyone has lived it. Describe the old Thursday: opening forty project files, working out which dates moved and which were typed over, chasing eleven risk owners who all replied "no change" to make the question go away. Then: most of that work was transcription. Move a number from one system to another, write a sentence about it, put the sentence in a deck. Then the turn: the easy version of this story is "AI did the boring work so now we do the interesting work", and that story is wrong. Not because AI cannot do it, but because of what happens next.
+This is the part you can act on. Five layers, each answering a different question, and four of the five are things you already have and are running without the verification piece.
 
-**R2. Slide 6, each letter slowly (2m).** For the non-PMO half of the audience, and do not apologise for it. `R` is not headcount and not everybody with the approve button. The test: if this went wrong and somebody senior asked who checked it, whose name would you be willing to say out loud? `H` is hours in the calendar. `u` is what survives the calendar; half is a fair guess, and anyone claiming ninety percent has not measured it. Then `c`, and the step everybody skips: after timing the review, ask the reviewer whether they actually checked it, and throw away the ones who say they just approved it. That step is what separates a verification cost from an approval duration, and under overdraft those are different numbers.
+---
 
-**R3. Slide 8, classify three live (2m).** Call and response in chat, and the fastest way to make the classes stick. Read three decisions, ask for A, B, C or D. Critical path recalculation after a task update: A, because you recompute and compare and the comparison is the answer. Status narrative for forty projects: answers will split B and C, and the split is right. B for the thirty-seven nobody outside the programme reads, C for the three in the board pack, because a sample of twenty misses those three and those three are why anybody cares. You split the population; same decision type, two classes. Recommending a workstream cancellation: D, and notice nobody had to think about it.
+## 11. Five layers
 
-**R4. Slide 9, the risk-analysis trap (90s).** Every impressive demo in this space lives in the top-right box, and they are impressive because the model really is good at them. But they are expensive to check, so the budget is a couple of dozen a week, so the deployment is capped at a couple of dozen a week however good the model gets. Then the line that upsets people: risk analysis is the easier AI problem than status reporting, and it should go live later. A status report can be checked against source systems in ninety seconds. A risk analysis needs somebody who was in the room in March. Expect pushback in chat; park it for Q&A.
+**Processes, roles, governance, technology, metrics. One question each.**
 
-**R5. Slide 13, the revocation story (1m).** Ask your own team this week: who can turn agent X off, right now, without a meeting, and how long does it take? If the answer involves a change advisory board, you do not have a revocation clause, you have a hope. Then the half nobody has thought about: what happens to work already in flight? Does it stop, finish, or roll back? You do not want to be deciding that at the same moment you are deciding to pull the agent. One action, one person, no meeting, a stated number of minutes, and tested with a stopwatch. An untested kill switch is not a kill switch.
+Do not explain all five now. Name them and the question each answers, then move.
 
-**R6. Slide 14, the two roles (2m, includes a poll).** Poll: which of these exists in your organisation today with a named person in it? Somebody who owns agent contracts / somebody who owns review capacity / both / neither / not sure. The answer will be overwhelmingly neither, and that is the finding, not a criticism. Then why: neither is a technical role, neither is a data scientist, and accountability roles are the hardest thing to fund because you cannot demo them. The second is the one to fight for. Somebody has to be able to walk into a steering committee and say we cannot take that agent live, because this class is already at three times budget. If nobody owns that sentence, nobody says it, and every deployment gets approved on its own merits while the aggregate quietly breaks.
+The reassuring point, which is worth making because the previous nine slides have been quite heavy:
 
-**R7. Slide 16, the two jobs (90s).** Two of the six do different jobs and people conflate them. Sources saves time: when you time real reviews, it is almost never the thinking, it is going and finding the four things the agent already found. Put them in the artifact with links and you delete the biggest block of cost, forty to sixty percent. The counter-case catches errors: the agent saying here is the strongest reason I am wrong and here is where you would see it. Without it a reviewer reads evenly and hopes something jumps out. With it they are looking for one named thing. One saves time, the other finds mistakes. If you only build one, build sources.
+> Nothing here is a new department. Four of the five are things you already do. What is missing is the checking layer, and that is the whole of the change.
 
-**R8. Slide 22, the gate that gets skipped (90s).** It is the cost measurement in gate one, predictably and always. Three reviewers, twenty outputs, a stopwatch, and an awkward conversation. Nobody wants to run it, it has no demo, it produces one number. It is also the only one of the four that tells you how far you can scale, and everything else in the talk is denominated in it. Which is why it went into the first gate rather than an appendix: so skipping it fails a gate instead of becoming a to-do. Then the escalation probe: it is at a hundred percent, not ninety-five, because it is a mechanism test, not a sample. If a named condition does not fire when you inject exactly the condition it names, that condition is not implemented, whatever the contract says. And do not fix a failure by loosening the condition until it stops failing; that turns a problem you measured into one you did not.
+---
 
-**R9. Slide 24, the one question (1m).** One question tells you which stage you are at and it takes four seconds. What is your verification cost per decision for your most consequential class, and when did you last measure it? A number and a date means at least stage one. No number means stage zero, however much governance documentation exists, however many committees, however many agents are live. Most organisations describing themselves as well down this road are at stage zero with good paperwork. Which is not a disaster: stage one is a few weeks and it is the only step you cannot skip.
+## 12. Deployment order
 
-**R10. Slide 24, why it stops at four (45s).** Keep it short and do not get philosophical. A system that also sets its own risk appetite and audits its own drift is not a further stage, it is the removal of the thing the model is about. The budget is a budget of human verification. Take the human out and you do not have an infinite budget, you have no budget, because there is nobody whose approval means anything from outside the system making the claim. Four is the ceiling by construction, not caution.
+**Most roadmaps sequence by difficulty. The constraint is on the other axis.**
 
-**R11. Slide 12, the sequencing rule (45s).** One line: reclassify, then deploy. Not deploy and then improve the checking, which is what everybody does. Because during the gap you are running an overdraft, the overdraft is invisible, so nothing forces the gap to close. Six months later the improvement is still on the roadmap and the agent is still running.
+Everybody draws the roadmap the same way: easiest first, hardest last. It feels rational and it is how every roadmap you have ever seen is drawn.
 
-**R12. Slide 17, the write path (45s).** One line that turns an architecture diagram into a governance diagram: nothing writes back to source systems until it has cleared verification. The write path is the boundary, which means the boundary is enforced by plumbing rather than policy. A decision that has not cleared verification physically cannot reach the project plan, because it does not have the credentials. That is worth more than any amount of documentation, because documentation degrades and permissions do not.
+The problem is that difficulty and checking cost are not correlated, and only one of them limits you.
+
+Give the concrete pair. Status reporting: dull for the model, checkable against the source systems in minutes. Risk analysis: interesting for the model, needs an experienced person and half an hour of context they have to go and get.
+
+If you sequence by difficulty you will do risk analysis in month two and hit your ceiling immediately, on the thing that generates the most impressive demo.
+
+The practical instruction:
+
+> Take your roadmap. Add a column. What does it cost us to check one of these. Re-sort on that column. That is a one-hour exercise and it will change the order.
+
+---
+
+## 13. The contract
+
+**An agent is a role, not a tool. Roles have contracts. Four fields.**
+
+Start with why four rather than what the four are, because the number is the interesting design decision.
+
+A contract gets read twice. Once at approval, when everyone is calm and has time and a fifteen-field document looks thorough. And once at six on a Friday when the thing is misbehaving and somebody has to decide in five minutes whether to pull it.
+
+> The second reading is the one that matters, and a fifteen-field contract fails it.
+
+Then the four, one line each. Scope: what it may decide, named individually, and anything not named is out. Evidence: what it must produce every time. Escalation: the named conditions where it stops, and the named role it stops to. Revocation: how you turn it off.
+
+Two rules to say out loud because they do the real work:
+
+If the agent cannot produce the required evidence, it does not make the decision. It escalates. There is no configuration where that becomes acceptable.
+
+Revocation has to be one named person, no meeting, and you have to have tested it. Untested revocation is not revocation. Everything else in the contract is decoration if you cannot turn it off.
+
+---
+
+## 14. The people
+
+**Two new roles. Neither is a data scientist.**
+
+Walk the before and after quickly. Project manager goes from coordinator to verifier. Analyst goes from producing reports to owning the evidence layer. Lead goes from owning process to owning decision rights.
+
+Then the two new ones, and this is the part worth dwelling on.
+
+Agent steward: owns the contracts, tracks reversals, retires agents that stop earning their place.
+
+Verification lead: owns the budget and allocates review capacity.
+
+Then the observation:
+
+> Both are accountability roles rather than technical ones, which is exactly why they get skipped. It is easier to fund a tool than to name a person who is answerable.
+
+If you take one staffing decision away from this talk, it is naming a verification lead. It does not need to be a new hire. It needs to be somebody's actual job.
+
+---
+
+## 15. Blast radius
+
+**Class tells you what checking costs. Blast radius tells you who is allowed to decide. You need both.**
+
+Class alone is not enough, and here is the case that proves it: a schedule arithmetic correction is Class A whether it moves an internal date or triggers a contractual milestone payment. Same checking cost. Very different decision.
+
+So authority runs on a second axis, five levels, from the agent acting and logging it, up to a human deciding with the agent only supporting.
+
+Walk the ladder briefly. The test in each row is about reversibility and who is affected, not about the work.
+
+Then the point of the slide, and this usually gets people writing:
+
+> Look at what is absent from that table. Model confidence appears nowhere, at any level.
+
+Explain why, because it is counterintuitive. A confidence score is a useful thing to show a reviewer, because it tells them where to look. It is a terrible thing to gate authority on, because confident and wrong on an irreversible decision is still a disaster. Confidence belongs in the evidence, not in the permission.
+
+---
+
+## 16. The evidence plane
+
+**Six fields, and they exist to make the next review fast, not to reconstruct the past.**
+
+Open with the distinction, because it is the whole design:
+
+> An audit log is written so somebody can reconstruct what happened six months later. This is written so somebody can judge it in ninety seconds. Different jobs. Most teams only build the first one.
+
+Then the six, fast, and for each one say what it saves rather than what it is.
+
+The claim, one sentence, so the reviewer knows what they are approving before they start.
+
+The sources, with links, not descriptions. And stop on this one:
+
+Ask them where the time actually goes in a review. It is not the judging. It is the reviewer going and finding the same four things the agent already had open. That is forty to sixty percent of the cost, and this one field deletes it.
+
+The counter-case: the strongest reason this could be wrong, written by the agent. This changes what the reviewer does. Without it they read the whole thing evenly looking for anything. With it they go looking for one named thing.
+
+Blast radius and the reversal path, together, because they answer the same question twice: what breaks if this is wrong, and how do I get out of it. That pair is what lets a reviewer honestly decide to look less hard at something cheap and reversible.
+
+The owner, resolved to a person, not a role. An escalation to "the PMO" is an escalation to nobody.
+
+Then the enforcement line:
+
+> An artifact missing any of the six is not a decision. It is an output. Outputs do not get actioned.
+
+That is a schema check in your pipeline, not a paragraph in a policy document.
+
+---
+
+## 17. Reference shape
+
+**Sources, agents, evidence, verification. The direction matters more than the boxes.**
+
+Do not narrate the diagram. Point at the one property that matters.
+
+> Nothing writes back to the source systems until it has cleared verification. The write path is the governance boundary.
+
+That single constraint does more than any policy you can write, because it is structural. An agent that cannot write until something has checked it cannot quietly accumulate unverified changes in your systems of record.
+
+If people take a photo of one architecture slide, this is a reasonable one to take.
+
+---
+
+## 18. Agentic verification
+
+**Agents can supply verification capacity, not just consume it. This is how you get autonomous.**
+
+This is the slide that answers "so how do I actually scale this", and it is the most forward-looking thing in the talk. Give it room.
+
+Put a second agent in front of the human. It closes some decisions on its own, either passing them or rejecting them with a machine-checkable reason, and only the rest reach a person. The share it closes is containment. As containment goes up, your budget goes up, with no new hires.
+
+Then the three rules, and be firm, because this is where it goes wrong in practice:
+
+One. The verifier's own output has to be machine-checkable. If a human has to read a paragraph of reasoning to decide whether to trust the verifier, you moved the cost, you did not remove it.
+
+Two. It only counts if you have measured how often it passes bad decisions. An unmeasured verifier is a cost reduction on paper and a risk transfer in fact. Uncalibrated means it counts as zero.
+
+Three. Use the bottom of the confidence interval in your budget, not the average. You are sizing a safety margin.
+
+Then the honest bit, which is the thing nobody tells you:
+
+> A verifier closes the easy decisions first. So the queue that reaches your humans is harder than the average was, and your cost per check goes up as containment goes up.
+
+Which means you have to re-measure. A budget that assumes checking cost stayed flat while containment climbed will overstate your capacity at exactly the wrong moment.
+
+---
+
+## 19. Six numbers
+
+**Six metrics. Per class, per week. Never averaged across classes.**
+
+Name them, do not explain them. Budget, overdraft, silent drift, containment, escalation precision, reversal latency.
+
+The one instruction that matters:
+
+> Report them per class. In the worked example the portfolio average is about 0.2 and looks healthy. The number that matters is 3.3 and it is in one class. Average them and you see nothing.
+
+---
+
+## 20. Measuring drift
+
+**The share of decisions approved faster than an honest review could have happened.**
+
+Explain how to build the floor, because this is the only metric here that people cannot look up.
+
+Watch a set of reviews where you know people genuinely checked. Take the tenth percentile of those times. Also work out the physical reading time for a typical artifact. Take whichever is larger. That is your floor, per class, from your own data.
+
+Anything approved faster than that did not get reviewed. Count it, and put it on the same page as the good news.
+
+Two things to say before somebody objects, because both objections are correct:
+
+The floor is built to flag about one in ten even when everything is fine, so the signal is the amount above ten percent, not the raw number.
+
+And the rule that keeps this alive:
+
+> Never use it on an individual. The moment you do, people leave artifacts open, the number goes to zero, and you have destroyed the only instrument that sees this failure.
+
+Report it by class. Not by person. If your organisation cannot resist using it against individuals, do not collect it, because a corrupted metric is worse than a missing one.
+
+---
+
+## 21. The dashboard
+
+**Every headline number improved while supervision quietly stopped existing.**
+
+This is the sharpest slide in the deck. Let it do the work.
+
+Read the four numbers on the left as if they were good news, because in any other quarter they would be. Approval rate up. Reversals low. Cycle time down forty-one percent. Escalations steady.
+
+Then:
+
+> Approval rate went up because approving got easier. Cycle time went down because checking stopped. Every one of these is measuring throughput and calling it health.
+
+`[ASK]` In the chat: which of these four does your current AI reporting include?
+
+`[ROLLBACK]` If the chat stays quiet: "I will answer it for you. Most reporting has three of the four, and none of them has the fifth one on the right. That is not a criticism, it is just what happens when the metrics were designed before the agents arrived."
+
+Close the slide on the lag, because it is the practically useful part:
+
+The overdraft was there from week one. The drift took six weeks to become visible, because the backlog absorbed it first. So the period where this is cheap to fix is the period where nothing looks wrong.
+
+---
+
+## 22. Four gates
+
+**Four gates before an agent goes live. Each has a number, or it is a meeting.**
+
+Go through them fast, one line each, and land on the third.
+
+Gate one, classification and cost. Two qualified people classify fifty decisions separately, and you measure what checking actually costs with a stopwatch. If they disagree, you do not know what class it is, so you do not know your capacity.
+
+Gate two, evidence. Every artifact carries all six fields, and a human spot-checks twenty for whether the fields are real rather than filled in.
+
+Gate three, adversarial. Feed it the cases from your own lessons-learned register. The ones that already went wrong. Then inject conditions that must trigger a handoff and check that every one of them fires.
+
+> Confident and wrong on a case you already know is hard is disqualifying. Not a low score. Disqualifying.
+
+Gate four, replay. Run it against closed decisions where you know the outcome, with the agent blind to anything after the decision date.
+
+Then the note on which one gets skipped:
+
+The cost measurement in gate one is the one that gets dropped, because it is the least interesting and it needs three people with a stopwatch. It is also the only one that tells you how far you can scale. Without that number every other figure in this talk is unavailable to you.
+
+---
+
+## 23. Part 3 divider
+
+**Five minutes. Where you are, what I do not know, and what to do on Monday.**
+
+---
+
+## 24. S0 to S4
+
+**Five stages, and one question tells you which one you are on.**
+
+Name the stages quickly. Unmeasured, measured, bounded, contained, self-budgeting.
+
+Then the question, and ask it directly of the audience rather than describing it:
+
+> What does it cost you to check one expert decision, and when did you last measure it?
+
+No number and no date means you are at stage zero, whatever your governance documentation says. That is most organisations and it is not a criticism, because until recently there was no reason to have measured it.
+
+Then handle the obvious question before it comes:
+
+There is no stage five. Stage five would be a system that also sets its own risk appetite and audits its own drift, which means no human in the loop. That is not more mature. A system with no human verifier does not have an infinite verification budget, it has none, because there is nobody whose approval means anything from outside the system making the claim.
+
+Stage four is the ceiling by construction. And at stage four the human job is small: set the thresholds, set the risk appetite, approve the reclassifications. That job does not shrink further, because it is the job that makes every other number mean something.
+
+---
+
+## 25. What I do not know
+
+**Four holes, said out loud.**
+
+Go quickly. This slide buys you more credibility than anything else in the deck, so do not undersell it by rushing past it apologetically.
+
+The measurement is biased, because people check more carefully when they are watched, so the budget always looks better than it is.
+
+Bursts are not modelled. The budget is a rate and work does not arrive evenly. You can be fine on average and still drop reviews in board week. This is the biggest hole and it is the one I would most like help with.
+
+Timing is a proxy for checking, not checking itself. Somebody who already knows the answer can approve correctly in twenty seconds.
+
+And there is no empirical validation. The numbers are synthetic and they are labelled as synthetic everywhere they appear.
+
+> If you have measured any of this in a real organisation, that is the contribution I want. There is an issue template for exactly it.
+
+---
+
+## 26. What this buys you
+
+**This is a permission structure, not a brake. It tells you where you can go faster.**
+
+Reframe here, deliberately, because the previous twenty-five slides have been about a constraint and people will have heard it as caution.
+
+Four things you get.
+
+More autonomy, not less. In the worked example, machine-checkable work runs at three thousand decisions a week and expert-checkable work runs at twenty-one. Same people, same models, same budget. If you pick the first kind of work you are not throttled at all. The framework does not slow you down, it tells you which lane is open.
+
+A number you can defend. When your board asks how much AI you can safely run, you have arithmetic and you can show exactly what would have to change to raise it. That conversation goes very differently when you have a number.
+
+Capacity that grows without hiring. A calibrated verifier cuts the cost of checking, and the budget rises on the same headcount.
+
+Failures you find early. Drift shows up as a rising number weeks before it shows up as an incident, while every other dashboard is still green.
+
+Then the close of the argument:
+
+> The teams that scale autonomy fastest are not the ones with the best models. They are the ones who made checking cheap.
+
+---
+
+## 27. Monday
+
+**Four things, all doable this week, none needing a budget.**
+
+Say them as instructions, not options.
+
+One. Pick one decision type your agents already make. Time three people checking twenty of them. You now have your first real number and you are out of stage zero.
+
+Two. Work out your budget for that one class. Four inputs, two minutes in the calculator.
+
+Three. Compare it against how many of those decisions you actually produce. Under one and you have headroom, so deploy more, and that is a genuinely good week. Over one and you now know something you did not know on Friday.
+
+Four. Add the ratio to whatever you already report on AI. One row. Next to the approval rate.
+
+`[ASK]` If you are going to do the first one this week, put a plus one in the chat.
+
+`[ROLLBACK]` If the chat is quiet: "Do not put it in the chat then, put it in your calendar. It is a two-hour job and it is the only one of the four that makes the other three possible."
+
+---
+
+## 28. Take it and use it
+
+**Everything is public and free. Take it, rename it, put it in your own framework.**
+
+Three QR codes. Repository, calculator, and the ways to reach you.
+
+Apache 2.0, which means you can take it into your own governance framework and rename it if that helps it get adopted. Adoption is the point, not attribution.
+
+What you want back: measured verification costs from real organisations, classification disagreements where the decision tree gives the wrong answer, and anything at all on the queueing problem.
+
+Thank the audience and GSDC. Hand back to the moderator for questions.
+
+Leave the slide up for the whole Q&A. It is the only slide with the links on it.
+
+---
+
+# Reserve blocks
+
+About six minutes total. Use if you reach slide 22 early.
+
+## R1. Why fluent output is harder to check, 90 seconds
+
+Insert after slide 4.
+
+The old failure mode was obviously bad work. A draft with a hole in it, and you spot the hole in four minutes because the writing signals the quality.
+
+Fluent output breaks that signal. The artifact reads like something a competent senior person wrote, so your prior is that it is fine, and you have to do actual work to establish otherwise. The cost of the check went up and nothing about the underlying decision changed.
+
+This is why "the model got better" does not help your review capacity. In this specific way it hurts.
+
+## R2. The Class B trap, 90 seconds
+
+Insert after slide 8.
+
+The most common classification mistake is calling something Class B when it is not.
+
+A batch of two hundred status narratives. Homogeneous, one rubric, high volume. Textbook Class B. Check twenty, conclude about the rest.
+
+Except three of the two hundred go to the board, and a sample of twenty will miss all three.
+
+Class B needs one more condition than people remember: no member of the population can be much more consequential than the others. When that fails you do not average over it, you split it. Thirty-seven projects are Class B and three are Class C, and the three get checked properly.
+
+That failure is invisible until the board sees the wrong number.
+
+## R3. What to do when you are already over budget, 2 minutes
+
+Insert after slide 21.
+
+Somebody will be sitting there having worked out they are at three times capacity, wondering what they are supposed to do on Monday other than panic.
+
+Four options and only two of them work.
+
+Hire more qualified reviewers. Slow, and qualification is the bottleneck rather than recruitment.
+
+Protect review hours. Real, and it is the cheapest gain most people have available, but it is bounded. You cannot get above about 0.7.
+
+Make checking cheaper. This is the one with orders of magnitude in it. Evidence plane, better inputs, a calibrated verifier.
+
+Ask for fewer decisions. Batch them, set standing policy, or stop asking. Underrated, and usually the fastest thing available this week.
+
+> No single lever closes a gap of three times. In the worked example it takes cutting the cost of checking by half and reclassifying about forty-five percent of the work. Both at once.
+
+The two that do the work are making checking cheaper and asking for less. Neither of them is hiring.
+
+## R4. Why the classes are not a risk register, 60 seconds
+
+Insert after slide 15.
+
+The objection to expect: this is just a risk framework with different labels.
+
+It is not, and the difference is testable. Reconciling a forty million budget rollup against the ledger is high risk and machine-checkable in nine seconds. Deciding whether to renegotiate a minor dependency with a partner team is low risk and needs somebody who remembers what happened in March.
+
+Risk and checking cost are not correlated. A pure risk framework tells you to be careful with the first one and relaxed about the second, which is exactly backwards for deciding where to deploy an agent.
+
+You need both axes. Most operating models have one.
+
+---
+
+# Questions to expect
+
+**"How do we measure c without instrumenting everything?"**
+Three people, twenty decisions, a stopwatch, one afternoon. The instrumentation is better for the long run and it is not needed to start. The step people skip is the last one: ask each reviewer afterwards whether they genuinely checked and throw away the ones who say no. Without that you measured approval time, not verification cost, and under overdraft those are different quantities.
+
+**"Isn't this just a reason to slow down?"**
+The opposite, and slide 26 is the answer. It tells you where you can go faster. Machine-checkable work at three thousand a week against expert work at twenty-one is not a brake, it is a map. Most organisations are being cautious uniformly, which means being too slow on the cheap work and too fast on the expensive work.
+
+**"What if the AI gets good enough that it does not need checking?"**
+Then you are trusting it without evidence, which is a decision you can make but should make explicitly. The framework does not say agents are unreliable. It says an approval that nobody had capacity to make is not an approval. If you want to run without verification, run without it deliberately and write down that you did.
+
+**"We already have AI governance. How is this different?"**
+Most governance says who may approve what. This says how many approvals you can actually produce. Those are different questions and the second one is usually missing. You can have complete governance documentation and be structurally unable to execute it, and that is the normal case rather than the exception.
+
+**"Where did the 3.3 come from?"**
+A synthetic example, generated by a seeded script in the repository, and it is labelled synthetic everywhere it appears. It demonstrates that the arithmetic reproduces. It is not evidence about any real organisation and I would not defend it as such.
+
+**"Does this work outside project delivery?"**
+The arithmetic does. Anywhere agents produce decisions and humans approve them. What does not transfer is the calibration: the cost ranges are project-delivery numbers and you should throw them away and measure your own.
+
+**"Who owns this in the org chart?"**
+The verification lead from slide 14. It does not have to be a new hire and it usually should not be. It has to be somebody's actual, named job, because a budget nobody owns is a number in a slide deck.

@@ -349,7 +349,7 @@ def attach_notes(slide, body: str) -> None:
 # The slides
 # ---------------------------------------------------------------------------
 
-TOTAL = 27
+TOTAL = 28
 
 
 def build() -> Presentation:
@@ -1019,6 +1019,42 @@ def build() -> Presentation:
         text(s, body, 5.0, y, 7.47, 0.6, size=13.5, font=SANS, colour=SLATE, line_spacing=1.3)
         y += 0.86
         hairline(s, MARGIN, y - 0.16, CONTENT_W)
+
+    # 27. What it buys you --------------------------------------------------------
+    s = new(section="The payoff")
+    title(s, "What this buys you.")
+    text(s, "This is a permission structure, not a brake. It tells you where you can "
+            "go faster, and how fast.",
+         MARGIN, 1.62, 8.6, 0.5, size=15, font=SANS, colour=MIST, line_spacing=1.3)
+    gains = [
+        ("More autonomy, not less.",
+         "Machine-checkable work runs at three thousand decisions a week in the worked "
+         "example. Expert-checkable work runs at twenty-one. Same people, same models. "
+         "Pick the first kind and you are not throttled at all."),
+        ("A number you can defend.",
+         "When the board asks how much AI you can safely run, you answer with arithmetic "
+         "instead of a feeling, and you can show what would have to change to raise it."),
+        ("Capacity that grows without hiring.",
+         "A calibrated verifier agent cuts the cost of checking, so the budget rises on the "
+         "same headcount. In the example it roughly triples the machine-checkable budget."),
+        ("Failures you find before your customer does.",
+         "Drift arrives as a rising number weeks before it arrives as an incident. Every "
+         "other dashboard in the room was green the whole time."),
+    ]
+    top = 2.42
+    for head, body in gains:
+        hairline(s, MARGIN, top, CONTENT_W)
+        text(s, head, MARGIN, top + 0.14, 4.0, 0.34, size=15.5, font=SERIF,
+             colour=INK, bold=True)
+        text(s, body, MARGIN + 4.3, top + 0.14, CONTENT_W - 4.3, 0.86, size=12.5,
+             font=SANS, colour=SLATE, line_spacing=1.32)
+        top += 1.06
+    hairline(s, MARGIN, top, CONTENT_W, INK, 1.4)
+    rich(s, [("The teams that scale autonomy fastest are not the ones with the best models. ",
+              {"size": 15, "colour": SLATE}),
+             ("They are the ones who made checking cheap.",
+              {"size": 15, "colour": INK, "bold": True})],
+         MARGIN, top + 0.18, CONTENT_W, 0.5, font=SERIF)
 
     # 17. Monday ------------------------------------------------------------------
     s = new(section="What to do")
