@@ -864,7 +864,9 @@ calculator/
   index.html                  Single file, no build, no CDN. Opens from disk.
 deck/
   build.py                    Compiles slides/*.md into a self-contained index.html
+  build_pptx.py               The same deck as PowerPoint
   slides/                     Markdown slide sources
+  SCRIPT.md                   The spoken script, with timings
   assets/                     QR codes generated at build time
 tools/
   qr.py                       Pure-python QR encoder. No dependencies, no external service.

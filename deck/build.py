@@ -38,7 +38,7 @@ ASSETS = HERE / "assets"
 OUTPUT = HERE / "index.html"
 
 sys.path.insert(0, str(ROOT))
-from tools.qr import encode, to_svg  # noqa: E402
+from tools.qr import encode, to_png, to_svg  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # The one place any of these change.
@@ -303,10 +303,14 @@ def build_qr_codes() -> dict[str, str]:
     ASSETS.mkdir(parents=True, exist_ok=True)
     sources: dict[str, str] = {}
     for name, (url, title) in QR_CODES.items():
-        svg = to_svg(encode(url), module=8, quiet_zone=4, title=title)
+        matrix = encode(url)
+        svg = to_svg(matrix, module=8, quiet_zone=4, title=title)
         (ASSETS / f"{name}.svg").write_text(svg, encoding="utf-8")
+        # A PNG as well, because PowerPoint and most document tools will not
+        # place an SVG.
+        (ASSETS / f"{name}.png").write_bytes(to_png(matrix, module=10, quiet_zone=4))
         sources[name] = svg
-        print(f"  {name}.svg  {url}")
+        print(f"  {name}.svg + .png  {url}")
     return sources
 
 

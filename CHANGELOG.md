@@ -66,6 +66,10 @@ First public release. The specification is stable enough to implement.
 - `deck/`, built from markdown sources by a standard-library script into a
   self-contained HTML file. QR codes are generated at build time by
   `tools/qr.py`, a pure-python encoder, rather than fetched from a service.
+- A PowerPoint build of the same 18 slides, sharing the speaker notes with the
+  HTML so the two cannot drift apart.
+- `deck/SCRIPT.md`, the spoken script with timings, cut points and the questions
+  to expect.
 
 **Repository**
 - Apache 2.0. `CITATION.cff`. An issue template for reporting a measured

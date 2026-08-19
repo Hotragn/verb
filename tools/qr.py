@@ -29,9 +29,11 @@ produces a plausible-looking but unscannable square is worse than no encoder:
 
 from __future__ import annotations
 
+import struct
+import zlib
 from typing import Sequence
 
-__all__ = ["QRError", "encode", "to_svg", "to_ascii", "decode"]
+__all__ = ["QRError", "encode", "to_svg", "to_png", "to_ascii", "decode"]
 
 
 class QRError(ValueError):
@@ -515,6 +517,45 @@ def to_svg(
     parts.append("  </g>")
     parts.append("</svg>")
     return "\n".join(parts) + "\n"
+
+
+def to_png(
+    matrix: Sequence[Sequence[int]],
+    module: int = 10,
+    quiet_zone: int = 4,
+    dark: tuple[int, int, int] = (16, 20, 24),
+    light: tuple[int, int, int] = (255, 255, 255),
+) -> bytes:
+    """Render a matrix as PNG bytes.
+
+    Written out by hand because zlib and struct are in the standard library and
+    an image encoder is not worth a dependency. PowerPoint and most document
+    tools will not place an SVG, so the deck build writes both.
+    """
+    n = len(matrix)
+    span = (n + quiet_zone * 2) * module
+
+    rows = bytearray()
+    for y in range(span):
+        rows.append(0)  # filter type 0, none
+        my = y // module - quiet_zone
+        for x in range(span):
+            mx = x // module - quiet_zone
+            inside = 0 <= my < n and 0 <= mx < n
+            pixel = dark if (inside and matrix[my][mx]) else light
+            rows.extend(pixel)
+
+    def chunk(tag: bytes, payload: bytes) -> bytes:
+        body = tag + payload
+        return struct.pack(">I", len(payload)) + body + struct.pack(">I", zlib.crc32(body))
+
+    header = struct.pack(">IIBBBBB", span, span, 8, 2, 0, 0, 0)  # 8-bit truecolour
+    return (
+        b"\x89PNG\r\n\x1a\n"
+        + chunk(b"IHDR", header)
+        + chunk(b"IDAT", zlib.compress(bytes(rows), 9))
+        + chunk(b"IEND", b"")
+    )
 
 
 def to_ascii(matrix: Sequence[Sequence[int]], quiet_zone: int = 2) -> str:

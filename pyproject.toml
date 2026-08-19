@@ -31,6 +31,10 @@ dev = [
   "pytest-cov>=4.1",
   "jsonschema>=4.20",
 ]
+# Only for deck/build_pptx.py. The HTML deck needs nothing.
+deck = [
+  "python-pptx>=1.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/hotragn/verb"
