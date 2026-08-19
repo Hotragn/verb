@@ -2,7 +2,7 @@
 
 For the 27-slide deck. Roughly 35 minutes at a normal pace. Shorter cuts are listed below the running order.
 
-> **For the GSDC session, use [`SCRIPT-45MIN.md`](SCRIPT-45MIN.md) as the running order.**
+> **For a 45-minute slot, use [`SCRIPT-45MIN.md`](SCRIPT-45MIN.md) as the running order.**
 > 45 minutes of talk plus 15 of questions, inside the 60 to 70 minute slot. It holds
 > the timing table, two polls, two live demos, the questions to expect, and seventeen
 > minutes of reserve material if you finish early. This file is the spine: what you

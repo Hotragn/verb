@@ -22,6 +22,7 @@ decorative stripes, no logo on every slide.
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -223,27 +224,47 @@ def title(slide, heading: str, top: float = 1.02, size: int = 33, width: float =
                 size=size, font=SERIF, colour=colour, bold=True, line_spacing=1.06)
 
 
-HOST_LOGO_STEM = "gsdc"
-HOST_LOGO_SUFFIXES = (".png", ".jpg", ".jpeg", ".gif")
-HOST_NAME = "GSDC Certified Learning Masterclass Series"
+HOST_CONFIG = HERE / "host.json"
 SPEAKER = "Hotragn Pettugani"
 SPEAKER_TITLE = "CTO, Future Median (non-profit)"
 
 
-def host_logo_path():
-    """Any image in assets whose filename mentions the host.
+def host():
+    """Per-event branding, read from deck/host.json if it exists.
 
-    Deliberately loose about case, spaces and hyphens, because the logo arrives
-    named however the host named it and renaming it is a step people forget.
+    The framework is the artifact and the event a talk was given at is
+    supplemental, so no host name or host logo is committed here. A host's logo
+    is also their trademark, which does not belong in an Apache 2.0 repository.
+
+    Create deck/host.json, which is gitignored, to brand a build:
+
+        {"name": "Some Conference 2026", "logo": "assets/their-logo.png"}
+
+    Without it the deck is host-neutral, which is the correct default for
+    anybody who clones this.
     """
-    if not ASSETS.is_dir():
+    if not HOST_CONFIG.exists():
+        return {}
+    try:
+        return json.loads(HOST_CONFIG.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        print(f"  WARNING: {HOST_CONFIG.name} is not readable JSON. Ignoring it.")
+        return {}
+
+
+def host_name():
+    return host().get("name") or ""
+
+
+def host_logo_path():
+    rel = host().get("logo")
+    if not rel:
         return None
-    for path in sorted(ASSETS.iterdir()):
-        if path.suffix.lower() not in HOST_LOGO_SUFFIXES:
-            continue
-        if HOST_LOGO_STEM in path.stem.lower().replace(" ", "").replace("-", ""):
-            return path
-    return None
+    path = (HERE / rel).resolve()
+    if not path.exists():
+        print(f"  WARNING: host logo not found at {rel}. Building without it.")
+        return None
+    return path
 
 
 def host_logo(slide, top: float = 0.34, height: float = 0.40) -> None:
@@ -374,7 +395,7 @@ def build() -> Presentation:
 
     # 1. Title -----------------------------------------------------------
     s = new(INK, chrome=False)
-    text(s, HOST_NAME.upper(), MARGIN, 1.42, 8.0, 0.3, size=11, font=SANS,
+    text(s, host_name().upper(), MARGIN, 1.42, 8.0, 0.3, size=11, font=SANS,
          colour=ON_DARK_ACCENT, bold=True)
     hairline(s, MARGIN, 2.05, 1.0, ON_DARK, 2.6)
     text(s, "The Verification Budget", MARGIN, 2.42, 10.0, 2.0,
@@ -1118,18 +1139,27 @@ def build() -> Presentation:
 
 def main() -> int:
     if host_logo_path() is None:
-        print("  NOTE: no host logo found. Drop the GSDC logo at "
-              "deck/assets/gsdc-logo.png and rebuild to place it on every "
-              "content slide. The deck is complete without it.")
+        print("  NOTE: host-neutral build. To brand it for an event, create "
+              "deck/host.json with a name and a logo path. See host() in this "
+              "file. The deck is complete without it.")
     missing = [name for name in ("qr-repo.png", "qr-x.png") if not (ASSETS / name).exists()]
     if missing:
         print("QR images missing. Run: python deck/build.py", file=sys.stderr)
         return 1
 
     prs = build()
-    prs.save(OUTPUT)
+    target = OUTPUT
+    try:
+        prs.save(target)
+    except PermissionError:
+        # Almost always PowerPoint holding the file open. Do not lose the build.
+        target = OUTPUT.with_name(OUTPUT.stem + "-new" + OUTPUT.suffix)
+        prs.save(target)
+        print(f"  NOTE: {OUTPUT.name} is open in another program, so this build "
+              f"went to {target.name} instead. Close PowerPoint and rename it, "
+              f"or rebuild.")
     print(f"slides   {len(prs.slides.__iter__.__self__._sldIdLst)}")
-    print(f"output   {OUTPUT.relative_to(ROOT)}  ({OUTPUT.stat().st_size / 1024:.0f} kB)")
+    print(f"output   {target.relative_to(ROOT)}  ({target.stat().st_size / 1024:.0f} kB)")
     return 0
 
 

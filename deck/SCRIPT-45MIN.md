@@ -1,6 +1,8 @@
 # Speaker script, 45 minutes
 
-GSDC Certified Learning Masterclass Series. 28 slides, 45 minutes talking, 15 minutes questions.
+28 slides. 45 minutes talking, 15 minutes questions.
+
+`[HOST]` marks the two places to name the event and the organiser. Everything else is host-neutral and reusable.
 
 **How to use this.** Each slide gets a block. The bold line at the top of a block is the one sentence that has to land; everything under it is support you can cut live. Nothing here reads the slide out loud. The slide holds the numbers and the tables, you hold the argument.
 
@@ -60,7 +62,7 @@ GSDC Certified Learning Masterclass Series. 28 slides, 45 minutes talking, 15 mi
 
 **Set the promise: they leave knowing how to build this and what it costs to check it.**
 
-Thank Pritam and the GSDC team for the invitation.
+`[HOST]` Thank the organiser by name and the host for the invitation.
 
 One line about you: CTO at Future Median, a non-profit, and you spend your time on how autonomous systems get supervised rather than on how they get built.
 
@@ -582,7 +584,7 @@ Apache 2.0, which means you can take it into your own governance framework and r
 
 What you want back: measured verification costs from real organisations, classification disagreements where the decision tree gives the wrong answer, and anything at all on the queueing problem.
 
-Thank the audience and GSDC. Hand back to the moderator for questions.
+`[HOST]` Thank the audience and the host. Hand back to the moderator for questions.
 
 Leave the slide up for the whole Q&A. It is the only slide with the links on it.
 

@@ -27,3 +27,10 @@ desktop.ini
 
 # Built deck output is committed on purpose, so that the deck opens from a
 # fresh clone with nothing installed. Nothing to ignore here.
+
+# Per-event branding. The framework is the artifact; the event is supplemental.
+# A host's logo is their trademark and is not redistributable under Apache 2.0.
+deck/host.json
+deck/assets/host-*
+deck/assets/*GSDC*
+deck/assets/*gsdc*
