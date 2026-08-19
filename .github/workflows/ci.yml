@@ -121,8 +121,12 @@ jobs:
       - name: Build the deck and its QR codes
         run: python deck/build.py
 
+      # PNG bytes are excluded: zlib output depends on the zlib build, so the
+      # same matrix compresses differently on a different platform. The image is
+      # identical, the file is not. The SVGs and the HTML are deterministic and
+      # they are what this check is for.
       - name: The built deck is committed and up to date
-        run: git diff --exit-code -- deck
+        run: git diff --exit-code -- deck ':!deck/assets/*.png'
 
   prose:
     name: Tone constraints

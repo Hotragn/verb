@@ -18,6 +18,7 @@ from tools.qr import (
     encode,
     rs_syndromes,
     to_ascii,
+    to_png,
     to_svg,
 )
 
@@ -160,3 +161,73 @@ def test_svg_accepts_a_title_for_screen_readers():
 def test_ascii_render_has_one_line_per_module_plus_quiet_zone():
     lines = to_ascii(encode(REPO_URL), quiet_zone=2).split("\n")
     assert len(lines) == 29 + 4
+
+
+# ---------------------------------------------------------------------------
+# PNG output, which is what PowerPoint and most document tools need
+# ---------------------------------------------------------------------------
+
+
+def _read_png(data: bytes) -> tuple[int, int, list[list[tuple[int, int, int]]]]:
+    """Minimal reader for the PNGs this module writes: truecolour, filter 0."""
+    import struct
+    import zlib
+
+    assert data[:8] == b"\x89PNG\r\n\x1a\n"
+    pos = 8
+    width = height = 0
+    idat = b""
+    while pos < len(data):
+        length = struct.unpack(">I", data[pos : pos + 4])[0]
+        tag = data[pos + 4 : pos + 8]
+        payload = data[pos + 8 : pos + 8 + length]
+        stored_crc = struct.unpack(">I", data[pos + 8 + length : pos + 12 + length])[0]
+        assert zlib.crc32(tag + payload) == stored_crc, f"bad CRC on {tag!r}"
+        if tag == b"IHDR":
+            width, height, depth, colour = struct.unpack(">IIBB", payload[:10])
+            assert (depth, colour) == (8, 2)
+        elif tag == b"IDAT":
+            idat += payload
+        pos += 12 + length
+
+    raw = zlib.decompress(idat)
+    stride = width * 3 + 1
+    rows = []
+    for y in range(height):
+        line = raw[y * stride : (y + 1) * stride]
+        assert line[0] == 0, "only filter type 0 is written"
+        rows.append([tuple(line[1 + x * 3 : 4 + x * 3]) for x in range(width)])
+    return width, height, rows
+
+
+def test_png_is_structurally_valid():
+    width, height, _ = _read_png(to_png(encode(REPO_URL), module=10, quiet_zone=4))
+    assert width == height == (29 + 8) * 10
+
+
+def test_png_pixels_reconstruct_the_matrix():
+    """The image has to carry the same modules, not just be a valid PNG."""
+    matrix = encode(REPO_URL)
+    module, quiet = 6, 4
+    _, _, rows = _read_png(to_png(matrix, module=module, quiet_zone=quiet))
+    dark, light = (16, 20, 24), (255, 255, 255)
+    for r, line in enumerate(matrix):
+        for c, value in enumerate(line):
+            # Sample the middle of each module.
+            y = (r + quiet) * module + module // 2
+            x = (c + quiet) * module + module // 2
+            assert rows[y][x] == (dark if value else light), f"module {r},{c}"
+
+
+def test_png_quiet_zone_is_light():
+    matrix = encode("hi")
+    _, _, rows = _read_png(to_png(matrix, module=4, quiet_zone=4))
+    assert rows[2][2] == (255, 255, 255)
+    assert rows[-3][-3] == (255, 255, 255)
+
+
+def test_png_is_smaller_than_the_raw_pixels():
+    """Sanity check that the IDAT is actually compressed."""
+    data = to_png(encode(REPO_URL), module=10, quiet_zone=4)
+    span = (29 + 8) * 10
+    assert len(data) < span * (span * 3 + 1) // 4
