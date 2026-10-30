@@ -1,0 +1,73 @@
+{
+  "cases": {
+    "smooth/fifo": {
+      "reviews": 20,
+      "offered_minutes": 1920,
+      "available_minutes": 2400,
+      "offered_load": 0.8,
+      "late_reviews": 0,
+      "late_class_c": 0,
+      "unfinished_minutes_at_deadline": 0,
+      "last_completion": 2376
+    },
+    "smooth/class_priority": {
+      "reviews": 20,
+      "offered_minutes": 1920,
+      "available_minutes": 2400,
+      "offered_load": 0.8,
+      "late_reviews": 0,
+      "late_class_c": 0,
+      "unfinished_minutes_at_deadline": 0,
+      "last_completion": 2376
+    },
+    "burst/fifo": {
+      "reviews": 20,
+      "offered_minutes": 1920,
+      "available_minutes": 2400,
+      "offered_load": 0.8,
+      "late_reviews": 15,
+      "late_class_c": 15,
+      "unfinished_minutes_at_deadline": 1440,
+      "last_completion": 3840
+    },
+    "burst/class_priority": {
+      "reviews": 20,
+      "offered_minutes": 1920,
+      "available_minutes": 2400,
+      "offered_load": 0.8,
+      "late_reviews": 15,
+      "late_class_c": 15,
+      "unfinished_minutes_at_deadline": 1440,
+      "last_completion": 3840
+    },
+    "mixed_burst/fifo": {
+      "reviews": 40,
+      "offered_minutes": 1920,
+      "available_minutes": 2400,
+      "offered_load": 0.8,
+      "late_reviews": 24,
+      "late_class_c": 8,
+      "unfinished_minutes_at_deadline": 1440,
+      "last_completion": 3840
+    },
+    "mixed_burst/class_priority": {
+      "reviews": 40,
+      "offered_minutes": 1920,
+      "available_minutes": 2400,
+      "offered_load": 0.8,
+      "late_reviews": 36,
+      "late_class_c": 4,
+      "unfinished_minutes_at_deadline": 1440,
+      "last_completion": 3840
+    }
+  },
+  "containment": {
+    "original_reviews": 100,
+    "contained_reviews": 80,
+    "original_mean_minutes": 36.0,
+    "residual_mean_minutes": 120.0,
+    "original_work_minutes": 3600,
+    "residual_work_minutes": 2400,
+    "constant_mean_estimate_minutes": 719.9999999999999
+  }
+}
